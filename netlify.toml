@@ -1,0 +1,12 @@
+[build]
+  publish = "hero"
+
+[[redirects]]
+  from = "/hero"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/hero/*"
+  to = "/:splat"
+  status = 301
