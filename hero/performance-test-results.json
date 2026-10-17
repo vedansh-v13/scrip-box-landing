@@ -1,0 +1,163 @@
+{
+  "timestamp": "2026-10-17T05:33:38.729Z",
+  "testsPassed": 39,
+  "testsFailed": 0,
+  "details": [
+    {
+      "status": "PASS",
+      "message": "Performance Section (#perfSection) is positioned immediately above Investment Strategies (#strategiesSection)"
+    },
+    {
+      "status": "PASS",
+      "message": "Source attribution exact: \"Source: APMI India | As of November, 2025\""
+    },
+    {
+      "status": "PASS",
+      "message": "Default selected period is 4Y"
+    },
+    {
+      "status": "PASS",
+      "message": "4Y values: Benchmark = 12.8%, Scripbox = 25.4%"
+    },
+    {
+      "status": "PASS",
+      "message": "Benchmark 4Y bar height is 36.5% on 35% fixed axis (12.79 / 35)"
+    },
+    {
+      "status": "PASS",
+      "message": "Scripbox 4Y bar height is 72.5% on 35% fixed axis (25.39 / 35)"
+    },
+    {
+      "status": "PASS",
+      "message": "2Y values: Benchmark = 15.4%, Scripbox = 26.8%"
+    },
+    {
+      "status": "PASS",
+      "message": "Scripbox 2Y bar height is ~76.5% (26.78 / 35)"
+    },
+    {
+      "status": "PASS",
+      "message": "3Y values: Benchmark = 13.1%, Scripbox = 30.6%"
+    },
+    {
+      "status": "PASS",
+      "message": "Scripbox 3Y bar height is ~87.5% (30.63 / 35)"
+    },
+    {
+      "status": "PASS",
+      "message": "Fixed-axis truthfulness: 3Y (30.6%) is visibly taller than 4Y (25.4%)"
+    },
+    {
+      "status": "PASS",
+      "message": "SI values: Benchmark = 14.6%, Scripbox = 29.4%"
+    },
+    {
+      "status": "PASS",
+      "message": "Live region announces: \"Selected Since Inception: Scripbox Portfolio Optimiser 29.4%, Benchmark 14.6%.\""
+    },
+    {
+      "status": "PASS",
+      "message": "Hero Wealth Anchor (#heroGrowthAnchor) is positioned inside the Hero header"
+    },
+    {
+      "status": "PASS",
+      "message": "Visual hierarchy strictly verified: Brand Bar -> Illustration -> Headline -> CTA"
+    },
+    {
+      "status": "PASS",
+      "message": "Subtle fading amber section dividers rendered across content boundaries (count=4)"
+    },
+    {
+      "status": "PASS",
+      "message": "Eyebrow text exact: \"IF YOU HAD INVESTED ₹1Cr IN 2022\""
+    },
+    {
+      "status": "PASS",
+      "message": "Scripbox displays: ₹2.47 Cr (Scripbox (Portfolio Optimiser))"
+    },
+    {
+      "status": "PASS",
+      "message": "Benchmark displays: ₹1.62 Cr (Benchmark (Nifty 50 TRI))"
+    },
+    {
+      "status": "PASS",
+      "message": "Framed hero card container, dual-column summary, (i) info button, and bottom legend row verified"
+    },
+    {
+      "status": "PASS",
+      "message": "Organic curves (quadratic bezier), under-curve atmospheric fill, terminal pill badges, and 2023-2026 timeline ticks rendered"
+    },
+    {
+      "status": "PASS",
+      "message": "Clicking (i) info button displays calculation popup"
+    },
+    {
+      "status": "PASS",
+      "message": "Closing calculation popup returns to clean card state"
+    },
+    {
+      "status": "PASS",
+      "message": "Verbatim compliance disclosure matches: \"Past performance is based on historical data and does not guarantee future returns. Investments are subject to market risks.\""
+    },
+    {
+      "status": "PASS",
+      "message": "Hero illustration correctly excludes APMI attribution (reserved exclusively for Section 2)"
+    },
+    {
+      "status": "PASS",
+      "message": "No horizontal overflow at 360x640 (scrollWidth <= innerWidth)"
+    },
+    {
+      "status": "PASS",
+      "message": "All interactive buttons meet >= 44x44px touch target at 360x640"
+    },
+    {
+      "status": "PASS",
+      "message": "No horizontal overflow at 390x640 (scrollWidth <= innerWidth)"
+    },
+    {
+      "status": "PASS",
+      "message": "All interactive buttons meet >= 44x44px touch target at 390x640"
+    },
+    {
+      "status": "PASS",
+      "message": "No horizontal overflow at 390x844 (scrollWidth <= innerWidth)"
+    },
+    {
+      "status": "PASS",
+      "message": "All interactive buttons meet >= 44x44px touch target at 390x844"
+    },
+    {
+      "status": "PASS",
+      "message": "No horizontal overflow at 430x932 (scrollWidth <= innerWidth)"
+    },
+    {
+      "status": "PASS",
+      "message": "All interactive buttons meet >= 44x44px touch target at 430x932"
+    },
+    {
+      "status": "PASS",
+      "message": "Hero CTA (btnHeroB) opens consultation modal cleanly"
+    },
+    {
+      "status": "PASS",
+      "message": "Step 1 tile selection advances to Step 2 (panelQ2)"
+    },
+    {
+      "status": "PASS",
+      "message": "Back button returns to Step 1 (panelQ1)"
+    },
+    {
+      "status": "PASS",
+      "message": "Modal closes cleanly and preserves page state"
+    },
+    {
+      "status": "PASS",
+      "message": "prefers-reduced-motion disables all animation routines (animation: none)"
+    },
+    {
+      "status": "PASS",
+      "message": "All vectors, fills, and labels render immediately and statically at 100% opacity"
+    }
+  ]
+}

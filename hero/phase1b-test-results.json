@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Hero CTA exists and is visible",
+    "passed": true,
+    "details": "Connect with our PMS expert"
+  },
+  {
+    "name": "Step 1 has wealth-oriented headline",
+    "passed": true,
+    "details": "Select your primary wealth objective"
+  },
+  {
+    "name": "Step 1 renders full-width stacked objective cards",
+    "passed": true,
+    "details": "count=2"
+  },
+  {
+    "name": "Auto-advances to Step 2 on Step 1 selection",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 2 heading reflects investment allocation",
+    "passed": true,
+    "details": "Planned investment in PMS"
+  },
+  {
+    "name": "Step 2 displays single concise statutory note",
+    "passed": true,
+    "details": "*SEBI requires a minimum investment of ₹50 Lakhs for Portfolio Management Services."
+  },
+  {
+    "name": "Auto-advances directly to Step 3 (Contact Screen)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Recap pill reflects objective and allocation",
+    "passed": true,
+    "details": "Goal-based strategy • 50 Lakhs to 2 Crore"
+  },
+  {
+    "name": "Contact screen has benefit-led headline",
+    "passed": true,
+    "details": "Request your confidential PMS strategy consultation"
+  },
+  {
+    "name": "Oversized compliance badges removed from contact header",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Single-line minimal privacy footnote present",
+    "passed": true,
+    "details": "\n              \n                \n                \n              \n              Confidential • SEBI Reg. INP000001660 • Strict Client Privacy\n            "
+  },
+  {
+    "name": "Step 2 heading adapts to \"Size of portfolio to review\"",
+    "passed": true,
+    "details": "Size of portfolio to review"
+  },
+  {
+    "name": "Under-₹50L dynamically routes to Mutual Fund Advisory headline",
+    "passed": true,
+    "details": "Request your mutual fund advisory consultation"
+  },
+  {
+    "name": "Under-₹50L updates submit CTA to Request Advisory Consultation",
+    "passed": true,
+    "details": "Request Advisory Consultation"
+  },
+  {
+    "name": "Name field enforces min 2 characters",
+    "passed": true,
+    "details": "Name must be at least 2 characters."
+  },
+  {
+    "name": "Mobile field validates 10-digit format",
+    "passed": true,
+    "details": "Please enter a valid 10-digit Indian mobile number."
+  },
+  {
+    "name": "Form enables without requiring optional City",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Submit button shows loading state during network simulation",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Submits directly to Confirmation screen (Standalone callback step removed)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Confirmation screen displays contextual heading",
+    "passed": true,
+    "details": "Advisory Consultation Request Confirmed"
+  },
+  {
+    "name": "Confirmation screen renders 3 integrated callback chips",
+    "passed": true,
+    "details": "count=3"
+  },
+  {
+    "name": "Callback chip toggles to selected state upon tap",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Callback saved hint displays instant reassurance",
+    "passed": true,
+    "details": "Preference saved: Morning window selected. We will prioritize calling during this time."
+  },
+  {
+    "name": "Done button cleanly closes modal and returns user to overview",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Compact 360x640 viewport renders all steps cleanly without overflow",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Large 430x932 viewport renders with balanced proportion and clean margins",
+    "passed": true,
+    "details": ""
+  }
+]

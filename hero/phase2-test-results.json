@@ -1,0 +1,142 @@
+[
+  {
+    "name": "Hero CTA exists and is visible",
+    "passed": true,
+    "details": "Connect with our PMS expert"
+  },
+  {
+    "name": "Step 1 stepper identifies Objective with 1/3 fraction and 1 active segment",
+    "passed": true,
+    "details": "Objective, 1 / 3, activeSegs=1"
+  },
+  {
+    "name": "Back button tap target >= 44x44px",
+    "passed": true,
+    "details": "76.015625x44"
+  },
+  {
+    "name": "Step 1 renders 2 full-width stacked objective cards",
+    "passed": true,
+    "details": "count=2"
+  },
+  {
+    "name": "Auto-advances to Step 2 on Step 1 selection",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 2 stepper identifies Investment with 2/3 fraction and 2 active segments",
+    "passed": true,
+    "details": "Investment, 2 / 3, activeSegs=2"
+  },
+  {
+    "name": "Step 2 option tiles meet 44px+ minimum touch target",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Auto-advances directly to Step 3 (Contact Screen)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 3 stepper identifies Consultation with 3/3 fraction and 3 active segments",
+    "passed": true,
+    "details": "Consultation, 3 / 3, activeSegs=3"
+  },
+  {
+    "name": "Contact screen visual order is Headline/Subhead -> Recap Pill -> Form",
+    "passed": true,
+    "details": "{\"headerIndex\":0,\"recapIndex\":1,\"formIndex\":2}"
+  },
+  {
+    "name": "Edit affordance in recap pill returns directly to Step 1",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 2 adapts to \"Size of portfolio to review\"",
+    "passed": true,
+    "details": "Size of portfolio to review"
+  },
+  {
+    "name": "Under-50L routes to Mutual Fund Advisory headline",
+    "passed": true,
+    "details": "Request your mutual fund advisory consultation"
+  },
+  {
+    "name": "Name field shows validation for <2 characters",
+    "passed": true,
+    "details": "Name must be at least 2 characters."
+  },
+  {
+    "name": "Submit button demonstrates loading spinner state during submission",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Submits directly to Confirmation screen without intermediate blocker",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Confirmation screen renders 3 integrated callback window chips",
+    "passed": true,
+    "details": "count=3"
+  },
+  {
+    "name": "Callback chip toggles to selected state",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Callback saved hint displays instant confirmation",
+    "passed": true,
+    "details": "Preference saved: Morning window selected. We will prioritize calling during this time."
+  },
+  {
+    "name": "Clicking same chip toggles selection off (restoring business hours default)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Done button closes overlay cleanly and returns user to overview",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 1 has zero horizontal overflow at 360x640",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Step 2 has zero horizontal overflow at 360x640",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Contact screen has zero horizontal overflow at 360x640",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Confirmation screen has zero horizontal overflow at 360x640",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Short 390x640 viewport accommodates content with smooth vertical scroll and no clipping",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Large 430x932 viewport renders with balanced proportion, comfortable margins and centered measure",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Desktop view constrains modal panel to 430px centered column",
+    "passed": true,
+    "details": ""
+  }
+]

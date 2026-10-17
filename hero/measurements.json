@@ -1,0 +1,188 @@
+[
+  {
+    "variant": "a",
+    "viewport": "390x640",
+    "windowInnerWidth": 390,
+    "windowInnerHeight": 640,
+    "scrollWidth": 390,
+    "hasHorizontalScroll": false,
+    "heroBottom": 426.3,
+    "trustStripBottom": 390.7,
+    "trustStripTop": 330.9,
+    "tapTargets": [
+      {
+        "selector": "q1-tile",
+        "text": "Goal-based strategy",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Portfolio review by experts",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Putting a lump sum to work",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 354,
+        "h": 48
+      }
+    ]
+  },
+  {
+    "variant": "a",
+    "viewport": "390x844",
+    "windowInnerWidth": 390,
+    "windowInnerHeight": 844,
+    "scrollWidth": 390,
+    "hasHorizontalScroll": false,
+    "heroBottom": 426.3,
+    "trustStripBottom": 390.7,
+    "trustStripTop": 330.9,
+    "tapTargets": [
+      {
+        "selector": "q1-tile",
+        "text": "Goal-based strategy",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Portfolio review by experts",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Putting a lump sum to work",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 354,
+        "h": 48
+      }
+    ]
+  },
+  {
+    "variant": "a",
+    "viewport": "360x640",
+    "windowInnerWidth": 360,
+    "windowInnerHeight": 640,
+    "scrollWidth": 360,
+    "hasHorizontalScroll": false,
+    "heroBottom": 415.9,
+    "trustStripBottom": 380.3,
+    "trustStripTop": 320.5,
+    "tapTargets": [
+      {
+        "selector": "q1-tile",
+        "text": "Goal-based strategy",
+        "w": 324,
+        "h": 46
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Portfolio review by experts",
+        "w": 324,
+        "h": 46
+      },
+      {
+        "selector": "q1-tile",
+        "text": "Putting a lump sum to work",
+        "w": 324,
+        "h": 46
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 324,
+        "h": 48
+      }
+    ]
+  },
+  {
+    "variant": "b",
+    "viewport": "390x640",
+    "windowInnerWidth": 390,
+    "windowInnerHeight": 640,
+    "scrollWidth": 390,
+    "hasHorizontalScroll": false,
+    "heroBottom": 290.1,
+    "trustStripBottom": 254.5,
+    "trustStripTop": 194.8,
+    "tapTargets": [
+      {
+        "selector": "cta-button",
+        "text": "Connect with our PMS expert",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 354,
+        "h": 48
+      }
+    ]
+  },
+  {
+    "variant": "b",
+    "viewport": "390x844",
+    "windowInnerWidth": 390,
+    "windowInnerHeight": 844,
+    "scrollWidth": 390,
+    "hasHorizontalScroll": false,
+    "heroBottom": 290.1,
+    "trustStripBottom": 254.5,
+    "trustStripTop": 194.8,
+    "tapTargets": [
+      {
+        "selector": "cta-button",
+        "text": "Connect with our PMS expert",
+        "w": 354,
+        "h": 48
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 354,
+        "h": 48
+      }
+    ]
+  },
+  {
+    "variant": "b",
+    "viewport": "360x640",
+    "windowInnerWidth": 360,
+    "windowInnerHeight": 640,
+    "scrollWidth": 360,
+    "hasHorizontalScroll": false,
+    "heroBottom": 285.7,
+    "trustStripBottom": 250.1,
+    "trustStripTop": 190.3,
+    "tapTargets": [
+      {
+        "selector": "cta-button",
+        "text": "Connect with our PMS expert",
+        "w": 324,
+        "h": 48
+      },
+      {
+        "selector": "sticky-cta-btn",
+        "text": "Answer 3 questions",
+        "w": 324,
+        "h": 48
+      }
+    ]
+  }
+]

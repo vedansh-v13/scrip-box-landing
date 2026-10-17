@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Hero CTA exists and is visible",
+    "passed": true,
+    "details": "Connect with our PMS expert"
+  },
+  {
+    "name": "Step 1 (Q1) opens in overlay",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Auto-advances to Step 2 (Q2) on Q1 choice",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Q2 heading adapted for Goal-based strategy",
+    "passed": true,
+    "details": "Planned investment in PMS"
+  },
+  {
+    "name": "Auto-advances directly to Step 3 (Contact Conversion)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Dynamic Recap Pill contains choices",
+    "passed": true,
+    "details": "Goal-based strategy • 50 Lakhs to 2 Crore"
+  },
+  {
+    "name": "Contact heading matches Goal-based strategy intent",
+    "passed": true,
+    "details": "Request your confidential PMS strategy consultation"
+  },
+  {
+    "name": "Edit button in recap navigates directly back to Step 1",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Q2 heading dynamically changes to \"Size of portfolio to review\"",
+    "passed": true,
+    "details": "Size of portfolio to review"
+  },
+  {
+    "name": "Recap pill updated to Portfolio review • Above 2 Crore",
+    "passed": true,
+    "details": "Portfolio review by experts • Above 2 Crore"
+  },
+  {
+    "name": "Contact heading adapted to portfolio review consultation",
+    "passed": true,
+    "details": "Request your confidential portfolio review"
+  },
+  {
+    "name": "Submit button is initially disabled",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Validation displays for single character name",
+    "passed": true,
+    "details": "Name must be at least 2 characters."
+  },
+  {
+    "name": "Validation displays for invalid mobile",
+    "passed": true,
+    "details": "Please enter a valid 10-digit Indian mobile number."
+  },
+  {
+    "name": "Submit button is ENABLED without requiring city (Friction reduced)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Submit button transitions to loading state with feedback",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Transitions to Step 4 (Call Time Selection)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Call time submit button enabled after selection",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Transitions to Step 5 (Thank You Screen)",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Thank you receipt contains full profile summary",
+    "passed": true,
+    "details": "Enquiry: Portfolio review by experts • Above 2 Crore • Morning"
+  },
+  {
+    "name": "Confirmation copy explicitly mentions selected morning window",
+    "passed": true,
+    "details": "A dedicated SEBI-registered portfolio specialist will connect with you during your selected window: Morning (10:00 AM – 1:00 PM)."
+  },
+  {
+    "name": "Compact 360x640 viewport renders without overflow",
+    "passed": true,
+    "details": ""
+  },
+  {
+    "name": "Large 430x932 viewport renders with balanced proportion",
+    "passed": true,
+    "details": ""
+  }
+]

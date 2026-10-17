@@ -1,0 +1,32 @@
+{
+  "payload": {
+    "rawKB": "30.45",
+    "gzipKB": "8.60"
+  },
+  "viewports": [
+    {
+      "viewport": "390x640",
+      "feeLineBottom": 407.4,
+      "foldPass": true,
+      "hScrollPass": true,
+      "tapTargetsPass": false,
+      "sub12pxCount": 0
+    },
+    {
+      "viewport": "390x844",
+      "feeLineBottom": 407.4,
+      "foldPass": true,
+      "hScrollPass": true,
+      "tapTargetsPass": false,
+      "sub12pxCount": 0
+    },
+    {
+      "viewport": "360x640",
+      "feeLineBottom": 388.4,
+      "foldPass": true,
+      "hScrollPass": true,
+      "tapTargetsPass": false,
+      "sub12pxCount": 0
+    }
+  ]
+}
