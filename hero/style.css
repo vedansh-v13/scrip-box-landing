@@ -296,7 +296,7 @@ html, body {
 /* Hero CTA Container (Canonical Variant B) */
 .hero-cta-container {
   width: 100%;
-  margin: 18px 0 14px 0;
+  margin: 0 0 14px 0;
 }
 
 .cta-button {
@@ -2781,17 +2781,17 @@ input:focus:not(:focus-visible) {
    ========================================================================== */
 .hero-illustration-wrap,
 .hero-growth-anchor {
-  margin: 6px 0 8px 0;
+  margin: 14px 0 22px 0;
   width: 100%;
   box-sizing: border-box;
   position: relative;
 }
 
 .hero-card-container {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 16px 16px 14px 16px;
   box-shadow: none;
   position: relative;
   overflow: visible;
@@ -2995,9 +2995,9 @@ input:focus:not(:focus-visible) {
 /* Floating Info Popup Popover */
 .hero-growth-popup {
   position: absolute;
-  top: 48px;
-  right: 12px;
-  left: 12px;
+  top: 40px;
+  right: 8px;
+  left: 8px;
   background: rgba(26, 22, 20, 0.98);
   border: 1px solid rgba(245, 128, 36, 0.35);
   border-radius: 12px;
@@ -3107,10 +3107,10 @@ input:focus:not(:focus-visible) {
   }
   .hero-illustration-wrap,
   .hero-growth-anchor {
-    margin: 8px 0 4px 0;
+    margin: 16px 0 20px 0;
   }
   .hero-card-container {
-    padding: 0;
+    padding: 14px 14px 12px 14px;
   }
   .hero-card-header {
     margin-bottom: 4px;
@@ -3132,7 +3132,7 @@ input:focus:not(:focus-visible) {
     margin-top: 0;
   }
   .hero-cta-container {
-    margin: 6px 0 8px 0;
+    margin: 0 0 8px 0;
   }
   .cta-button {
     height: 48px;
