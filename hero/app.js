@@ -905,6 +905,163 @@
     updateLeaderControls(0);
   }
 
+  // GSAP Hero Animation: Message-Led Choreography
+  function initHeroAnimation() {
+    // 1. Fallback & Safe Degradation Check
+    if (typeof gsap === 'undefined') {
+      return null;
+    }
+
+    // 2. Accessibility & Reduced Motion Check
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      // Retain all elements in their 100% static computed states
+      return null;
+    }
+
+    const heroHeadline = document.querySelector('.hero-headline');
+    const heroCard = document.querySelector('.hero-card-container');
+    const curveScripbox = document.querySelector('.curve-scripbox');
+    const curveBenchmark = document.querySelector('.curve-benchmark');
+    const curveFill = document.querySelector('.curve-fill');
+    const nodeOrigin = document.querySelector('.node-origin');
+    const nodeScripbox = document.querySelector('.node-scripbox');
+    const nodeBenchmark = document.querySelector('.node-benchmark');
+    const pillScripbox = document.querySelector('.pill-group-scripbox');
+    const pillBenchmark = document.querySelector('.pill-group-benchmark');
+    const heroStatSplit = document.querySelector('.hero-stat-split');
+    const heroSubhead = document.querySelector('.hero-subhead');
+    const heroCta = document.querySelector('.hero-cta-container');
+
+    if (!heroHeadline || !heroCard) {
+      return null;
+    }
+
+    // Single coordinated master timeline: Editorial Compounding Arc (~2.0s)
+    const tl = gsap.timeline({
+      defaults: {
+        ease: 'power2.out'
+      }
+    });
+
+    // =========================================================================
+    // ACT 1 — ESTABLISH THE MESSAGE (0.00s – 0.55s)
+    // =========================================================================
+
+    // 1. Headline entrance: Restrained upward movement with opacity transition
+    tl.fromTo(heroHeadline,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' },
+      0.0
+    );
+
+    // 2. Supporting copy: Fades in directly below headline
+    if (heroSubhead) {
+      tl.fromTo(heroSubhead,
+        { opacity: 0, y: 6 },
+        { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' },
+        0.20
+      );
+    }
+
+    // [0.55s – 0.80s: Intentional anticipation pause for visitor comprehension]
+
+    // =========================================================================
+    // ACT 2 — REVEAL THE COMPOUNDING STORY (0.80s – 2.04s)
+    // =========================================================================
+
+    // 3. Chart origin point: 2022 origin starting node anchors the baseline
+    if (nodeOrigin) {
+      tl.fromTo(nodeOrigin,
+        { opacity: 0, scale: 0.4, transformOrigin: 'center center' },
+        { opacity: 1, scale: 1, duration: 0.20, ease: 'power2.out' },
+        0.80
+      );
+    }
+
+    // 4. Progressive curve drawing:
+    // Benchmark curve traces steadily left to right across the 2022-2026 timeline
+    if (curveBenchmark) {
+      tl.fromTo(curveBenchmark,
+        { strokeDashoffset: 100 },
+        { strokeDashoffset: 0, duration: 0.66, ease: 'power2.inOut' },
+        0.86
+      );
+    }
+
+    // Scripbox performance curve draws progressively alongside, ascending toward the apex
+    if (curveScripbox) {
+      tl.fromTo(curveScripbox,
+        { strokeDashoffset: 100 },
+        { strokeDashoffset: 0, duration: 0.72, ease: 'power2.inOut' },
+        0.86
+      );
+    }
+
+    // Atmospheric muted sage gradient fill softly emerges as Scripbox outpaces benchmark
+    if (curveFill) {
+      tl.fromTo(curveFill,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.46, ease: 'power1.out' },
+        1.12
+      );
+    }
+
+    // 5. Endpoint markers and values:
+    // Terminal connection nodes land as curves arrive at their terminal coordinates
+    if (nodeBenchmark) {
+      tl.fromTo(nodeBenchmark,
+        { opacity: 0, scale: 0.4, transformOrigin: 'center center' },
+        { opacity: 1, scale: 1, duration: 0.18, ease: 'power2.out' },
+        1.50
+      );
+    }
+    if (nodeScripbox) {
+      tl.fromTo(nodeScripbox,
+        { opacity: 0, scale: 0.4, transformOrigin: 'center center' },
+        { opacity: 1, scale: 1, duration: 0.20, ease: 'power2.out' },
+        1.54
+      );
+    }
+
+    // Performance summary values (₹2.47 Cr vs ₹1.62 Cr) resolve crisply at curve apex
+    if (heroStatSplit) {
+      tl.fromTo(heroStatSplit,
+        { opacity: 0, y: 6 },
+        { opacity: 1, y: 0, duration: 0.34, ease: 'power2.out' },
+        1.52
+      );
+    }
+
+    // 6. Canonical CTA entrance: Brings focus and settles bottom anchor by ~2.00s
+    if (heroCta) {
+      tl.fromTo(heroCta,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.36, ease: 'power2.out' },
+        1.68
+      );
+    }
+
+    // Dynamic reduced-motion preference change listener
+    if (window.matchMedia) {
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const handleMotionChange = (e) => {
+        if (e.matches) {
+          tl.progress(1);
+        }
+      };
+      if (typeof motionQuery.addEventListener === 'function') {
+        motionQuery.addEventListener('change', handleMotionChange);
+      } else if (typeof motionQuery.addListener === 'function') {
+        motionQuery.addListener(handleMotionChange);
+      }
+    }
+
+    return tl;
+  }
+
+  const heroTl = initHeroAnimation();
+
   // Expose state and functions for testing inspection
   window.__sbFormState = formState;
   window.__sbGoToStep = goToStep;
@@ -912,4 +1069,5 @@
   window.__sbOpenDisclaimerPopup = openDisclaimerPopup;
   window.__sbCloseDisclaimerPopup = closeDisclaimerPopup;
   window.__sbScrollLeadership = scrollLeaderTo;
+  window.__sbHeroTimeline = heroTl;
 })();

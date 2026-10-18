@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-17T05:33:38.729Z",
+  "timestamp": "2026-10-18T18:43:31.177Z",
   "testsPassed": 39,
   "testsFailed": 0,
   "details": [
@@ -61,7 +61,7 @@
     },
     {
       "status": "PASS",
-      "message": "Visual hierarchy strictly verified: Brand Bar -> Illustration -> Headline -> CTA"
+      "message": "Visual hierarchy strictly verified: Brand Bar -> Headline -> Illustration -> CTA"
     },
     {
       "status": "PASS",
@@ -85,7 +85,7 @@
     },
     {
       "status": "PASS",
-      "message": "Organic curves (quadratic bezier), under-curve atmospheric fill, terminal pill badges, and 2023-2026 timeline ticks rendered"
+      "message": "Organic curves (quadratic bezier), under-curve atmospheric fill, terminal connection nodes, and 2023-2026 timeline ticks rendered"
     },
     {
       "status": "PASS",

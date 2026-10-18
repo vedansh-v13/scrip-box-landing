@@ -229,7 +229,7 @@ async function run() {
     `);
     assert(inHeroCheck, 'Hero Wealth Anchor (#heroGrowthAnchor) is positioned inside the Hero header');
 
-    // Hierarchy Order Verification: Brand logo -> Illustration -> Headline -> Subhead -> CTA
+    // Hierarchy Order Verification: Brand logo -> Headline -> Subhead -> Illustration -> CTA
     const orderCheck = await client.eval(`
       (() => {
         const anchor = document.getElementById('heroGrowthAnchor');
@@ -241,12 +241,12 @@ async function run() {
         const rAnchor = anchor.getBoundingClientRect();
         const rHeadline = headline.getBoundingClientRect();
         const rCta = cta.getBoundingClientRect();
-        return (rBrand.top < rAnchor.top) &&
-               (rAnchor.top < rHeadline.top) &&
-               (rHeadline.top < rCta.top);
+        return (rBrand.top < rHeadline.top) &&
+               (rHeadline.top < rAnchor.top) &&
+               (rAnchor.top < rCta.top);
       })()
     `);
-    assert(orderCheck, 'Visual hierarchy strictly verified: Brand Bar -> Illustration -> Headline -> CTA');
+    assert(orderCheck, 'Visual hierarchy strictly verified: Brand Bar -> Headline -> Illustration -> CTA');
 
     // Section dividers check
     const dividersCount = await client.eval(`document.querySelectorAll('.section-divider').length`);
@@ -284,14 +284,12 @@ async function run() {
         const nodeOrigin = document.querySelector('.node-origin');
         const nodeScrip = document.querySelector('.node-scripbox');
         const nodeBench = document.querySelector('.node-benchmark');
-        const pillScrip = document.querySelector('.pill-scripbox');
-        const pillBench = document.querySelector('.pill-benchmark');
         const ticks = Array.from(document.querySelectorAll('.time-tick')).map(t => t.textContent.trim());
         const ticksValid = JSON.stringify(ticks) === JSON.stringify(['2023', '2024', '2025', '2026']);
-        return Boolean(svg && curveScrip && curveBench && curveFill && nodeOrigin && nodeScrip && nodeBench && pillScrip && pillBench && ticksValid);
+        return Boolean(svg && curveScrip && curveBench && curveFill && nodeOrigin && nodeScrip && nodeBench && ticksValid);
       })()
     `);
-    assert(svgCheck, 'Organic curves (quadratic bezier), under-curve atmospheric fill, terminal pill badges, and 2023-2026 timeline ticks rendered');
+    assert(svgCheck, 'Organic curves (quadratic bezier), under-curve atmospheric fill, terminal connection nodes, and 2023-2026 timeline ticks rendered');
 
     // Test info modal popup interaction
     await client.eval(`document.getElementById('btnHeroGrowthInfo').click()`);
@@ -315,6 +313,63 @@ async function run() {
 
     // Capture hero anchor screenshot
     await client.screenshot(path.join(SHOTS_DIR, 'perf-04-hero-anchor-closed-390x844.png'));
+
+    // Dedicated Animation Sequence Verification: Editorial Compounding Arc
+    console.log('\n=== Animation Sequence Capture: Editorial Compounding Arc ===');
+    const ARTIFACTS_DIR = '/Users/vedansh/.gemini/antigravity/brain/47a31b78-ca18-417d-9468-1d23951e2912/shots';
+    if (!fs.existsSync(ARTIFACTS_DIR)) {
+      fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
+    }
+
+    // 1. Initial State (t = 0.0s)
+    await client.eval(`(() => { if (window.__sbHeroTimeline) window.__sbHeroTimeline.pause(0.0); return true; })()`);
+    await sleep(80);
+    const shotInitial = path.join(ARTIFACTS_DIR, 'arc-01-initial-390x844.png');
+    await client.screenshot(shotInitial);
+    fs.copyFileSync(shotInitial, path.join(SHOTS_DIR, 'arc-01-initial-390x844.png'));
+    console.log('  ✓ Captured State 1: Initial (t = 0.0s)');
+
+    // 2. Act 1: Message Reveal (t = 0.45s)
+    await client.eval(`(() => { if (window.__sbHeroTimeline) window.__sbHeroTimeline.seek(0.45); return true; })()`);
+    await sleep(80);
+    const shotAct1 = path.join(ARTIFACTS_DIR, 'arc-02-act1-reveal-390x844.png');
+    await client.screenshot(shotAct1);
+    fs.copyFileSync(shotAct1, path.join(SHOTS_DIR, 'arc-02-act1-reveal-390x844.png'));
+    console.log('  ✓ Captured State 2: Act 1 Message Reveal (t = 0.45s)');
+
+    // 3. Act 2: Chart Drawing Midway (t = 1.20s)
+    await client.eval(`(() => { if (window.__sbHeroTimeline) window.__sbHeroTimeline.seek(1.20); return true; })()`);
+    await sleep(80);
+    const shotMidway = path.join(ARTIFACTS_DIR, 'arc-03-chart-drawing-midway-390x844.png');
+    await client.screenshot(shotMidway);
+    fs.copyFileSync(shotMidway, path.join(SHOTS_DIR, 'arc-03-chart-drawing-midway-390x844.png'));
+    console.log('  ✓ Captured State 3: Chart Drawing Midway (t = 1.20s)');
+
+    // 4. Final Settled State across 360x640, 390x844, 430x932
+    await client.eval(`(() => { if (window.__sbHeroTimeline) window.__sbHeroTimeline.progress(1); return true; })()`);
+    await sleep(80);
+    const shotSettled390 = path.join(ARTIFACTS_DIR, 'arc-04-settled-final-390x844.png');
+    await client.screenshot(shotSettled390);
+    fs.copyFileSync(shotSettled390, path.join(SHOTS_DIR, 'arc-04-settled-final-390x844.png'));
+
+    // 360x640
+    await client.setViewport(360, 640, true);
+    await sleep(100);
+    const shotSettled360 = path.join(ARTIFACTS_DIR, 'arc-04-settled-final-360x640.png');
+    await client.screenshot(shotSettled360);
+    fs.copyFileSync(shotSettled360, path.join(SHOTS_DIR, 'arc-04-settled-final-360x640.png'));
+
+    // 430x932
+    await client.setViewport(430, 932, true);
+    await sleep(100);
+    const shotSettled430 = path.join(ARTIFACTS_DIR, 'arc-04-settled-final-430x932.png');
+    await client.screenshot(shotSettled430);
+    fs.copyFileSync(shotSettled430, path.join(SHOTS_DIR, 'arc-04-settled-final-430x932.png'));
+    console.log('  ✓ Captured State 4: Final Settled across 360, 390, 430');
+
+    // Return to 390x844 for remaining tests
+    await client.setViewport(390, 844, true);
+    await sleep(100);
 
     console.log('\n=== Test Suite 3: Touch Targets & Responsive Layout ===');
     const viewports = [
@@ -428,18 +483,18 @@ async function run() {
       (() => {
         const curve = document.querySelector('.curve-line');
         const fill = document.querySelector('.curve-fill');
-        const pill = document.querySelector('.pill-group-scripbox');
-        if (!curve || !fill || !pill) return null;
+        const node = document.querySelector('.node-scripbox');
+        if (!curve || !fill || !node) return null;
         const cCurve = window.getComputedStyle(curve);
         const cFill = window.getComputedStyle(fill);
-        const cPill = window.getComputedStyle(pill);
+        const cNode = window.getComputedStyle(node);
         return {
           curveAnim: cCurve.animationName,
           curveOffset: cCurve.strokeDashoffset,
           fillAnim: cFill.animationName,
           fillOpacity: cFill.opacity,
-          pillAnim: cPill.animationName,
-          pillOpacity: cPill.opacity
+          nodeAnim: cNode.animationName,
+          nodeOpacity: cNode.opacity
         };
       })()
     `);
@@ -447,16 +502,20 @@ async function run() {
     assert(
       reducedMotionStyles?.curveAnim === 'none' &&
       reducedMotionStyles?.fillAnim === 'none' &&
-      reducedMotionStyles?.pillAnim === 'none',
+      reducedMotionStyles?.nodeAnim === 'none',
       'prefers-reduced-motion disables all animation routines (animation: none)'
     );
     assert(
       reducedMotionStyles?.fillOpacity === '1' &&
-      reducedMotionStyles?.pillOpacity === '1',
+      reducedMotionStyles?.nodeOpacity === '1',
       'All vectors, fills, and labels render immediately and statically at 100% opacity'
     );
 
     await client.screenshot(path.join(SHOTS_DIR, 'perf-08-reduced-motion-390x844.png'));
+    fs.copyFileSync(
+      path.join(SHOTS_DIR, 'perf-08-reduced-motion-390x844.png'),
+      path.join(ARTIFACTS_DIR, 'arc-05-reduced-motion-390x844.png')
+    );
 
     console.log('\n=========================================');
     console.log(`Results: ${testReport.testsPassed} passed, ${testReport.testsFailed} failed.`);

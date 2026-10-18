@@ -8,7 +8,7 @@
   <title>Scripbox PMS</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
   <div class="page-container">
@@ -27,7 +27,19 @@
         </svg>
       </div>
 
-      <!-- Original Compliance-Approved Hero Performance Card -->
+      <!-- Headline -->
+      <h1 class="hero-headline">
+        <span class="headline-milestone">You’ve built your first crore.</span>
+        <span class="headline-imperative accent-text">Stop managing it alone.</span>
+      </h1>
+
+      <!-- Sub-head -->
+      <p class="hero-subhead">
+        <span class="subhead-threshold">For portfolios above <span class="subhead-val">₹1Cr</span>.</span>
+        <span class="subhead-mandate">PMS from <span class="subhead-val">₹50L</span>.</span>
+      </p>
+
+      <!-- Compact Cardless Hero Performance Visual -->
       <div class="hero-illustration-wrap" id="heroGrowthAnchor" aria-label="Hypothetical 4-year investment performance comparison: Scripbox Portfolio Optimiser vs Nifty 50 TRI">
         <div class="hero-card-container">
           <!-- Card Header Row: Eyebrow + Info Button -->
@@ -74,57 +86,45 @@
 
           <!-- Chart Area -->
           <div class="hero-illustration-graphic" aria-hidden="true">
-            <svg viewBox="0 0 328 175" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
+            <svg viewBox="0 0 328 102" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
               <defs>
-                <!-- Restrained Scripbox Orange Gradient Fill -->
+                <!-- Nearly Imperceptible Muted Sage Green Gradient Fill -->
                 <linearGradient id="scripboxCurveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#F58024" stop-opacity="0.25" />
-                  <stop offset="60%" stop-color="#F58024" stop-opacity="0.08" />
-                  <stop offset="100%" stop-color="#F58024" stop-opacity="0.0" />
+                  <stop offset="0%" stop-color="#739B82" stop-opacity="0.04" />
+                  <stop offset="60%" stop-color="#739B82" stop-opacity="0.01" />
+                  <stop offset="100%" stop-color="#739B82" stop-opacity="0.0" />
                 </linearGradient>
               </defs>
 
-              <!-- Full-Width Horizontal Reference Gridlines -->
-              <line x1="12" y1="28" x2="316" y2="28" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-              <line x1="12" y1="56" x2="316" y2="56" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-              <line x1="12" y1="84" x2="316" y2="84" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-              <line x1="12" y1="112" x2="316" y2="112" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
-              <line x1="12" y1="140" x2="316" y2="140" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+              <!-- Full-Width Horizontal Reference Gridlines (Low Contrast) -->
+              <line x1="12" y1="18" x2="316" y2="18" stroke="rgba(255, 255, 255, 0.018)" stroke-width="1" />
+              <line x1="12" y1="35" x2="316" y2="35" stroke="rgba(255, 255, 255, 0.018)" stroke-width="1" />
+              <line x1="12" y1="52" x2="316" y2="52" stroke="rgba(255, 255, 255, 0.018)" stroke-width="1" />
+              <line x1="12" y1="69" x2="316" y2="69" stroke="rgba(255, 255, 255, 0.018)" stroke-width="1" />
+              <line x1="12" y1="86" x2="316" y2="86" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
 
               <!-- Under-Curve Atmospheric Gradient Fill -->
-              <path d="M 12 140 Q 130 46, 316 36 L 316 140 L 12 140 Z" fill="url(#scripboxCurveGrad)" class="curve-fill" />
+              <path d="M 12 86 Q 130 26, 316 20 L 316 86 L 12 86 Z" fill="url(#scripboxCurveGrad)" class="curve-fill" />
 
-              <!-- Benchmark (Nifty 50 TRI) Organic Curve -->
-              <path d="M 12 140 Q 150 115, 316 98" fill="none" stroke="#7A746E" stroke-width="1.8" stroke-linecap="round" class="curve-line curve-benchmark" pathLength="100" />
+              <!-- Benchmark (Nifty 50 TRI) Organic Curve (Understated Warm Grey) -->
+              <path d="M 12 86 Q 150 72, 316 60" fill="none" stroke="#6D6862" stroke-width="1.3" stroke-linecap="round" class="curve-line curve-benchmark" pathLength="100" />
 
-              <!-- Scripbox Portfolio Optimiser Organic Curve -->
-              <path d="M 12 140 Q 130 46, 316 36" fill="none" stroke="#F58024" stroke-width="2.8" stroke-linecap="round" class="curve-line curve-scripbox" pathLength="100" />
+              <!-- Scripbox Portfolio Optimiser Organic Curve (Restrained Muted Sage Green) -->
+              <path d="M 12 86 Q 130 26, 316 20" fill="none" stroke="#739B82" stroke-width="1.9" stroke-linecap="round" class="curve-line curve-scripbox" pathLength="100" />
 
               <!-- 2022 Origin Starting Node -->
-              <circle cx="12" cy="140" r="3.5" fill="#DDD6CE" class="node-origin" />
+              <circle cx="12" cy="86" r="2.5" fill="rgba(255, 255, 255, 0.35)" class="node-origin" />
 
-              <!-- Terminal Connection Dots -->
-              <circle cx="316" cy="98" r="3" fill="#8E877F" class="node-benchmark" />
-              <circle cx="316" cy="36" r="3.5" fill="#F58024" class="node-scripbox" />
-
-              <!-- Scripbox Floating Value Badge (inside chart, floating above curve) -->
-              <g class="pill-group-scripbox">
-                <rect x="252" y="16" width="60" height="20" rx="10" fill="rgba(20, 16, 14, 0.95)" stroke="#F58024" stroke-width="1.2" class="pill-badge pill-scripbox" />
-                <text x="282" y="30.5" text-anchor="middle" font-size="11px" font-weight="700" fill="#F58024" font-family="'Inter', sans-serif" class="badge-val-scripbox">₹2.47 Cr</text>
-              </g>
-
-              <!-- Benchmark Floating Value Badge (inside chart, floating above curve) -->
-              <g class="pill-group-benchmark">
-                <rect x="252" y="78" width="60" height="20" rx="10" fill="rgba(20, 16, 14, 0.95)" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1" class="pill-badge pill-benchmark" />
-                <text x="282" y="92.5" text-anchor="middle" font-size="11px" font-weight="600" fill="#DDD6CE" font-family="'Inter', sans-serif" class="badge-val-benchmark">₹1.62 Cr</text>
-              </g>
+              <!-- Terminal Connection Dots (Understated) -->
+              <circle cx="316" cy="60" r="2.6" fill="#8E877F" class="node-benchmark" />
+              <circle cx="316" cy="20" r="2.8" fill="#739B82" class="node-scripbox" />
 
               <!-- X-Axis Timeline Labels -->
-              <g class="timeline-group" fill="#A8A29E" font-size="11.5px" font-weight="600" font-family="'Inter', sans-serif">
-                <text x="32" y="156" text-anchor="start" class="time-tick">2023</text>
-                <text x="118" y="156" text-anchor="middle" class="time-tick">2024</text>
-                <text x="204" y="156" text-anchor="middle" class="time-tick">2025</text>
-                <text x="296" y="156" text-anchor="end" class="time-tick">2026</text>
+              <g class="timeline-group" fill="#7D7770" font-size="10px" font-weight="500" font-family="'Inter', sans-serif">
+                <text x="32" y="99" text-anchor="start" class="time-tick">2023</text>
+                <text x="118" y="99" text-anchor="middle" class="time-tick">2024</text>
+                <text x="204" y="99" text-anchor="middle" class="time-tick">2025</text>
+                <text x="296" y="99" text-anchor="end" class="time-tick">2026</text>
               </g>
             </svg>
           </div>
@@ -142,12 +142,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Headline -->
-      <h1 class="hero-headline">You’ve built your first crore. <span class="accent-text">Stop managing it alone.</span></h1>
-
-      <!-- Sub-head -->
-      <p class="hero-subhead">For portfolios above ₹1Cr. PMS from ₹50L.</p>
 
       <!-- Canonical Hero CTA Button -->
       <div class="hero-cta-container">
@@ -345,6 +339,22 @@
               </p>
             </header>
 
+            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
+            <div class="strategy-meta-bar">
+              <div class="meta-field">
+                <span class="meta-field-label">Time Horizon</span>
+                <span class="meta-field-val">3–5+ Years</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Risk Profile</span>
+                <span class="meta-field-val">High / Agile</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Core Mandate</span>
+                <span class="meta-field-val">Multi-Factor Quant</span>
+              </div>
+            </div>
+
             <!-- Deliberate Visual Component: 4-Factor Quantitative Framework -->
             <div class="strat-visual-container" aria-label="4-Factor Quantitative Framework">
               <div class="strat-visual-top">
@@ -380,25 +390,6 @@
                   </div>
                   <span class="factor-node-sub">Downside resilience &amp; beta calibration</span>
                 </div>
-              </div>
-              <div class="strat-visual-footer">
-                Multi-factor algorithmic ranking with cycle-aware active rebalancing
-              </div>
-            </div>
-
-            <!-- Essential Facts Bar (3 Facts) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Approach</span>
-                <span class="meta-field-val">Multi-Factor Quant</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">High / Agile</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">3–5+ Years</span>
               </div>
             </div>
 
@@ -478,12 +469,28 @@
                     <path d="M12 12l7-7"/>
                   </svg>
                 </div>
-                <h3 class="strategy-name">Select Direct Growth Portfolio</h3>
+                <h3 class="strategy-name">Select Direct Growth</h3>
               </div>
               <p class="strategy-summary">
                 A disciplined discretionary portfolio combining foundational multi-cap equity compounding with tactical market opportunity overlays.
               </p>
             </header>
+
+            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
+            <div class="strategy-meta-bar">
+              <div class="meta-field">
+                <span class="meta-field-label">Time Horizon</span>
+                <span class="meta-field-val">3+ Years</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Risk Profile</span>
+                <span class="meta-field-val">Moderate to High</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Asset Construct</span>
+                <span class="meta-field-val">75% Core : 25% Tactical</span>
+              </div>
+            </div>
 
             <!-- Deliberate Visual Component: 75:25 Structural Allocation Blueprint -->
             <div class="strat-visual-container" aria-label="75% Core and 25% Satellite Allocation Visualizer">
@@ -508,25 +515,6 @@
                   <strong>25% Tactical Satellite</strong>
                   <span>Nimble thematic rotation, commodities &amp; strategic opportunities.</span>
                 </div>
-              </div>
-              <div class="strat-visual-footer">
-                Direct-plan institutional cost advantage with zero distributor commissions
-              </div>
-            </div>
-
-            <!-- Essential Facts Bar (3 Facts) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Asset Construct</span>
-                <span class="meta-field-val">75% Core : 25% Satellite</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">Moderate to High</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">3+ Years</span>
               </div>
             </div>
 
@@ -606,12 +594,28 @@
                     <circle cx="12" cy="12" r="2"/>
                   </svg>
                 </div>
-                <h3 class="strategy-name">Focused Leadership Portfolio</h3>
+                <h3 class="strategy-name">Focused Leadership</h3>
               </div>
               <p class="strategy-summary">
                 A high-conviction portfolio of 15 to 20 market leaders commanding dominant economic moats in their core operating fields.
               </p>
             </header>
+
+            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
+            <div class="strategy-meta-bar">
+              <div class="meta-field">
+                <span class="meta-field-label">Time Horizon</span>
+                <span class="meta-field-val">5+ Years</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Risk Profile</span>
+                <span class="meta-field-val">High Conviction</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-field-label">Portfolio Size</span>
+                <span class="meta-field-val">15–20 Leaders (Max 20)</span>
+              </div>
+            </div>
 
             <!-- Deliberate Visual Component: 15-20 Concentrated Moat Visualizer -->
             <div class="strat-visual-container" aria-label="15-20 Stocks High Conviction Gauge">
@@ -633,25 +637,6 @@
               </div>
               <div class="focus-banner">
                 Deliberate capital concentration avoiding benchmark bloat and 80+ stock index dilution
-              </div>
-              <div class="strat-visual-footer">
-                High-conviction core operating dominance with proven pricing power
-              </div>
-            </div>
-
-            <!-- Essential Facts Bar (3 Facts) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Portfolio Size</span>
-                <span class="meta-field-val">15–20 Leaders (Max 20)</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">High Conviction</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">5+ Years</span>
               </div>
             </div>
 
@@ -733,50 +718,58 @@
           We combine data-driven portfolio construction with senior private wealth advisory to deliver transparent, institutional-grade management.
         </p>
 
-        <!-- 2x2 Pillar Matrix (No sequential numbered markers) -->
+        <!-- Borderless Editorial Rows with Hairline Dividers -->
         <div class="pillars-matrix-grid">
           <div class="pillar-matrix-card">
-            <div class="pillar-icon-box" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-              </svg>
+            <div class="pillar-header-row">
+              <div class="pillar-icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Multiple Strategies, One PMS Provider</h3>
             </div>
-            <h3 class="pillar-title">Multiple Strategies, One PMS Provider</h3>
             <p class="pillar-desc">Choose from direct equities, algorithmic quant models, or curated direct-fund portfolios tailored to your mandate.</p>
           </div>
 
           <div class="pillar-matrix-card">
-            <div class="pillar-icon-box" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+            <div class="pillar-header-row">
+              <div class="pillar-icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Personalised Assessment</h3>
             </div>
-            <h3 class="pillar-title">Personalised Assessment</h3>
             <p class="pillar-desc">In-depth discovery mapping your risk tolerance, liquidity needs, tax position, and long-term wealth milestones.</p>
           </div>
 
           <div class="pillar-matrix-card">
-            <div class="pillar-icon-box" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
+            <div class="pillar-header-row">
+              <div class="pillar-icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Guided Recommendations</h3>
             </div>
-            <h3 class="pillar-title">Guided Recommendations</h3>
             <p class="pillar-desc">Data-backed rationale for every portfolio allocation decision, without bias or commission conflict.</p>
           </div>
 
           <div class="pillar-matrix-card">
-            <div class="pillar-icon-box" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="12" cy="12" r="10"/>
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-              </svg>
+            <div class="pillar-header-row">
+              <div class="pillar-icon-box" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Strategy Discovery Assistance</h3>
             </div>
-            <h3 class="pillar-title">Strategy Discovery Assistance</h3>
             <p class="pillar-desc">Direct 1-on-1 access to senior PMS portfolio specialists to refine and stress-test your wealth strategy.</p>
           </div>
         </div>
@@ -1363,7 +1356,8 @@
     </section>
   </div>
 
-  <script src="performance-data.js"></script>
-  <script src="app.js"></script>
+  <script src="gsap.min.js?v=2.0"></script>
+  <script src="performance-data.js?v=2.0"></script>
+  <script src="app.js?v=2.0"></script>
 </body>
 </html>
