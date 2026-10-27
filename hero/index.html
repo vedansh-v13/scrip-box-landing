@@ -6,9 +6,10 @@
   <meta name="description" content="Scripbox Portfolio Management Services (PMS). High-conviction, data-backed discretionary portfolios for investments of ₹50 Lakhs and above.">
   <meta name="theme-color" content="#110F0E">
   <title>Scripbox PMS</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css?v=2.0">
+  <link rel="stylesheet" href="style.css?v=4.2">
+  <link rel="stylesheet" href="design.css?v=4.2">
 </head>
 <body>
   <div class="page-container">
@@ -33,21 +34,15 @@
         <span class="headline-imperative accent-text">Stop managing it alone.</span>
       </h1>
 
-      <!-- Sub-head -->
-      <p class="hero-subhead">
-        <span class="subhead-threshold">For portfolios above <span class="subhead-val">₹1Cr</span>.</span>
-        <span class="subhead-mandate">PMS from <span class="subhead-val">₹50L</span>.</span>
-      </p>
-
       <!-- Compact Cardless Hero Performance Visual -->
-      <div class="hero-illustration-wrap" id="heroGrowthAnchor" aria-label="Hypothetical 4-year investment performance comparison: Scripbox Portfolio Optimiser vs Nifty 50 TRI">
+      <div class="hero-illustration-wrap" id="heroGrowthAnchor" aria-label="Hypothetical 4-year investment performance compounding simulation: Scripbox Portfolio Optimiser vs Nifty 50 TRI. Not an actual client account return.">
         <div class="hero-card-container">
           <!-- Card Header Row: Eyebrow + Info Button -->
           <div class="hero-card-header">
             <div class="hero-illustration-eyebrow">
               IF YOU HAD INVESTED <span class="eyebrow-accent">₹1Cr</span> IN <span class="eyebrow-accent">2022</span>
             </div>
-            <button type="button" class="hero-info-btn" id="btnHeroGrowthInfo" aria-label="Performance disclaimer and information" aria-expanded="false" aria-controls="heroGrowthPopup">
+            <button type="button" class="hero-info-btn" id="btnHeroGrowthInfo" aria-label="Performance simulation disclosure and calculation details" aria-expanded="false" aria-controls="heroGrowthPopup">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" y1="16" x2="12" y2="12" />
@@ -62,7 +57,10 @@
               <button type="button" class="popup-close-btn" id="btnHeroClosePopup" aria-label="Close calculation details">×</button>
               <div class="popup-title" id="heroPopupTitle">Performance Calculation Basis</div>
               <p class="popup-body">
-                Illustrates growth of an initial ₹1 Crore investment made on 1 November 2022 through 31 October 2025 in Scripbox Portfolio Optimiser vs Nifty 50 TRI.
+                Illustrates growth of an initial ₹1 Crore investment made on 1 November 2022 through 31 October 2025 in Scripbox Portfolio Optimiser vs Nifty 50 TRI based on disclosed historical annualised returns.
+              </p>
+              <p class="popup-calc-note">
+                *Hypothetical performance simulation. Does not represent the actual returns of any specific client account. Actual investor returns will vary based on execution timing, cash flows, and applicable fees.
               </p>
               <div class="popup-divider" aria-hidden="true"></div>
               <p class="popup-disclaimer hero-illus-disclosure-text">
@@ -86,13 +84,13 @@
 
           <!-- Chart Area -->
           <div class="hero-illustration-graphic" aria-hidden="true">
-            <svg viewBox="0 0 328 102" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
+            <svg viewBox="0 0 328 102" width="100%" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
               <defs>
-                <!-- Nearly Imperceptible Muted Sage Green Gradient Fill -->
+                <!-- Subtle Green Gradient Fill -->
                 <linearGradient id="scripboxCurveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#739B82" stop-opacity="0.04" />
-                  <stop offset="60%" stop-color="#739B82" stop-opacity="0.01" />
-                  <stop offset="100%" stop-color="#739B82" stop-opacity="0.0" />
+                  <stop offset="0%" stop-color="#2EB872" stop-opacity="0.08" />
+                  <stop offset="60%" stop-color="#2EB872" stop-opacity="0.02" />
+                  <stop offset="100%" stop-color="#2EB872" stop-opacity="0.0" />
                 </linearGradient>
               </defs>
 
@@ -109,15 +107,15 @@
               <!-- Benchmark (Nifty 50 TRI) Organic Curve (Understated Warm Grey) -->
               <path d="M 12 86 Q 150 72, 316 60" fill="none" stroke="#6D6862" stroke-width="1.3" stroke-linecap="round" class="curve-line curve-benchmark" pathLength="100" />
 
-              <!-- Scripbox Portfolio Optimiser Organic Curve (Restrained Muted Sage Green) -->
-              <path d="M 12 86 Q 130 26, 316 20" fill="none" stroke="#739B82" stroke-width="1.9" stroke-linecap="round" class="curve-line curve-scripbox" pathLength="100" />
+              <!-- Scripbox Portfolio Optimiser Organic Curve (Green Accent) -->
+              <path d="M 12 86 Q 130 26, 316 20" fill="none" stroke="#2EB872" stroke-width="1.9" stroke-linecap="round" class="curve-line curve-scripbox" pathLength="100" />
 
               <!-- 2022 Origin Starting Node -->
               <circle cx="12" cy="86" r="2.5" fill="rgba(255, 255, 255, 0.35)" class="node-origin" />
 
               <!-- Terminal Connection Dots (Understated) -->
               <circle cx="316" cy="60" r="2.6" fill="#8E877F" class="node-benchmark" />
-              <circle cx="316" cy="20" r="2.8" fill="#739B82" class="node-scripbox" />
+              <circle cx="316" cy="20" r="2.8" fill="#2EB872" class="node-scripbox" />
 
               <!-- X-Axis Timeline Labels -->
               <g class="timeline-group" fill="#7D7770" font-size="10px" font-weight="500" font-family="'Inter', sans-serif">
@@ -140,6 +138,7 @@
               <span class="legend-text">Benchmark (Nifty 50 TRI)</span>
             </div>
           </div>
+          <div class="sr-only" role="note">*Hypothetical compounding simulation. Not an actual client account return.</div>
         </div>
       </div>
 
@@ -172,39 +171,329 @@
       </div>
 
       <!-- Fee line -->
-      <p class="fee-line" id="feeLine">Flexible fee options, no exit load</p>
+      <p class="fee-line" id="feeLine">Flexible fee options with no exit load on standard mandates*</p>
     </header>
 
     <!-- Subtle Hairline Section Divider (Hero to BTF) -->
     <div class="section-divider" aria-hidden="true"></div>
 
+    <!-- Sticky Section Navigation Tabs -->
+    <nav class="section-nav" id="sectionNav" aria-label="Page navigation">
+      <div class="section-nav-track" id="sectionNavTrack" role="tablist">
+        <a href="#sec-problem" class="section-nav-link is-active" role="tab" aria-selected="true">About Us</a>
+        <a href="#strategiesSection" class="section-nav-link" role="tab" aria-selected="false">Strategies</a>
+        <a href="#headingDifference" class="section-nav-link" role="tab" aria-selected="false">Why Scripbox</a>
+        <a href="#headingProcess" class="section-nav-link" role="tab" aria-selected="false">Process</a>
+        <a href="#headingLeadership" class="section-nav-link" role="tab" aria-selected="false">People</a>
+        <a href="#headingTerms" class="section-nav-link" role="tab" aria-selected="false">Fees</a>
+        <a href="#headingFaqs" class="section-nav-link" role="tab" aria-selected="false">FAQs</a>
+      </div>
+    </nav>
+
     <!-- Below-the-Fold Experience -->
     <main class="below-fold-content" id="belowFoldContent">
       
-      <!-- 1. PMS Overview & Regulatory Mandate Threshold -->
-      <section class="btf-section" aria-labelledby="headingOverview">
-        <div class="btf-badge">Institutional Structure</div>
-        <h2 id="headingOverview" class="btf-title">Direct Demat ownership for private wealth</h2>
-        <p class="btf-body">
-          Portfolio Management Services offer high-net-worth investors segregated depository accounts. Every security in Scripbox PMS is held directly in your independent Demat account under your PAN, providing complete custody transparency, direct beneficial ownership, and individual cost-basis tracking.
-        </p>
+      <!-- Paddle-Inspired Sticky Card Stack Container (Dark Mode) -->
+      <div class="paddle-stack-container" id="paddleStackContainer">
+        <div class="paddle-stack-track" id="paddleStackTrack">
 
-        <div class="btf-threshold-card">
-          <div class="threshold-header">
-            <span class="threshold-label">Regulatory Mandate Threshold</span>
-            <span class="threshold-val">₹50 Lakhs Min.</span>
+        <!-- 1. The Investor Problem: The Challenge Carousel -->
+        <section class="btf-section problem-section stack-panel stack-panel-1" id="sec-problem" aria-labelledby="headingProblem">
+        <div class="btf-badge">The Challenge</div>
+        <h2 id="headingProblem" class="btf-title btf-title--serif">More wealth. <span class="challenge-title-accent">More to manage.</span></h2>
+
+        <!-- Problem Carousel Component -->
+        <div class="challenge-carousel" id="challengeCarousel" role="region" aria-roledescription="carousel" aria-label="The Investment Challenge">
+          
+          <!-- Carousel Top Bar: Counter + Compact Progress Indicators + Play/Pause Toggle -->
+          <div class="challenge-carousel-top">
+            <div class="carousel-counter-group">
+              <div class="carousel-counter" aria-live="polite">
+                <span class="counter-curr" id="challengeCounterCurr">01</span>
+                <span class="counter-sep">/</span>
+                <span class="counter-total">03</span>
+              </div>
+              <button type="button" class="carousel-play-pause-btn" id="btnToggleAutoRotate" aria-label="Pause automatic rotation" title="Pause automatic rotation">
+                <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                  <rect x="6" y="5" width="4" height="14" rx="1.5"></rect>
+                  <rect x="14" y="5" width="4" height="14" rx="1.5"></rect>
+                </svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" style="display: none;">
+                  <polygon points="7,5 19,12 7,19"></polygon>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="carousel-indicators" role="tablist" aria-label="Problem slides">
+              <button type="button" class="carousel-indicator is-active" role="tab" aria-selected="true" aria-label="Slide 1: Scattered investments" data-slide-to="0">
+                <span class="indicator-bar"><span class="indicator-fill"></span></span>
+              </button>
+              <button type="button" class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 2: Overlapping exposure" data-slide-to="1">
+                <span class="indicator-bar"><span class="indicator-fill"></span></span>
+              </button>
+              <button type="button" class="carousel-indicator" role="tab" aria-selected="false" aria-label="Slide 3: Disconnected decisions" data-slide-to="2">
+                <span class="indicator-bar"><span class="indicator-fill"></span></span>
+              </button>
+            </div>
           </div>
-          <p class="threshold-desc">
-            As mandated by SEBI, PMS accounts require a minimum commitment of ₹50 Lakhs. Curated specifically for families managing aggregate investable wealth of ₹1 Crore and above.
-          </p>
+
+          <!-- Carousel Slides Track (Zero Layout Shifts) -->
+          <div class="challenge-carousel-track" id="challengeTrack">
+            
+            <!-- Slide 1: Scattered investments -->
+            <div class="challenge-slide is-active" id="challengeSlide0" role="tabpanel" aria-roledescription="slide" aria-label="1 of 3: Scattered investments">
+              <div class="challenge-illus-wrap" aria-hidden="true">
+                <svg viewBox="0 0 320 130" width="100%" preserveAspectRatio="xMidYMid meet" class="challenge-svg" role="img" aria-label="Scattered investments illustration: fragmented portfolio documents and separate accounts">
+                  <!-- Left card: independent portfolio document, offset position -->
+                  <g class="doc-card doc-card-left">
+                    <rect x="36" y="16" width="74" height="74" rx="8" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <rect x="46" y="24" width="28" height="4" rx="2" fill="#8E877F" opacity="0.7" />
+                    <line x1="46" y1="38" x2="86" y2="38" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="46" y1="48" x2="74" y2="48" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="46" y1="58" x2="82" y2="58" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <circle cx="92" cy="72" r="3.2" fill="#F58024" />
+                  </g>
+
+                  <!-- Center card: forward, prominent with Scripbox orange data lines -->
+                  <g class="doc-card doc-card-center">
+                    <rect x="123" y="26" width="74" height="76" rx="8" fill="#26221E" stroke="#4A4239" stroke-width="1.4" />
+                    <rect x="135" y="36" width="32" height="4" rx="2" fill="#F58024" opacity="0.8" />
+                    <line x1="135" y1="50" x2="175" y2="50" stroke="#F58024" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="135" y1="60" x2="165" y2="60" stroke="#F58024" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="135" y1="70" x2="173" y2="70" stroke="#F58024" stroke-width="2.2" stroke-linecap="round" />
+                    <circle cx="180" cy="84" r="3.2" fill="#F58024" />
+                  </g>
+
+                  <!-- Right card: independent portfolio document, offset position -->
+                  <g class="doc-card doc-card-right">
+                    <rect x="210" y="16" width="74" height="74" rx="8" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <rect x="220" y="24" width="28" height="4" rx="2" fill="#8E877F" opacity="0.7" />
+                    <line x1="220" y1="38" x2="260" y2="38" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="220" y1="48" x2="248" y2="48" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="220" y1="58" x2="258" y2="58" stroke="#6D6862" stroke-width="2.2" stroke-linecap="round" />
+                    <circle cx="266" cy="72" r="3.2" fill="#F58024" />
+                  </g>
+
+                  <!-- Dotted connector line beneath suggesting fragmentation -->
+                  <path class="scatter-line" d="M 73 102 L 73 114 L 247 114 L 247 102" fill="none" stroke="#F58024" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.85" />
+                </svg>
+              </div>
+              <div class="challenge-card-divider" aria-hidden="true"></div>
+              <h3 class="challenge-problem-title">Scattered investments</h3>
+              <p class="challenge-problem-desc">Your investments are spread across funds, accounts and statements.</p>
+            </div>
+
+            <!-- Slide 2: Overlapping exposure -->
+            <div class="challenge-slide" id="challengeSlide1" role="tabpanel" aria-roledescription="slide" aria-label="2 of 3: Overlapping exposure" aria-hidden="true">
+              <div class="challenge-illus-wrap" aria-hidden="true">
+                <svg viewBox="0 0 320 130" width="100%" preserveAspectRatio="xMidYMid meet" class="challenge-svg" role="img" aria-label="Overlapping exposure illustration: intersecting portfolios with duplicated holdings">
+                  <defs>
+                    <radialGradient id="overlapGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#F58024" stop-opacity="0.25" />
+                      <stop offset="100%" stop-color="#F58024" stop-opacity="0.0" />
+                    </radialGradient>
+                  </defs>
+
+                  <!-- Left Portfolio Structure -->
+                  <g class="overlap-left">
+                    <rect x="42" y="18" width="134" height="92" rx="14" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <!-- Unique Holdings Left (outside overlap) -->
+                    <rect x="56" y="32" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <circle cx="67" cy="43" r="3.5" fill="#8E877F" />
+                    
+                    <rect x="56" y="66" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <line x1="61" y1="77" x2="73" y2="77" stroke="#8E877F" stroke-width="2.5" stroke-linecap="round" />
+
+                    <rect x="86" y="49" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <rect x="93" y="56" width="8" height="8" rx="1.5" fill="#8E877F" />
+                  </g>
+
+                  <!-- Right Portfolio Structure -->
+                  <g class="overlap-right">
+                    <rect x="144" y="18" width="134" height="92" rx="14" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <!-- Unique Holdings Right (outside overlap) -->
+                    <rect x="242" y="32" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <circle cx="253" cy="43" r="3.5" fill="#8E877F" />
+
+                    <rect x="242" y="66" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <line x1="247" y1="77" x2="259" y2="77" stroke="#8E877F" stroke-width="2.5" stroke-linecap="round" />
+
+                    <rect x="212" y="49" width="22" height="22" rx="5" fill="#282420" stroke="#443D36" stroke-width="1" />
+                    <rect x="219" y="56" width="8" height="8" rx="1.5" fill="#8E877F" />
+                  </g>
+
+                  <!-- Overlapping Intersection Zone (Highlighted in Scripbox Orange) -->
+                  <g class="overlap-zone">
+                    <rect x="144" y="18" width="32" height="92" rx="6" fill="url(#overlapGlow)" stroke="#F58024" stroke-width="1.4" stroke-dasharray="3 2" />
+                  </g>
+
+                  <!-- Duplicated Holding Tile 1 & 2 in Overlap -->
+                  <g class="overlap-item overlap-item-top">
+                    <rect x="149" y="30" width="22" height="24" rx="5" fill="#292019" stroke="#F58024" stroke-width="1.6" />
+                    <circle cx="160" cy="42" r="4.2" fill="#F58024" />
+                  </g>
+
+                  <line class="overlap-item overlap-item-line" x1="160" y1="56" x2="160" y2="68" stroke="#F58024" stroke-width="1.5" stroke-dasharray="2 2" />
+
+                  <g class="overlap-item overlap-item-bot">
+                    <rect x="149" y="70" width="22" height="24" rx="5" fill="#292019" stroke="#F58024" stroke-width="1.6" />
+                    <circle cx="160" cy="82" r="4.2" fill="#F58024" />
+                  </g>
+                </svg>
+              </div>
+              <div class="challenge-card-divider" aria-hidden="true"></div>
+              <h3 class="challenge-problem-title">Overlapping exposure</h3>
+              <p class="challenge-problem-desc">Different funds can leave you holding the same stocks.</p>
+            </div>
+
+            <!-- Slide 3: Disconnected decisions -->
+            <div class="challenge-slide" id="challengeSlide2" role="tabpanel" aria-roledescription="slide" aria-label="3 of 3: Disconnected decisions" aria-hidden="true">
+              <div class="challenge-illus-wrap" aria-hidden="true">
+                <svg viewBox="0 0 320 130" width="100%" preserveAspectRatio="xMidYMid meet" class="challenge-svg" role="img" aria-label="Disconnected decisions illustration: fragmented inputs converging into unified portfolio focus">
+                  <!-- Central Coherent Allocation Structure -->
+                  <g class="decision-center">
+                    <circle cx="160" cy="65" r="34" fill="rgba(255, 255, 255, 0.02)" stroke="#3D3630" stroke-width="1.1" />
+                    <circle cx="160" cy="65" r="22" fill="none" stroke="rgba(245, 128, 36, 0.35)" stroke-width="1.4" stroke-dasharray="7 3" />
+                    <circle cx="160" cy="65" r="10" fill="#28221D" stroke="#F58024" stroke-width="1.6" />
+                    <circle cx="160" cy="65" r="4" fill="#F58024" />
+                  </g>
+
+                  <!-- Converging Directional Arrowheads -->
+                  <g class="decision-arrows">
+                    <polygon points="144,65 137,61 137,69" fill="#F58024" />
+                    <polygon points="176,65 183,61 183,69" fill="#F58024" />
+                  </g>
+
+                  <!-- Outer Independent Decision Nodes -->
+                  <g class="decision-nodes">
+                    <!-- Top-Left Decision Node -->
+                    <rect x="36" y="20" width="48" height="24" rx="6" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <circle cx="48" cy="32" r="3.2" fill="#8E877F" />
+                    <line x1="56" y1="32" x2="74" y2="32" stroke="#6D6862" stroke-width="2" stroke-linecap="round" />
+
+                    <!-- Bottom-Left Decision Node -->
+                    <rect x="36" y="86" width="48" height="24" rx="6" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <circle cx="48" cy="98" r="3.2" fill="#8E877F" />
+                    <line x1="56" y1="98" x2="74" y2="98" stroke="#6D6862" stroke-width="2" stroke-linecap="round" />
+
+                    <!-- Top-Right Decision Node -->
+                    <rect x="236" y="20" width="48" height="24" rx="6" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <circle cx="272" cy="32" r="3.2" fill="#8E877F" />
+                    <line x1="246" y1="32" x2="264" y2="32" stroke="#6D6862" stroke-width="2" stroke-linecap="round" />
+
+                    <!-- Bottom-Right Decision Node -->
+                    <rect x="236" y="86" width="48" height="24" rx="6" fill="#211E1B" stroke="#3A342E" stroke-width="1.2" />
+                    <circle cx="272" cy="98" r="3.2" fill="#8E877F" />
+                    <line x1="246" y1="98" x2="264" y2="98" stroke="#6D6862" stroke-width="2" stroke-linecap="round" />
+                  </g>
+
+                  <!-- Converging Connecting Lines -->
+                  <g class="decision-lines">
+                    <path d="M 84 32 Q 124 44 140 56" fill="none" stroke="#6D6862" stroke-width="1.2" stroke-dasharray="3 3" />
+                    <circle cx="120" cy="44" r="2.2" fill="#F58024" />
+
+                    <path d="M 84 98 Q 124 86 140 74" fill="none" stroke="#6D6862" stroke-width="1.2" stroke-dasharray="3 3" />
+                    <circle cx="120" cy="86" r="2.2" fill="#F58024" />
+
+                    <path d="M 236 32 Q 196 44 180 56" fill="none" stroke="#6D6862" stroke-width="1.2" stroke-dasharray="3 3" />
+                    <circle cx="200" cy="44" r="2.2" fill="#F58024" />
+
+                    <path d="M 236 98 Q 196 86 180 74" fill="none" stroke="#6D6862" stroke-width="1.2" stroke-dasharray="3 3" />
+                    <circle cx="200" cy="86" r="2.2" fill="#F58024" />
+                  </g>
+                </svg>
+              </div>
+              <div class="challenge-card-divider" aria-hidden="true"></div>
+              <h3 class="challenge-problem-title">Disconnected decisions</h3>
+              <p class="challenge-problem-desc">Individual investment choices don't always add up to a cohesive portfolio.</p>
+            </div>
+          </div>
+
+          <!-- Carousel Bottom Controls Row -->
+          <div class="challenge-carousel-controls">
+            <button type="button" class="carousel-nav-btn carousel-btn-prev" id="btnPrevProblem" aria-label="Previous challenge slide">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <button type="button" class="carousel-nav-btn carousel-btn-next" id="btnNextProblem" aria-label="Next challenge slide">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
         </div>
       </section>
 
-      <!-- Subtle Hairline Section Divider (Overview to Performance) -->
-      <div class="section-divider" aria-hidden="true"></div>
+      <!-- 2. The Scripbox Approach: Institutional Architecture & Dual-Engine Methodology -->
+      <section class="btf-section approach-section stack-panel stack-panel-2" id="sec-approach" aria-labelledby="headingOverview">
+        <div class="btf-badge">Our Approach</div>
+        <h2 id="headingOverview" class="btf-title">Direct ownership with institutional discipline</h2>
+        <p class="btf-body">
+          Quantitative equity screening paired with human risk governance, held in your segregated Demat.
+        </p>
+
+        <!-- Dual-Engine Architecture Block -->
+        <div class="dual-engine-container">
+          <div class="dual-engine-header">
+            <span class="dual-engine-kicker">Core Methodology</span>
+            <span class="dual-engine-subtitle">The Dual-Engine Investment Framework</span>
+          </div>
+
+          <div class="dual-engine-split">
+            <!-- Engine 1 -->
+            <div class="engine-pillar">
+              <div class="engine-badge-row">
+                <span class="engine-num-badge">Engine 1</span>
+                <span class="engine-badge-label">Algorithmic Filter</span>
+              </div>
+              <h3 class="engine-name">Quantitative Factor Scoring</h3>
+              <p class="engine-desc">Algorithms rank valuation, momentum, and balance sheet quality across Top 200 equities.</p>
+            </div>
+
+            <!-- Inter-Engine Connector -->
+            <div class="engine-divider-accent" aria-hidden="true">
+              <span class="engine-plus-symbol">+</span>
+            </div>
+
+            <!-- Engine 2 -->
+            <div class="engine-pillar">
+              <div class="engine-badge-row">
+                <span class="engine-num-badge">Engine 2</span>
+                <span class="engine-badge-label">Human Oversight</span>
+              </div>
+              <h3 class="engine-name">Governance &amp; Risk Sizing</h3>
+              <p class="engine-desc">Portfolio managers evaluate corporate governance, debt levels, promoter integrity, and liquidity.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Mandate Covenant Strip (Demat Custody + ₹50L SEBI Threshold) -->
+        <div class="approach-covenant-strip">
+          <div class="covenant-col-demat">
+            <div class="covenant-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <div class="covenant-text">
+              <span class="covenant-title">Direct Demat Custody</span>
+              <span class="covenant-detail">Securities held under your PAN. Individual cost basis, zero pooled funds.</span>
+            </div>
+          </div>
+
+          <div class="covenant-col-threshold">
+            <span class="threshold-tag">SEBI Statutory Minimum</span>
+            <span class="threshold-figure">₹50 Lakhs</span>
+            <span class="threshold-note">Designed for portfolios of ₹1Cr+</span>
+          </div>
+        </div>
+      </section>
 
       <!-- 2. Performance Comparison: Flagship Strategy vs Industry Benchmark -->
-      <section class="btf-section perf-section" id="perfSection" aria-labelledby="headingPerf">
+      <section class="btf-section perf-section stack-panel stack-panel-3" id="perfSection" aria-labelledby="headingPerf">
         <div class="btf-badge">Performance</div>
         <h2 id="headingPerf" class="btf-title"><span class="perf-title-accent">Performance</span> that speaks for itself</h2>
         <p class="btf-body">
@@ -278,428 +567,184 @@
           <div class="perf-source">
             <span>Source: APMI India | As of November, 2025</span>
           </div>
+          <div class="perf-source-footnote">
+            *Latest APMI comparative filing period. Historical returns are net of fees and not indicative of future performance.
+          </div>
         </div>
       </section>
 
-      <!-- Subtle Hairline Section Divider (Performance to Strategies) -->
-      <div class="section-divider" aria-hidden="true"></div>
+        </div> <!-- /.paddle-stack-track -->
+      </div> <!-- /#paddleStackContainer -->
 
-      <!-- 3. Core Investment Strategies — Streamlined Editorial Architecture -->
-      <section class="btf-section" aria-labelledby="headingStrategies" id="strategiesSection">
+      <!-- 3. Core Investment Strategies — Overview Cards -->
+      <section class="btf-section strategies-section" aria-labelledby="headingStrategies" id="strategiesSection">
         <div class="btf-badge">Investment Strategies</div>
-        <h2 id="headingStrategies" class="btf-title">Three distinct approaches to capital growth</h2>
+        <h2 id="headingStrategies" class="btf-title btf-title--serif">Three distinct approaches to capital growth</h2>
         <p class="btf-body">
-          Scripbox PMS provides curated strategies engineered to match your return expectations, time horizon, and risk tolerance.
+          Discretionary portfolio mandates designed around distinct investment frameworks. Tap any card to explore full strategy details.
         </p>
 
-        <!-- Strategy Selector Control (Compact 3-Option Segmented Control) -->
-        <div class="strategy-selector-nav" role="tablist" aria-label="Investment Strategy Selector">
-          <button type="button" class="strat-tab-btn is-active" id="tab-optimiser" data-strat="optimiser" role="tab" aria-selected="true" aria-controls="strat-optimiser">
-            <svg viewBox="0 0 24 24" class="strat-tab-icon" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 3v18h18"/>
-              <path d="M7 15l4-5 4 3 6-7"/>
-            </svg>
-            <span class="strat-tab-label">Optimiser</span>
-          </button>
-          <button type="button" class="strat-tab-btn" id="tab-direct-growth" data-strat="direct-growth" role="tab" aria-selected="false" aria-controls="strat-direct-growth">
-            <svg viewBox="0 0 24 24" class="strat-tab-icon" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M23 6l-9.5 9.5-5-5L1 18"/>
-              <path d="M17 6h6v6"/>
-            </svg>
-            <span class="strat-tab-label">Growth</span>
-          </button>
-          <button type="button" class="strat-tab-btn" id="tab-focused" data-strat="focused" role="tab" aria-selected="false" aria-controls="strat-focused">
-            <svg viewBox="0 0 24 24" class="strat-tab-icon" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
-            <span class="strat-tab-label">Leadership</span>
-          </button>
-        </div>
-
-        <!-- Shared Detail Panel (Displays Active Selected Strategy) -->
-        <div class="strategy-detail-panel" id="strategyDetailPanel" aria-live="polite">
+        <!-- Strategy Overview Cards List -->
+        <div class="strategy-overview-list" role="list" aria-label="Available PMS Strategies">
           
-          <!-- Strategy 1: Optimiser Portfolio (Reference Implementation - Active by Default) -->
-          <article class="strategy-card is-active" id="strat-optimiser" data-strategy="optimiser" role="tabpanel" aria-labelledby="tab-optimiser">
-            <header class="strat-card-header">
-              <div class="strat-category-badge">Quant Equities</div>
-              <div class="strat-title-row">
-                <div class="strat-title-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 3v18h18"/>
-                    <path d="M7 15l4-5 4 3 6-7"/>
-                  </svg>
-                </div>
-                <h3 class="strategy-name">Optimiser Portfolio</h3>
-              </div>
-              <p class="strategy-summary">
-                A quantitative, factor-driven equity strategy designed to capture cycle alpha through systematic algorithmic stock ranking.
-              </p>
-            </header>
-
-            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">3–5+ Years</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">High / Agile</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Core Mandate</span>
-                <span class="meta-field-val">Multi-Factor Quant</span>
-              </div>
-            </div>
-
-            <!-- Deliberate Visual Component: 4-Factor Quantitative Framework -->
-            <div class="strat-visual-container" aria-label="4-Factor Quantitative Framework">
-              <div class="strat-visual-top">
-                <span class="visual-badge">4-Factor Quant Engine</span>
-                <span class="visual-subtext">Dynamic Factor Scoring</span>
-              </div>
-              <div class="factor-matrix-grid">
-                <div class="factor-node">
-                  <div class="factor-node-top">
-                    <span class="factor-node-name">Momentum</span>
-                    <span class="factor-node-pill" aria-hidden="true"></span>
-                  </div>
-                  <span class="factor-node-sub">Trend persistence &amp; relative strength</span>
-                </div>
-                <div class="factor-node">
-                  <div class="factor-node-top">
-                    <span class="factor-node-name">Quality</span>
-                    <span class="factor-node-pill" aria-hidden="true"></span>
-                  </div>
-                  <span class="factor-node-sub">Capital efficiency &amp; clean balance sheet</span>
-                </div>
-                <div class="factor-node">
-                  <div class="factor-node-top">
-                    <span class="factor-node-name">Value</span>
-                    <span class="factor-node-pill" aria-hidden="true"></span>
-                  </div>
-                  <span class="factor-node-sub">Earnings yield &amp; cash flow multiples</span>
-                </div>
-                <div class="factor-node">
-                  <div class="factor-node-top">
-                    <span class="factor-node-name">Low Volatility</span>
-                    <span class="factor-node-pill" aria-hidden="true"></span>
-                  </div>
-                  <span class="factor-node-sub">Downside resilience &amp; beta calibration</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Progressive Disclosure Toggle & Details -->
-            <div class="strat-drawer-wrap">
-              <button type="button" class="strat-drawer-btn" aria-expanded="false" aria-controls="drawer-optimiser">
-                <span class="drawer-btn-text">Explore strategy details</span>
-                <svg viewBox="0 0 24 24" width="16" height="16" class="drawer-arrow" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
+          <!-- Strategy Card 1: Optimiser Portfolio -->
+          <article class="strat-overview-card strat-card-optimiser" role="listitem" tabindex="0" data-strat-id="optimiser" aria-haspopup="dialog" aria-label="Optimiser Portfolio: Quant-based strategy. Tap to explore details.">
+            <div class="strat-card-header">
+              <h3 class="strat-card-name">Optimiser Portfolio</h3>
+              <div class="strat-card-art" aria-hidden="true">
+                <svg viewBox="0 0 56 52" width="56" height="52" fill="none" class="strat-geo-svg">
+                  <!-- Precision Baseline Datum -->
+                  <line x1="4" y1="44" x2="52" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+                  <!-- Fine Calibration Axis -->
+                  <line x1="16" y1="8" x2="16" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2"/>
+                  <!-- Stepped Disciplined Factor Blocks -->
+                  <rect x="19" y="32" width="7" height="12" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+                  <rect x="29" y="22" width="7" height="22" fill="rgba(239, 230, 218, 0.35)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+                  <!-- Optimal Highlighted Selection (Restrained Orange) -->
+                  <rect x="39" y="12" width="7" height="32" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
+                  <!-- Mathematical Quantitative Threshold Line -->
+                  <line x1="8" y1="12" x2="50" y2="12" stroke="#F58024" stroke-width="1" stroke-dasharray="2 2" stroke-opacity="0.8"/>
+                  <!-- Coordinate Intercept Diamond Marker -->
+                  <polygon points="42.5,8.5 46,12 42.5,15.5 39,12" fill="#F58024"/>
                 </svg>
-              </button>
-              <div class="strat-drawer-content" id="drawer-optimiser" hidden>
-                <div class="drawer-inner">
-                  <div class="drawer-thesis-block">
-                    <span class="thesis-quote">“Stocks that have performed well will continue to perform.”</span>
-                    <span class="thesis-caption">Core premise: trend persistence through systematic multi-factor filtering.</span>
-                  </div>
+              </div>
+            </div>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Investment Framework</h4>
-                    <div class="drawer-pillars-list">
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Model-driven ranking:</strong>
-                          <span class="drawer-pillar-text">Stock selection governed strictly by algorithmic scoring with zero emotional bias.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Nimble portfolio churn:</strong>
-                          <span class="drawer-pillar-text">Actively rebalanced to capture emerging factor leadership across market cycles.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Cycle risk calibrated:</strong>
-                          <span class="drawer-pillar-text">Multi-factor diversification dampens single-factor drawdowns during market reversals.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <p class="strat-card-desc">
+              A systematically constructed equity portfolio driven by quantitative screening and disciplined allocation principles.
+            </p>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Operational Mechanics</h4>
-                    <div class="drawer-specs-grid">
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Depository Custody</span>
-                        <span class="spec-value">Individual Demat account under investor's PAN</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Rebalancing Rhythm</span>
-                        <span class="spec-value">Systematic factor-cycle evaluation</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Reporting</span>
-                        <span class="spec-value">Real-time digital portfolio tracking &amp; audit statements</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="strat-card-tags">
+              <span class="strat-pill strat-pill-accent">Quant Based</span>
+              <span class="strat-pill strat-pill-sub">Stocks</span>
+            </div>
+
+            <div class="strat-meta-table">
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Target Holdings</span>
+                <span class="strat-meta-val">15–25 Stocks</span>
+              </div>
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Inception Date</span>
+                <span class="strat-meta-val">Apr 30, 2021</span>
+              </div>
+            </div>
+
+            <div class="strat-action-container">
+              <div class="strat-action-btn">
+                <span class="strat-affordance">Explore Strategy</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" class="strat-affordance-arrow" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </div>
             </div>
           </article>
 
-          <!-- Strategy 2: Select Direct Growth Portfolio (Initially Hidden) -->
-          <article class="strategy-card" id="strat-direct-growth" data-strategy="direct-growth" role="tabpanel" aria-labelledby="tab-direct-growth" style="display: none;">
-            <header class="strat-card-header">
-              <div class="strat-category-badge">Direct Fund Mandate</div>
-              <div class="strat-title-row">
-                <div class="strat-title-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 2v20"/>
-                    <path d="M12 12l7-7"/>
-                  </svg>
-                </div>
-                <h3 class="strategy-name">Select Direct Growth</h3>
-              </div>
-              <p class="strategy-summary">
-                A disciplined discretionary portfolio combining foundational multi-cap equity compounding with tactical market opportunity overlays.
-              </p>
-            </header>
-
-            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">3+ Years</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">Moderate to High</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Asset Construct</span>
-                <span class="meta-field-val">75% Core : 25% Tactical</span>
-              </div>
-            </div>
-
-            <!-- Deliberate Visual Component: 75:25 Structural Allocation Blueprint -->
-            <div class="strat-visual-container" aria-label="75% Core and 25% Satellite Allocation Visualizer">
-              <div class="strat-visual-top">
-                <span class="visual-badge">Structural Asset Blueprint</span>
-                <span class="visual-subtext">75 : 25 Proportional Split</span>
-              </div>
-              <div class="alloc-track-bar">
-                <div class="alloc-seg-core" style="width: 75%;">
-                  <span>75% Core Equity</span>
-                </div>
-                <div class="alloc-seg-sat" style="width: 25%;">
-                  <span>25% Tactical</span>
-                </div>
-              </div>
-              <div class="alloc-legend-row">
-                <div class="alloc-legend-card">
-                  <strong>75% Core Portfolio</strong>
-                  <span>Diversified Equity Direct Mutual Funds for sustained compounding.</span>
-                </div>
-                <div class="alloc-legend-card">
-                  <strong>25% Tactical Satellite</strong>
-                  <span>Nimble thematic rotation, commodities &amp; strategic opportunities.</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Progressive Disclosure Toggle & Details -->
-            <div class="strat-drawer-wrap">
-              <button type="button" class="strat-drawer-btn" aria-expanded="false" aria-controls="drawer-direct-growth">
-                <span class="drawer-btn-text">Explore strategy details</span>
-                <svg viewBox="0 0 24 24" width="16" height="16" class="drawer-arrow" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
+          <!-- Strategy Card 2: Focused Leadership -->
+          <article class="strat-overview-card strat-card-focused" role="listitem" tabindex="0" data-strat-id="focused" aria-haspopup="dialog" aria-label="Focused Leadership: Research-driven bottom-up strategy. Tap to explore details.">
+            <div class="strat-card-header">
+              <h3 class="strat-card-name">Focused Leadership</h3>
+              <div class="strat-card-art" aria-hidden="true">
+                <svg viewBox="0 0 56 52" width="56" height="52" fill="none" class="strat-geo-svg">
+                  <!-- Stepped Foundation Datum -->
+                  <line x1="6" y1="44" x2="50" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+                  <!-- Symmetrical Architectural Pedestal -->
+                  <rect x="12" y="40" width="32" height="4" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+                  <!-- Flanking Conviction Buttresses -->
+                  <polygon points="15,40 15,26 21,22 21,40" fill="rgba(239, 230, 218, 0.1)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+                  <polygon points="41,40 41,26 35,22 35,40" fill="rgba(239, 230, 218, 0.1)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+                  <!-- Central Monolithic Keystone / Column -->
+                  <rect x="23" y="16" width="10" height="24" fill="rgba(239, 230, 218, 0.22)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.2"/>
+                  <line x1="28" y1="18" x2="28" y2="38" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+                  <!-- Restrained Orange Apex Triangle -->
+                  <polygon points="28,6 36,15 20,15" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
+                  <circle cx="28" cy="15" r="2" fill="#FFFFFF"/>
                 </svg>
-              </button>
-              <div class="strat-drawer-content" id="drawer-direct-growth" hidden>
-                <div class="drawer-inner">
-                  <div class="drawer-thesis-block">
-                    <span class="thesis-quote">“Disciplined direct-plan fund architecture honed over multiple market cycles.”</span>
-                    <span class="thesis-caption">Core premise: combining foundational equity compounding with nimble tactical overlays.</span>
-                  </div>
+              </div>
+            </div>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Investment Framework</h4>
-                    <div class="drawer-pillars-list">
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Institutional direct funds:</strong>
-                          <span class="drawer-pillar-text">Direct mutual fund plans eliminating third-party distributor commissions entirely.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Tactical opportunity overlay:</strong>
-                          <span class="drawer-pillar-text">Active 25% satellite sleeve calibrated to exploit sectoral mispricings and macro themes.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Disciplined rebalancing:</strong>
-                          <span class="drawer-pillar-text">Systematic allocation resets prevent portfolio drift and maintain risk calibration.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <p class="strat-card-desc">
+              A high-conviction portfolio investing in established and emerging leaders selected through bottom-up research and long-term business evaluation.
+            </p>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Operational Mechanics</h4>
-                    <div class="drawer-specs-grid">
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Investment Vehicle</span>
-                        <span class="spec-value">Direct Plans of SEBI-registered Mutual Funds</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Liquidity Access</span>
-                        <span class="spec-value">Independent fund redemptions without lock-ins</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Governance &amp; Review</span>
-                        <span class="spec-value">Quarterly strategic allocation review &amp; automated tax-efficient rebalancing</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="strat-card-tags">
+              <span class="strat-pill strat-pill-accent">Proven Leadership</span>
+              <span class="strat-pill strat-pill-sub">Stocks</span>
+            </div>
+
+            <div class="strat-meta-table">
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Target Holdings</span>
+                <span class="strat-meta-val">10–20 Stocks</span>
+              </div>
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Inception Date</span>
+                <span class="strat-meta-val">Jun 15, 2015</span>
+              </div>
+            </div>
+
+            <div class="strat-action-container">
+              <div class="strat-action-btn">
+                <span class="strat-affordance">Explore Strategy</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" class="strat-affordance-arrow" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </div>
             </div>
           </article>
 
-          <!-- Strategy 3: Focused Leadership Portfolio (Initially Hidden) -->
-          <article class="strategy-card" id="strat-focused" data-strategy="focused" role="tabpanel" aria-labelledby="tab-focused" style="display: none;">
-            <header class="strat-card-header">
-              <div class="strat-category-badge">Concentrated Equity</div>
-              <div class="strat-title-row">
-                <div class="strat-title-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <circle cx="12" cy="12" r="6"/>
-                    <circle cx="12" cy="12" r="2"/>
-                  </svg>
-                </div>
-                <h3 class="strategy-name">Focused Leadership</h3>
-              </div>
-              <p class="strategy-summary">
-                A high-conviction portfolio of 15 to 20 market leaders commanding dominant economic moats in their core operating fields.
-              </p>
-            </header>
-
-            <!-- Essential Facts Bar (Elevated immediately after Summary) -->
-            <div class="strategy-meta-bar">
-              <div class="meta-field">
-                <span class="meta-field-label">Time Horizon</span>
-                <span class="meta-field-val">5+ Years</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Risk Profile</span>
-                <span class="meta-field-val">High Conviction</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-field-label">Portfolio Size</span>
-                <span class="meta-field-val">15–20 Leaders (Max 20)</span>
-              </div>
-            </div>
-
-            <!-- Deliberate Visual Component: 15-20 Concentrated Moat Visualizer -->
-            <div class="strat-visual-container" aria-label="15-20 Stocks High Conviction Gauge">
-              <div class="strat-visual-top">
-                <span class="visual-badge">High-Conviction Architecture</span>
-                <span class="visual-subtext">Anti-Dilution Mandate</span>
-              </div>
-              <div class="focus-metric-grid">
-                <div class="focus-metric-card">
-                  <span class="focus-card-num">15–20</span>
-                  <span class="focus-card-label">Market Leaders</span>
-                  <span class="focus-card-sub">Strict maximum 20 holdings</span>
-                </div>
-                <div class="focus-metric-card">
-                  <span class="focus-card-num">1–3 Yrs</span>
-                  <span class="focus-card-label">Catalyst Horizon</span>
-                  <span class="focus-card-sub">Defined thesis verification</span>
-                </div>
-              </div>
-              <div class="focus-banner">
-                Deliberate capital concentration avoiding benchmark bloat and 80+ stock index dilution
-              </div>
-            </div>
-
-            <!-- Progressive Disclosure Toggle & Details -->
-            <div class="strat-drawer-wrap">
-              <button type="button" class="strat-drawer-btn" aria-expanded="false" aria-controls="drawer-focused">
-                <span class="drawer-btn-text">Explore strategy details</span>
-                <svg viewBox="0 0 24 24" width="16" height="16" class="drawer-arrow" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
+          <!-- Strategy Card 3: Select Direct Growth -->
+          <article class="strat-overview-card strat-card-direct-growth" role="listitem" tabindex="0" data-strat-id="direct-growth" aria-haspopup="dialog" aria-label="Select Direct Growth: Core-satellite mutual fund strategy. Tap to explore details.">
+            <div class="strat-card-header">
+              <h3 class="strat-card-name">Select Direct Growth</h3>
+              <div class="strat-card-art" aria-hidden="true">
+                <svg viewBox="0 0 56 52" width="56" height="52" fill="none" class="strat-geo-svg">
+                  <!-- Tactical Reference Quadrant Arc -->
+                  <path d="M 46 26 A 18 18 0 0 0 28 8" fill="none" stroke="rgba(245, 128, 36, 0.4)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+                  <!-- Orthogonal Connective Vector Rays -->
+                  <line x1="28" y1="17.5" x2="28" y2="10" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+                  <line x1="36.5" y1="26" x2="44" y2="26" stroke="#F58024" stroke-width="1.2"/>
+                  <line x1="28" y1="34.5" x2="28" y2="42" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+                  <line x1="19.5" y1="26" x2="12" y2="26" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+                  <!-- Diversified Core Form (Rotated Square Nucleus) -->
+                  <rect x="22" y="20" width="12" height="12" rx="2" fill="rgba(239, 230, 218, 0.25)" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.3" transform="rotate(45 28 26)"/>
+                  <circle cx="28" cy="26" r="2.5" fill="#FFFFFF"/>
+                  <!-- Satellite Allocation Nodes -->
+                  <circle cx="28" cy="8" r="3" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"/>
+                  <!-- Tactical Satellite highlighted in restrained orange -->
+                  <circle cx="46" cy="26" r="3.5" fill="#F58024" stroke="#FFA048" stroke-width="1.2"/>
+                  <rect x="25.5" y="41" width="5" height="5" rx="1" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+                  <circle cx="10" cy="26" r="2.5" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"/>
                 </svg>
-              </button>
-              <div class="strat-drawer-content" id="drawer-focused" hidden>
-                <div class="drawer-inner">
-                  <div class="drawer-thesis-block">
-                    <span class="thesis-quote">“Dominant businesses with proven leadership positioning in their core operating fields.”</span>
-                    <span class="thesis-caption">Core premise: concentrated allocation in high-ROIC companies without index dilution.</span>
-                  </div>
+              </div>
+            </div>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Investment Framework</h4>
-                    <div class="drawer-pillars-list">
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Economic moat dominance:</strong>
-                          <span class="drawer-pillar-text">Rigorous screening for pricing power, high return on capital, and durable leadership.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">1–3 year catalyst horizon:</strong>
-                          <span class="drawer-pillar-text">Explicit milestones and growth triggers tracked systematically for each portfolio holding.</span>
-                        </div>
-                      </div>
-                      <div class="drawer-pillar-item">
-                        <span class="drawer-bullet" aria-hidden="true"></span>
-                        <div>
-                          <strong class="drawer-pillar-name">Non-dilution discipline:</strong>
-                          <span class="drawer-pillar-text">Strict cap of 20 holdings ensures high conviction without benchmark hugging.</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <p class="strat-card-desc">
+              A curated mutual fund portfolio combining diversified core exposure with selective satellite allocations for tactical flexibility.
+            </p>
 
-                  <div class="drawer-block">
-                    <h4 class="drawer-block-title">Operational Mechanics</h4>
-                    <div class="drawer-specs-grid">
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Depository Custody</span>
-                        <span class="spec-value">Direct equity ownership segregated in client's individual Demat</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Exit Discipline</span>
-                        <span class="spec-value">Systematic review if 1–3 year catalyst triggers fail to materialize</span>
-                      </div>
-                      <div class="drawer-spec-item">
-                        <span class="spec-label">Execution</span>
-                        <span class="spec-value">Active portfolio management with SEBI-compliant discretionary governance</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="strat-card-tags">
+              <span class="strat-pill strat-pill-accent">Core &amp; Satellite</span>
+              <span class="strat-pill strat-pill-sub">Mutual Funds</span>
+            </div>
+
+            <div class="strat-meta-table">
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Target Holdings</span>
+                <span class="strat-meta-val">8–10 Direct Funds</span>
+              </div>
+              <div class="strat-meta-row">
+                <span class="strat-meta-label">Inception Date</span>
+                <span class="strat-meta-val">Jun 30, 2020</span>
+              </div>
+            </div>
+
+            <div class="strat-action-container">
+              <div class="strat-action-btn">
+                <span class="strat-affordance">Explore Strategy</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" class="strat-affordance-arrow" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </div>
             </div>
           </article>
@@ -710,116 +755,296 @@
       <!-- Subtle Hairline Section Divider (Strategies to Difference) -->
       <div class="section-divider" aria-hidden="true"></div>
 
-      <!-- 4. Why Scripbox: 2x2 Matrix (Matching live site layout) -->
-      <section class="btf-section" aria-labelledby="headingDifference">
-        <div class="btf-badge">Why Scripbox</div>
-        <h2 id="headingDifference" class="btf-title">Experience the Scripbox difference</h2>
-        <p class="btf-body">
-          We combine data-driven portfolio construction with senior private wealth advisory to deliver transparent, institutional-grade management.
-        </p>
+      <!-- 4. Why Scripbox: Experience the Scripbox Difference -->
+      <section class="btf-section difference-section btf-section--difference" id="sec-difference" aria-labelledby="headingDifference">
+        <div class="diff-header">
+          <div class="btf-badge">Why Scripbox</div>
+          <h2 id="headingDifference" class="btf-title btf-title--serif diff-main-heading">Experience the Scripbox difference</h2>
+          <p class="btf-body diff-main-subhead">
+            Institutional portfolio construction paired with senior private wealth advisory and individual Demat custody.
+          </p>
+        </div>
 
-        <!-- Borderless Editorial Rows with Hairline Dividers -->
-        <div class="pillars-matrix-grid">
-          <div class="pillar-matrix-card">
-            <div class="pillar-header-row">
-              <div class="pillar-icon-box" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <!-- Architectural Visual Flow: Experience the Scripbox Difference -->
+        <div class="diff-editorial-flow" role="list">
+          
+          <!-- Benefit 01: Multiple Strategies, One PMS Provider -->
+          <article class="diff-block diff-block--01 diff-block--art-right" role="listitem">
+            <div class="diff-header-row">
+              <div class="diff-heading-wrap">
+                <h3 class="pillar-title">Multiple Strategies, One PMS Provider</h3>
+              </div>
+              <div class="diff-visual-card" aria-hidden="true">
+                <svg viewBox="96 46 170 154" fill="none" class="diff-svg-art" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Left Portfolio Card (Dark with Orange Border) -->
+                  <rect x="98" y="70" width="68" height="96" rx="8" fill="#1C1815" stroke="#F58024" stroke-width="3"/>
+                  <rect x="117" y="140" width="30" height="6" rx="3" fill="#F58024"/>
+
+                  <!-- Center Portfolio Card (Elevated, Warm Ivory Fill) -->
+                  <rect x="146" y="48" width="68" height="96" rx="8" fill="#E5D3BA"/>
+                  <rect x="165" y="78" width="30" height="6" rx="3" fill="#F58024"/>
+
+                  <!-- Right Portfolio Card (Dark with Orange Border) -->
+                  <rect x="194" y="80" width="68" height="96" rx="8" fill="#1C1815" stroke="#F58024" stroke-width="3"/>
+                  <rect x="213" y="150" width="30" height="6" rx="3" fill="#F58024"/>
+
+                  <!-- Unifying Base Element (Shared Connecting Chevron) -->
+                  <path d="M 122 172 L 180 196 L 238 172" fill="none" stroke="#F58024" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3 class="pillar-title">Multiple Strategies, One PMS Provider</h3>
             </div>
-            <p class="pillar-desc">Choose from direct equities, algorithmic quant models, or curated direct-fund portfolios tailored to your mandate.</p>
-          </div>
+            <div class="diff-content">
+              <p class="pillar-desc">Choose from direct equities, algorithmic quant models, or curated direct-fund portfolios tailored to your mandate.</p>
+            </div>
+          </article>
 
-          <div class="pillar-matrix-card">
-            <div class="pillar-header-row">
-              <div class="pillar-icon-box" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          <!-- Benefit 02: Personalised Mandate Discovery -->
+          <article class="diff-block diff-block--02 diff-block--art-left" role="listitem">
+            <div class="diff-header-row">
+              <div class="diff-visual-card" aria-hidden="true">
+                <svg viewBox="116 36 128 148" fill="none" class="diff-svg-art" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Personalised Discovery Silhouette & Ring -->
+                  <circle cx="180" cy="95" r="55" stroke="#F58024" stroke-width="3" fill="#1C1815"/>
+
+                  <!-- Head Silhouette in Warm Ivory -->
+                  <circle cx="180" cy="74" r="16" fill="#E5D3BA"/>
+
+                  <!-- Shoulders Silhouette in Warm Ivory -->
+                  <path d="M 149 119 C 149 101 161 93 180 93 C 199 93 211 101 211 119 Z" fill="#E5D3BA"/>
+
+                  <!-- Tailored Mandate Document / Card -->
+                  <rect x="118" y="130" width="124" height="52" rx="10" fill="#171513" stroke="rgba(239, 230, 218, 0.45)" stroke-width="2.5"/>
+
+                  <!-- Tailored Plan Lines (Orange Details) -->
+                  <line x1="140" y1="148" x2="208" y2="148" stroke="#F58024" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="140" y1="162" x2="188" y2="162" stroke="#F58024" stroke-width="3" stroke-linecap="round"/>
                 </svg>
               </div>
-              <h3 class="pillar-title">Personalised Assessment</h3>
+              <div class="diff-heading-wrap">
+                <h3 class="pillar-title">Personalised Mandate Discovery</h3>
+              </div>
             </div>
-            <p class="pillar-desc">In-depth discovery mapping your risk tolerance, liquidity needs, tax position, and long-term wealth milestones.</p>
-          </div>
+            <div class="diff-content">
+              <p class="pillar-desc">In-depth portfolio discovery mapping your risk tolerance, liquidity requirements, tax position, and milestones.</p>
+            </div>
+          </article>
 
-          <div class="pillar-matrix-card">
-            <div class="pillar-header-row">
-              <div class="pillar-icon-box" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="M9 12l2 2 4-4"/>
+          <!-- Benefit 03: Fiduciary Stewardship & Direct Custody -->
+          <article class="diff-block diff-block--03 diff-block--art-right" role="listitem">
+            <div class="diff-header-row">
+              <div class="diff-heading-wrap">
+                <h3 class="pillar-title">Fiduciary Stewardship &amp; Direct Custody</h3>
+              </div>
+              <div class="diff-visual-card" aria-hidden="true">
+                <svg viewBox="114 42 134 145" fill="none" class="diff-svg-art" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Investment Statement / Portfolio Document (Focal Point) -->
+                  <rect x="116" y="44" width="112" height="136" rx="12" fill="#1C1815" stroke="rgba(239, 230, 218, 0.45)" stroke-width="2.5"/>
+
+                  <!-- Statement Content Lines (Warm Ivory) -->
+                  <line x1="138" y1="72" x2="198" y2="72" stroke="rgba(239, 230, 218, 0.85)" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="138" y1="92" x2="182" y2="92" stroke="rgba(239, 230, 218, 0.85)" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="138" y1="118" x2="190" y2="118" stroke="rgba(239, 230, 218, 0.85)" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="138" y1="138" x2="170" y2="138" stroke="rgba(239, 230, 218, 0.85)" stroke-width="3" stroke-linecap="round"/>
+
+                  <!-- Restrained Custody Shield (Secondary Protection Symbol) -->
+                  <path d="M 218 116 C 206 120 197 123 192 126 L 192 153 C 192 170 205 178 218 183 C 231 178 244 170 244 153 L 244 126 C 239 123 230 120 218 116 Z" fill="#171513" stroke="#F58024" stroke-width="3" stroke-linejoin="round"/>
+
+                  <!-- Verification / Direct Ownership Checkmark inside Shield -->
+                  <path d="M 205 151 L 214 160 L 231 141" fill="none" stroke="#F58024" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3 class="pillar-title">Guided Recommendations</h3>
             </div>
-            <p class="pillar-desc">Data-backed rationale for every portfolio allocation decision, without bias or commission conflict.</p>
-          </div>
+            <div class="diff-content">
+              <p class="pillar-desc">Objective portfolio allocation aligned strictly with capital growth, with all securities held under your individual PAN.</p>
+            </div>
+          </article>
 
-          <div class="pillar-matrix-card">
-            <div class="pillar-header-row">
-              <div class="pillar-icon-box" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-                </svg>
-              </div>
-              <h3 class="pillar-title">Strategy Discovery Assistance</h3>
-            </div>
-            <p class="pillar-desc">Direct 1-on-1 access to senior PMS portfolio specialists to refine and stress-test your wealth strategy.</p>
-          </div>
         </div>
       </section>
 
-      <!-- 5. Advisory Process: Connected Roadmap -->
-      <section class="btf-section" aria-labelledby="headingProcess">
-        <div class="btf-badge">The Advisory Process</div>
-        <h2 id="headingProcess" class="btf-title">What to expect from your consultation</h2>
-        <p class="btf-body">
-          A confidential, high-touch consultation focused entirely on your asset allocation needs, with no aggressive sales pitching.
-        </p>
+      <!-- 5. Advisory Process: Road to Wealth (Mobile Only) -->
+      <section class="btf-section process-section" id="sec-process" aria-labelledby="headingProcess">
+        <div class="process-header">
+          <div class="btf-badge">THE ADVISORY PROCESS</div>
+          <h2 id="headingProcess" class="btf-title btf-title--serif process-main-title">Road to Wealth</h2>
+          <p class="btf-body process-main-subhead">What to expect from your consultation</p>
+        </div>
 
-        <div class="process-timeline">
-          <div class="timeline-step">
-            <div class="timeline-rail">
-              <div class="timeline-dot">1</div>
-              <div class="timeline-line"></div>
+        <!-- Road Navigation & Progress Header -->
+        <div class="road-nav-bar">
+          <div class="road-progress-col">
+            <span class="road-counter-text" id="roadCounterText" aria-live="polite">01 / 03</span>
+            <div class="road-progress-segments" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Milestone 1 of 3">
+              <span class="road-segment is-active" data-index="0"></span>
+              <span class="road-segment" data-index="1"></span>
+              <span class="road-segment" data-index="2"></span>
             </div>
-            <div class="timeline-body">
+          </div>
+          <div class="road-controls" aria-label="Milestone navigation controls">
+            <button type="button" class="road-nav-btn road-nav-prev" id="btnRoadPrev" aria-label="Previous milestone" disabled>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <button type="button" class="road-nav-btn road-nav-next" id="btnRoadNext" aria-label="Next milestone">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Touch-First Horizontal Road Track -->
+        <div class="process-timeline road-track" id="roadTrack" role="region" aria-roledescription="carousel" aria-label="Advisory process road journey" tabindex="0">
+          
+          <!-- Milestone 01: Confidential Discovery -->
+          <article class="timeline-step road-milestone-card is-active" role="group" aria-roledescription="slide" aria-label="Milestone 1 of 3: Confidential Discovery (20 Mins)" data-step-index="0">
+            <div class="road-visual-box" aria-hidden="true">
+              <svg viewBox="0 0 340 180" width="100%" height="100%" fill="none" class="road-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="skyGlow1" cx="280" cy="85" r="160" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#F58024" stop-opacity="0.22"/>
+                    <stop offset="45%" stop-color="#C05C12" stop-opacity="0.08"/>
+                    <stop offset="100%" stop-color="#141210" stop-opacity="0"/>
+                  </radialGradient>
+                  <linearGradient id="hillGrad1A" x1="0" y1="60" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#191613"/>
+                    <stop offset="100%" stop-color="#12100E"/>
+                  </linearGradient>
+                  <linearGradient id="hillGrad1B" x1="0" y1="100" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#1F1B17"/>
+                    <stop offset="100%" stop-color="#151210"/>
+                  </linearGradient>
+                </defs>
+                <rect width="340" height="180" fill="#13110F"/>
+                <rect width="340" height="180" fill="url(#skyGlow1)"/>
+                <path d="M 0 115 Q 90 75, 190 95 T 340 80 L 340 180 L 0 180 Z" fill="url(#hillGrad1A)" opacity="0.85"/>
+                <path d="M 0 115 Q 90 75, 190 95 T 340 80" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+                <path d="M 0 140 Q 110 110, 220 125 T 340 110 L 340 180 L 0 180 Z" fill="url(#hillGrad1B)"/>
+                <path d="M 0 140 Q 110 110, 220 125 T 340 110" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+                <!-- Winding Road: Milestone 1 -->
+                <path d="M -10 155 C 70 155, 110 125, 180 105 C 240 88, 280 92, 350 85" fill="none" stroke="#25211D" stroke-width="22" stroke-linecap="round"/>
+                <path d="M -10 144 C 70 144, 110 114, 180 94 C 240 77, 280 81, 350 74" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <path d="M -10 166 C 70 166, 110 136, 180 116 C 240 99, 280 103, 350 96" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <path d="M -10 155 C 70 155, 110 125, 180 105 C 240 88, 280 92, 350 85" fill="none" stroke="#F58024" stroke-width="1.8" stroke-dasharray="5 5"/>
+                <!-- Subtle Waypoint 1 Marker -->
+                <circle cx="55" cy="155" r="14" fill="rgba(245,128,36,0.12)"/>
+                <circle cx="55" cy="155" r="8" fill="#1C1815" stroke="#F58024" stroke-width="1.5"/>
+                <circle cx="55" cy="155" r="3.5" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <div class="timeline-body road-milestone-body">
+              <div class="milestone-meta-row">
+                <span class="milestone-step-num">01</span>
+                <span class="milestone-stage-label">DISCOVERY</span>
+              </div>
               <h3 class="roadmap-title">Confidential Discovery (20 Mins)</h3>
-              <p class="roadmap-desc">We review your existing holdings, wealth objectives, tax bracket, and risk appetite to evaluate suitability.</p>
+              <p class="roadmap-desc">We evaluate your current holdings, tax position, and milestones to determine mandate suitability.</p>
             </div>
-          </div>
+          </article>
 
-          <div class="timeline-step">
-            <div class="timeline-rail">
-              <div class="timeline-dot">2</div>
-              <div class="timeline-line"></div>
+          <!-- Milestone 02: Custom Allocation Blueprint -->
+          <article class="timeline-step road-milestone-card" role="group" aria-roledescription="slide" aria-label="Milestone 2 of 3: Custom Allocation Blueprint" data-step-index="1">
+            <div class="road-visual-box" aria-hidden="true">
+              <svg viewBox="0 0 340 180" width="100%" height="100%" fill="none" class="road-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="skyGlow2" cx="290" cy="65" r="170" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#F58024" stop-opacity="0.28"/>
+                    <stop offset="50%" stop-color="#C05C12" stop-opacity="0.1"/>
+                    <stop offset="100%" stop-color="#141210" stop-opacity="0"/>
+                  </radialGradient>
+                  <linearGradient id="hillGrad2A" x1="0" y1="40" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#1A1714"/>
+                    <stop offset="100%" stop-color="#12100E"/>
+                  </linearGradient>
+                  <linearGradient id="hillGrad2B" x1="0" y1="80" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#211D19"/>
+                    <stop offset="100%" stop-color="#151210"/>
+                  </linearGradient>
+                </defs>
+                <rect width="340" height="180" fill="#13110F"/>
+                <rect width="340" height="180" fill="url(#skyGlow2)"/>
+                <path d="M 0 85 Q 120 55, 230 75 T 340 60 L 340 180 L 0 180 Z" fill="url(#hillGrad2A)" opacity="0.85"/>
+                <path d="M 0 85 Q 120 55, 230 75 T 340 60" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+                <path d="M 0 120 Q 90 95, 200 110 T 340 85 L 340 180 L 0 180 Z" fill="url(#hillGrad2B)"/>
+                <path d="M 0 120 Q 90 95, 200 110 T 340 85" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+                <!-- Winding Road: Milestone 2 -->
+                <path d="M -10 85 C 60 85, 90 120, 160 115 C 220 110, 270 70, 350 65" fill="none" stroke="#25211D" stroke-width="22" stroke-linecap="round"/>
+                <path d="M -10 74 C 60 74, 90 109, 160 104 C 220 99, 270 59, 350 54" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <path d="M -10 96 C 60 96, 90 131, 160 126 C 220 121, 270 81, 350 76" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <path d="M -10 85 C 60 85, 90 120, 160 115 C 220 110, 270 70, 350 65" fill="none" stroke="#F58024" stroke-width="1.8" stroke-dasharray="5 5"/>
+                <!-- Subtle Waypoint 2 Marker -->
+                <circle cx="170" cy="112" r="14" fill="rgba(245,128,36,0.12)"/>
+                <circle cx="170" cy="112" r="8" fill="#1C1815" stroke="#F58024" stroke-width="1.5"/>
+                <circle cx="170" cy="112" r="3.5" fill="#FFFFFF"/>
+              </svg>
             </div>
-            <div class="timeline-body">
+            <div class="timeline-body road-milestone-body">
+              <div class="milestone-meta-row">
+                <span class="milestone-step-num">02</span>
+                <span class="milestone-stage-label">BLUEPRINT</span>
+              </div>
               <h3 class="roadmap-title">Custom Allocation Blueprint</h3>
-              <p class="roadmap-desc">Our investment committee formulates a tailored mandate recommendation with clear risk-adjusted expectations.</p>
+              <p class="roadmap-desc">Our investment committee designs a tailored strategy recommendation with clear risk-return parameters.</p>
             </div>
-          </div>
+          </article>
 
-          <div class="timeline-step">
-            <div class="timeline-rail">
-              <div class="timeline-dot">3</div>
+          <!-- Milestone 03: Dedicated Execution & Review -->
+          <article class="timeline-step road-milestone-card" role="group" aria-roledescription="slide" aria-label="Milestone 3 of 3: Dedicated Execution & Review" data-step-index="2">
+            <div class="road-visual-box" aria-hidden="true">
+              <svg viewBox="0 0 340 180" width="100%" height="100%" fill="none" class="road-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="skyGlow3" cx="240" cy="50" r="150" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FFA45A" stop-opacity="0.4"/>
+                    <stop offset="35%" stop-color="#F58024" stop-opacity="0.22"/>
+                    <stop offset="70%" stop-color="#C05C12" stop-opacity="0.08"/>
+                    <stop offset="100%" stop-color="#141210" stop-opacity="0"/>
+                  </radialGradient>
+                  <linearGradient id="hillGrad3A" x1="0" y1="30" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#1E1915"/>
+                    <stop offset="100%" stop-color="#13100E"/>
+                  </linearGradient>
+                  <linearGradient id="hillGrad3B" x1="0" y1="60" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#26211C"/>
+                    <stop offset="100%" stop-color="#161310"/>
+                  </linearGradient>
+                </defs>
+                <rect width="340" height="180" fill="#13110F"/>
+                <rect width="340" height="180" fill="url(#skyGlow3)"/>
+                <path d="M 0 70 Q 110 40, 240 50 T 340 45 L 340 180 L 0 180 Z" fill="url(#hillGrad3A)" opacity="0.9"/>
+                <path d="M 0 70 Q 110 40, 240 50 T 340 45" stroke="rgba(245,128,36,0.25)" stroke-width="1.2" fill="none"/>
+                <path d="M 0 95 Q 100 80, 210 90 T 340 75 L 340 180 L 0 180 Z" fill="url(#hillGrad3B)"/>
+                <path d="M 0 95 Q 100 80, 210 90 T 340 75" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+                <!-- Winding Road: Milestone 3 -->
+                <path d="M -10 65 C 50 65, 80 88, 140 85 C 190 82, 215 58, 240 50" fill="none" stroke="#25211D" stroke-width="22" stroke-linecap="round"/>
+                <path d="M -10 54 C 50 54, 80 77, 140 74 C 188 71, 211 48, 235 40" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <path d="M -10 76 C 50 76, 80 99, 140 96 C 192 93, 219 68, 245 60" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <path d="M -10 65 C 50 65, 80 88, 140 85 C 190 82, 215 58, 240 50" fill="none" stroke="#F58024" stroke-width="1.8" stroke-dasharray="5 5"/>
+                <!-- Horizon Destination Beacon (Arrival & Clarity) -->
+                <circle cx="240" cy="50" r="22" fill="rgba(245,128,36,0.15)"/>
+                <circle cx="240" cy="50" r="14" fill="rgba(245,128,36,0.25)"/>
+                <circle cx="240" cy="50" r="8" fill="#201B17" stroke="#FFA45A" stroke-width="1.6"/>
+                <circle cx="240" cy="50" r="3.5" fill="#FFFFFF"/>
+              </svg>
             </div>
-            <div class="timeline-body">
+            <div class="timeline-body road-milestone-body">
+              <div class="milestone-meta-row">
+                <span class="milestone-step-num">03</span>
+                <span class="milestone-stage-label">EXECUTION &amp; REVIEW</span>
+              </div>
               <h3 class="roadmap-title">Dedicated Execution &amp; Review</h3>
-              <p class="roadmap-desc">Seamless paperless onboarding with segregated Demat holding, followed by quarterly portfolio reviews.</p>
+              <p class="roadmap-desc">Seamless paperless onboarding into your segregated Demat, followed by quarterly portfolio reviews.</p>
             </div>
-          </div>
+          </article>
+
         </div>
       </section>
+
+      <!-- Subtle Hairline Section Divider (Process to Leadership) -->
+      <div class="section-divider" aria-hidden="true"></div>
 
       <!-- 5. Stewardship & Leadership with Authentic Photography -->
-      <section class="btf-section leadership-section" aria-labelledby="headingLeadership">
+      <section class="btf-section leadership-section" id="sec-leadership" aria-labelledby="headingLeadership">
         <div class="btf-badge">Leadership &amp; Governance</div>
         <h2 id="headingLeadership" class="btf-title">Experienced leadership at the helm</h2>
         <p class="btf-body">Decades of experience in wealth management and technology.</p>
@@ -829,70 +1054,70 @@
             
             <!-- Slide 1: Atul Shinghal -->
             <article class="leadership-card" role="group" aria-roledescription="slide" aria-label="1 of 4: Atul Shinghal">
-              <div class="leader-visual-row">
-                <div class="leader-photo-wrap">
-                  <img src="assets/atul-shinghal.jpg" alt="Atul Shinghal, Founder of Scripbox" class="leader-photo-img" width="90" height="110" loading="lazy">
-                </div>
-                <div class="leader-info">
-                  <div class="leader-accent-dash" aria-hidden="true"></div>
-                  <h3 class="leader-name">Atul Shinghal</h3>
-                  <p class="leader-role">Founder of Scripbox</p>
-                </div>
+              <div class="leader-portrait-frame">
+                <picture>
+                  <source srcset="assets/atul-shinghal.webp" type="image/webp">
+                  <img src="assets/atul-shinghal.jpg" alt="Atul Shinghal, Founder of Scripbox" class="leader-portrait-img" width="494" height="494" loading="lazy" decoding="async">
+                </picture>
               </div>
-              <p class="leader-bio">
-                Pioneered institutional digital wealth advisory in India. Over two decades championing conflict-free, scientific capital allocation and client alignment.
-              </p>
+              <div class="leader-content">
+                <h3 class="leader-name">Atul Shinghal</h3>
+                <p class="leader-role">Founder of Scripbox</p>
+                <p class="leader-bio">
+                  Over two decades championing scientific capital allocation, fiduciary discipline, and investor-first alignment.
+                </p>
+              </div>
             </article>
 
             <!-- Slide 2: Sanjiv Singhal -->
             <article class="leadership-card" role="group" aria-roledescription="slide" aria-label="2 of 4: Sanjiv Singhal">
-              <div class="leader-visual-row">
-                <div class="leader-photo-wrap">
-                  <img src="assets/sanjiv-singhal.jpg" alt="Sanjiv Singhal, Co-founder of Scripbox" class="leader-photo-img" width="90" height="110" loading="lazy">
-                </div>
-                <div class="leader-info">
-                  <div class="leader-accent-dash" aria-hidden="true"></div>
-                  <h3 class="leader-name">Sanjiv Singhal</h3>
-                  <p class="leader-role">Co-founder &amp; 20+ Years in Finance &amp; Technology</p>
-                </div>
+              <div class="leader-portrait-frame">
+                <picture>
+                  <source srcset="assets/sanjiv-singhal.webp" type="image/webp">
+                  <img src="assets/sanjiv-singhal.jpg" alt="Sanjiv Singhal, Co-founder of Scripbox" class="leader-portrait-img" width="494" height="494" loading="lazy" decoding="async">
+                </picture>
               </div>
-              <p class="leader-bio">
-                Product visionary pioneering digital wealth management in India, guiding proprietary research frameworks and institutional risk models.
-              </p>
+              <div class="leader-content">
+                <h3 class="leader-name">Sanjiv Singhal</h3>
+                <p class="leader-role">Co-founder · 20+ Years in Finance &amp; Technology</p>
+                <p class="leader-bio">
+                  Product and technology pioneer guiding institutional research frameworks, quantitative models, and risk systems.
+                </p>
+              </div>
             </article>
 
             <!-- Slide 3: Mandar Bagul -->
             <article class="leadership-card" role="group" aria-roledescription="slide" aria-label="3 of 4: Mandar Bagul">
-              <div class="leader-visual-row">
-                <div class="leader-photo-wrap">
-                  <img src="assets/mandar-bagul.jpg" alt="Mandar Bagul, Director & Senior Vice President- Advisory" class="leader-photo-img" width="90" height="110" loading="lazy">
-                </div>
-                <div class="leader-info">
-                  <div class="leader-accent-dash" aria-hidden="true"></div>
-                  <h3 class="leader-name">Mandar Bagul</h3>
-                  <p class="leader-role">Director &amp; Senior Vice President- Advisory</p>
-                </div>
+              <div class="leader-portrait-frame">
+                <picture>
+                  <source srcset="assets/mandar-bagul.webp" type="image/webp">
+                  <img src="assets/mandar-bagul.jpg" alt="Mandar Bagul, Director & Senior Vice President - Advisory" class="leader-portrait-img" width="370" height="417" loading="lazy" decoding="async">
+                </picture>
               </div>
-              <p class="leader-bio">
-                24+ years of investment management experience. Specialises in multi-factor active portfolio construction across fundamental, macro, and quantitative models.
-              </p>
+              <div class="leader-content">
+                <h3 class="leader-name">Mandar Bagul</h3>
+                <p class="leader-role">Director &amp; Senior Vice President - Advisory</p>
+                <p class="leader-bio">
+                  24+ years in multi-factor active portfolio construction across fundamental, macro, and quantitative equity disciplines.
+                </p>
+              </div>
             </article>
 
             <!-- Slide 4: Mayur Parkeria -->
             <article class="leadership-card" role="group" aria-roledescription="slide" aria-label="4 of 4: Mayur Parkeria">
-              <div class="leader-visual-row">
-                <div class="leader-photo-wrap">
-                  <img src="assets/mayur-parkeria.jpg" alt="Mayur Parkeria, Equity Fund Manager" class="leader-photo-img" width="90" height="110" loading="lazy">
-                </div>
-                <div class="leader-info">
-                  <div class="leader-accent-dash" aria-hidden="true"></div>
-                  <h3 class="leader-name">Mayur Parkeria</h3>
-                  <p class="leader-role">Equity Fund Manager</p>
-                </div>
+              <div class="leader-portrait-frame">
+                <picture>
+                  <source srcset="assets/mayur-parkeria.webp" type="image/webp">
+                  <img src="assets/mayur-parkeria.jpg" alt="Mayur Parkeria, Equity Fund Manager" class="leader-portrait-img" width="370" height="417" loading="lazy" decoding="async">
+                </picture>
               </div>
-              <p class="leader-bio">
-                20+ years in equity research with over a decade as fund manager, focusing on disciplined capital allocation and durable economic moats.
-              </p>
+              <div class="leader-content">
+                <h3 class="leader-name">Mayur Parkeria</h3>
+                <p class="leader-role">Equity Fund Manager</p>
+                <p class="leader-bio">
+                  20+ years of equity research experience, managing high-conviction portfolios focused on durable economic moats.
+                </p>
+              </div>
             </article>
 
           </div>
@@ -923,45 +1148,181 @@
         </div>
       </section>
 
-      <!-- 6. Fee Transparency & Terms -->
-      <section class="btf-section" aria-labelledby="headingTerms">
-        <div class="btf-badge">Transparent Terms</div>
-        <h2 id="headingTerms" class="btf-title">Clear fee alignment. Zero lock-in hurdles.</h2>
+      <!-- Subtle Hairline Section Divider (Leadership to Fees & FAQs) -->
+      <div class="section-divider" aria-hidden="true"></div>
 
-        <div class="terms-grid">
-          <div class="term-card">
-            <h3 class="term-heading">Flexible Fee Models</h3>
-            <p class="term-copy">Transparent fee structures including fixed advisory or performance-linked models aligned with your portfolio objectives.</p>
+      <!-- 6. Fee Transparency & High-Intent FAQs -->
+      <section class="btf-section terms-section" id="sec-fees" aria-labelledby="headingTerms">
+        <div class="btf-badge">Fees &amp; FAQs</div>
+        <h2 id="headingTerms" class="btf-title">Clear terms. Direct answers.</h2>
+        <p class="btf-body">
+          Transparent fee structures aligned with capital growth, with complete liquidity on standard mandates*.
+        </p>
+
+        <!-- Cohesive Fee Benefits Group with Integrated Disclaimer -->
+        <div class="fee-benefits-group terms-grid">
+          <div class="fee-benefit-row term-card">
+            <div class="fee-benefit-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F58024" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v17"/>
+                <path d="M5 20h14"/>
+                <path d="M3 7h18"/>
+                <path d="M6 7l-3 6a3 3 0 0 0 6 0L6 7z"/>
+                <path d="M18 7l-3 6a3 3 0 0 0 6 0L18 7z"/>
+                <circle cx="12" cy="3" r="1.5" fill="#F58024"/>
+              </svg>
+            </div>
+            <div class="fee-benefit-text">
+              <h3 class="fee-benefit-title term-heading">Flexible Fee Models</h3>
+              <p class="fee-benefit-desc term-copy">Fixed annual advisory or performance-linked models with agreed hurdle rates*.</p>
+            </div>
           </div>
-          <div class="term-card">
-            <h3 class="term-heading">No Exit Loads</h3>
-            <p class="term-copy">Liquidity when you require it, with no punitive exit penalties on standard discretionary mandates.</p>
+
+          <div class="fee-benefit-row term-card">
+            <div class="fee-benefit-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F58024" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2.5"/>
+                <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+                <circle cx="12" cy="16.5" r="1.5" fill="#F58024"/>
+              </svg>
+            </div>
+            <div class="fee-benefit-text">
+              <h3 class="fee-benefit-title term-heading">No Exit Load on Standard Mandates*</h3>
+              <p class="fee-benefit-desc term-copy">Full liquidity with no exit penalties on standard discretionary portfolios*.</p>
+            </div>
           </div>
-          <div class="term-card">
-            <h3 class="term-heading">Complete Custodial Segregation</h3>
-            <p class="term-copy">All securities remain in your independent Demat account, accessible 24/7 via the Scripbox investor dashboard.</p>
+
+          <div class="fee-benefit-row term-card">
+            <div class="fee-benefit-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F58024" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="fee-benefit-text">
+              <h3 class="fee-benefit-title term-heading">Segregated Custody</h3>
+              <p class="fee-benefit-desc term-copy">Direct Demat ownership under your PAN with continuous digital reporting.</p>
+            </div>
+          </div>
+
+          <!-- Integrated Quiet Asterisk Disclaimer -->
+          <div class="fee-group-disclaimer terms-disclaimer">
+            *Specific commercial terms, management fees, and performance hurdle rates are established per individual investment mandate agreement. No exit load applies to standard discretionary mandates.
+          </div>
+        </div>
+
+        <!-- FAQs Subheading / Distinct Transition Anchor Target -->
+        <div class="faq-subblock-header" id="headingFaqs">
+          <div class="faq-pre-eyebrow">DIRECT ANSWERS</div>
+          <h3 class="faq-section-subtitle">Frequently Asked Questions</h3>
+        </div>
+
+        <div class="faq-accordion" role="region" aria-label="PMS Frequently Asked Questions">
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-1">
+              <span class="faq-question">What is the regulatory minimum investment for Scripbox PMS?</span>
+              <span class="faq-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-content" id="faq-ans-1" hidden>
+              <p class="faq-answer">
+                SEBI mandates a ₹50 Lakh minimum investment for all PMS accounts in India. You can fund this via bank transfer or eligible listed shares.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-2">
+              <span class="faq-question">How does Demat custody and asset segregation work?</span>
+              <span class="faq-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-content" id="faq-ans-2" hidden>
+              <p class="faq-answer">
+                All securities are held directly in your segregated Demat account under your PAN. Scripbox never pools investor funds or commingles depository assets.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-3">
+              <span class="faq-question">Can existing shares be transferred into the PMS?</span>
+              <span class="faq-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-content" id="faq-ans-3" hidden>
+              <p class="faq-answer">
+                Yes. You can transfer eligible listed equities without triggering tax. Our investment committee systematically reallocates them into your chosen mandate.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-4">
+              <span class="faq-question">What fee options are available, and is there an exit load?</span>
+              <span class="faq-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-content" id="faq-ans-4" hidden>
+              <p class="faq-answer">
+                We offer fixed advisory fees and performance-linked models. Standard discretionary mandates carry no exit load*, ensuring liquidity when required.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-5">
+              <span class="faq-question">How are portfolio performance and capital gains taxed?</span>
+              <span class="faq-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="faq-icon">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-content" id="faq-ans-5" hidden>
+              <p class="faq-answer">
+                Because shares are held directly, standard Indian listed equity capital gains taxes apply. We provide comprehensive, audited year-end tax statements for seamless filing.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Subtle Hairline Section Divider (Fees to Secondary CTA) -->
+      <div class="section-divider" aria-hidden="true"></div>
+
       <!-- 7. Dignified Secondary Conversion Card -->
-      <section class="btf-cta-card" aria-labelledby="headingSecondaryCta">
-        <h2 id="headingSecondaryCta" class="secondary-cta-title">Ready to evaluate your wealth strategy?</h2>
+      <section class="btf-cta-card" id="ctaConsultationSection" aria-labelledby="headingSecondaryCta">
+        <div class="cta-eyebrow">
+          <span class="cta-eyebrow-accent" aria-hidden="true"></span>
+          <span>A Conversation About Your Wealth</span>
+        </div>
+        <h2 id="headingSecondaryCta" class="secondary-cta-title">Let's talk about your investment goals.</h2>
         <p class="secondary-cta-body">
-          Schedule a confidential conversation with a senior Scripbox PMS expert. Receive a clear, objective assessment of your portfolio.
+          Share a few details to help us understand what you're looking for. Our team can then guide you through the relevant PMS strategies and next steps.
         </p>
         <button type="button" class="secondary-cta-btn" id="btnSecondaryCta">
-          <span>Connect with our PMS expert</span>
+          <span>Request a consultation</span>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </button>
         <div class="secondary-reassurance">
-          <span>Confidential</span>
-          <span class="dot-sep">•</span>
-          <span>No Obligation</span>
-          <span class="dot-sep">•</span>
-          <span>SEBI Registered</span>
+          <span>Your details will be used to respond to your enquiry</span>
+          <span class="dot-sep" aria-hidden="true">•</span>
+          <span>SEBI Reg. INP000001660</span>
         </div>
       </section>
 
@@ -970,14 +1331,17 @@
     <!-- 8. Statutory Regulatory Footer -->
     <footer class="btf-footer" role="contentinfo">
       <div class="footer-brand">
-        <img src="scripbox-logo.svg" alt="Scripbox" class="footer-logo" width="107" height="29">
+        <img src="scripbox-logo.svg" alt="Scripbox" class="footer-logo" width="107" height="29" loading="lazy" decoding="async">
         <p class="footer-entity">Scripbox Advisory Services Pvt. Ltd.</p>
         <p class="footer-license">SEBI Registered Portfolio Manager: <strong>INP000001660</strong></p>
       </div>
 
       <div class="footer-disclaimers">
         <p class="footer-disclaimer-text">
-          <strong>Regulatory Disclosure:</strong> Portfolio Management Services (PMS) are subject to a minimum investment threshold of ₹50,00,000 (Rupees Fifty Lakhs only) as mandated by SEBI guidelines.
+          <strong>Regulatory Mandate &amp; Entity:</strong> Portfolio Management Services (PMS) are managed in India through Wealth Managers (India) Private Limited (SEBI Portfolio Manager Reg: <strong>INP000001660</strong>, subsidiary of Scripbox Advisory Services Pvt. Ltd., founded in 2003 by Chartered Accountants Bharat Phatak and Ajit Khasnis). PMS accounts are subject to a statutory minimum investment threshold of ₹50,00,000 (Rupees Fifty Lakhs only) as mandated by SEBI guidelines.
+        </p>
+        <p class="footer-disclaimer-text">
+          <strong>Performance &amp; Scale Qualifications (*):</strong> All comparative performance figures are derived from mandatory filings submitted to APMI India as of November 2025 (latest available disclosure period). Compounding curves and growth illustrations reflect hypothetical mathematical simulations based on historical CAGR and do not represent the actual returns of any specific client account. Aggregate PMS AUM figures cited reflect active discretionary mandates under management; broader group scale encompasses digital mutual fund advisory and distribution assets across all Scripbox entities.
         </p>
         <p class="footer-disclaimer-text">
           <strong>Statutory Risk Warning:</strong> Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future results. Any portfolio projections or strategy targets are illustrative and subject to market volatility.
@@ -988,6 +1352,44 @@
         <p class="copyright">© 2026 Scripbox. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Dedicated Strategy Detail View Overlay (Modal / Slide-Over Sheet) -->
+    <div class="strategy-detail-overlay" id="strategyDetailOverlay" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;">
+      <div class="strategy-detail-sheet" id="strategyDetailSheet" tabindex="-1">
+        
+        <!-- Sticky Top Bar with Back and Close Controls -->
+        <header class="strat-detail-topbar">
+          <button type="button" class="strat-detail-back-btn" id="btnStratDetailBack" aria-label="Return to strategies overview">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span>Back to strategies</span>
+          </button>
+          <button type="button" class="strat-detail-close-btn" id="btnStratDetailClose" aria-label="Close strategy details">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </header>
+
+        <!-- Dynamic Scrollable Strategy Content Area -->
+        <div class="strat-detail-body" id="stratDetailBody" tabindex="0">
+          <!-- Populated dynamically via JS based on selected strategy -->
+        </div>
+
+        <!-- Action Footer -->
+        <footer class="strat-detail-footer">
+          <button type="button" class="strat-detail-enquiry-btn" id="btnStratDetailEnquire">
+            <span id="stratEnquireBtnText">Connect with our PMS expert</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <div class="strat-detail-footer-note">Confidential consultation · Tailored portfolio review</div>
+        </footer>
+
+      </div>
+    </div>
 
     <!-- Sticky CTA bar -->
     <aside class="sticky-cta-bar" id="stickyCtaBar" aria-hidden="true" inert>
@@ -1202,9 +1604,13 @@
         <div class="step-body">
           <!-- 1. Consultation Headline & 2. Concise Post-Submission Explanation -->
           <div class="contact-header">
-            <h2 class="step-heading contact-heading" id="contactHeading" tabindex="-1">Request your confidential PMS strategy consultation</h2>
+            <div class="contact-eyebrow">
+              <span class="contact-eyebrow-accent" aria-hidden="true"></span>
+              <span>A Conversation About Your Wealth</span>
+            </div>
+            <h2 class="step-heading contact-heading" id="contactHeading" tabindex="-1">Let's talk about your investment goals.</h2>
             <p class="contact-lead-sub" id="contactSub">
-              A senior SEBI-registered portfolio specialist will evaluate your mandate profile and connect for a confidential 1-on-1 consultation.
+              Share a few details to help us understand what you're looking for. Our team can then guide you through the relevant PMS strategies and next steps.
             </p>
           </div>
 
@@ -1222,6 +1628,17 @@
           </div>
 
           <form id="contactForm" class="contact-form" novalidate>
+            <!-- Submission Failure Banner (Failure / Retry State) -->
+            <div class="form-submit-error" id="formSubmitError" role="alert" aria-live="polite" style="display: none;">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" class="submit-error-icon" aria-hidden="true">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              <div class="submit-error-body">
+                <span class="submit-error-title">Submission could not be completed</span>
+                <span class="submit-error-text">We were unable to submit your enquiry due to a connection issue. Your details have been preserved. Please try again.</span>
+              </div>
+            </div>
+
             <div class="form-group">
               <label for="contactName" class="field-label">Full Name <span class="required-star" aria-hidden="true">*</span></label>
               <div class="input-wrapper" id="nameWrapper">
@@ -1229,7 +1646,7 @@
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                   <circle cx="12" cy="7" r="4"/>
                 </svg>
-                <input type="text" id="contactName" name="name" class="form-input" placeholder="e.g. Aditya Sharma" autocomplete="name" required aria-describedby="nameError">
+                <input type="text" id="contactName" name="name" class="form-input" placeholder="e.g. Aditya Sharma" autocomplete="name" required aria-describedby="nameError" aria-required="true" aria-invalid="false">
               </div>
               <div class="field-error" id="nameError" role="alert" aria-live="polite"></div>
             </div>
@@ -1238,9 +1655,9 @@
               <label for="contactMobile" class="field-label">Mobile Number <span class="required-star" aria-hidden="true">*</span></label>
               <div class="input-wrapper" id="mobileWrapper">
                 <span class="country-prefix" aria-hidden="true">+91</span>
-                <input type="tel" id="contactMobile" name="mobile" class="form-input" placeholder="10-digit mobile number" inputmode="numeric" autocomplete="tel-national" maxlength="10" required aria-describedby="mobileError">
+                <input type="tel" id="contactMobile" name="mobile" class="form-input" placeholder="10-digit mobile number" inputmode="numeric" autocomplete="tel-national" maxlength="10" required aria-describedby="mobileError" aria-required="true" aria-invalid="false">
               </div>
-              <div class="field-helper-hint">Direct callback from your designated portfolio specialist. No promotional calls.</div>
+              <div class="field-helper-hint">Direct callback from your designated portfolio specialist.</div>
               <div class="field-error" id="mobileError" role="alert" aria-live="polite"></div>
             </div>
 
@@ -1251,24 +1668,35 @@
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
-                <input type="text" id="contactCity" name="city" class="form-input" placeholder="e.g. Mumbai, Bengaluru, Delhi" autocomplete="address-level2" aria-describedby="cityError">
+                <input type="text" id="contactCity" name="city" class="form-input" placeholder="e.g. Mumbai, Bengaluru, Delhi" autocomplete="address-level2" aria-describedby="cityError" aria-invalid="false">
               </div>
               <div class="field-error" id="cityError" role="alert" aria-live="polite"></div>
             </div>
 
-            <button type="submit" class="submit-btn" id="btnContactSubmit" disabled>
+            <button type="submit" class="submit-btn" id="btnContactSubmit" disabled aria-busy="false">
               <span class="btn-spinner" aria-hidden="true"></span>
-              <span class="btn-text">Request Expert Consultation</span>
+              <span class="btn-text">Request a consultation</span>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" class="submit-btn-arrow" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
-            <div class="confidential-footnote">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0110 0v4"/>
-              </svg>
-              <span>Confidential &bull; SEBI Reg. INP000001660 &bull; Strict Client Privacy</span>
+
+            <!-- Trust, Reassurance & Privacy Policy Link -->
+            <div class="form-reassurance">
+              <p class="reassurance-text">Your details will be used to respond to your enquiry.</p>
+              <div class="reassurance-badges">
+                <span class="reassurance-item">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                  <span>Confidential</span>
+                </span>
+                <span class="dot-sep" aria-hidden="true">•</span>
+                <span class="reassurance-item">SEBI Reg. INP000001660</span>
+                <span class="dot-sep" aria-hidden="true">•</span>
+                <a href="#privacy" class="form-privacy-link" id="linkFormPrivacy" aria-label="Read our client privacy notice">Privacy Policy</a>
+              </div>
             </div>
           </form>
         </div>
@@ -1283,8 +1711,8 @@
               <path d="M8 12l2.5 2.5L16 9" fill="none" stroke="#110F0E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h2 class="thanks-heading" id="thanksHeading" tabindex="-1">Consultation Request Confirmed</h2>
-          <p class="thanks-subhead" id="thanksSubhead">Your mandate profile has been successfully queued for specialist review.</p>
+          <h2 class="thanks-heading" id="thanksHeading" tabindex="-1">Thank you. Your enquiry has been received.</h2>
+          <p class="thanks-subhead" id="thanksSubhead">Our senior portfolio advisory team will review your mandate profile and connect with you shortly.</p>
 
           <!-- Dynamic Profile Summary Badge -->
           <div class="summary-receipt-pill" id="thanksSummaryPill">
@@ -1354,10 +1782,32 @@
         </div>
       </div>
     </section>
+
+    <!-- Discreet Client Privacy Modal -->
+    <div class="privacy-modal-overlay" id="privacyModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;">
+      <div class="privacy-modal-card">
+        <div class="privacy-modal-header">
+          <h3 class="privacy-modal-title">Client Privacy &amp; Data Protection</h3>
+          <button type="button" class="privacy-modal-close" id="btnPrivacyModalClose" aria-label="Close privacy notice">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="privacy-modal-body">
+          <p><strong>Use of your details:</strong> Contact information provided in this form is used exclusively by our senior advisory specialists to respond to your PMS enquiry and coordinate your consultation.</p>
+          <p><strong>No promotional spam:</strong> We respect your privacy. We never sell, distribute, or share client information with external third-party telemarketers.</p>
+          <p><strong>Regulatory stewardship:</strong> Client communication and data custody adhere strictly to SEBI (Portfolio Managers) Regulations. Portfolio Manager Registration: <strong>INP000001660</strong>.</p>
+        </div>
+        <div class="privacy-modal-footer">
+          <button type="button" class="privacy-modal-btn" id="btnPrivacyModalOk">Understood</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script src="gsap.min.js?v=2.0"></script>
-  <script src="performance-data.js?v=2.0"></script>
-  <script src="app.js?v=2.0"></script>
+  <script src="gsap.min.js?v=4.2" defer></script>
+  <script src="performance-data.js?v=4.2" defer></script>
+  <script src="app.js?v=4.2" defer></script>
 </body>
 </html>
