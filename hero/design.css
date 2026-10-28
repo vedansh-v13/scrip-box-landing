@@ -347,6 +347,125 @@ body { counter-reset: sect; }
 }
 
 /* --------------------------------------------------------------------------
+   Credibility & Scale Section — Positioned Directly Below Hero
+   Calm, confident, premium editorial proof: frameworks, scale, tenure & mandates
+   -------------------------------------------------------------------------- */
+.credibility-section {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 44px 20px 48px 20px;
+  background-color: #101211;
+  background-image: 
+    radial-gradient(ellipse 130% 90% at 50% 25%, rgba(28, 54, 38, 0.24) 0%, rgba(18, 36, 26, 0.10) 55%, transparent 90%),
+    linear-gradient(180deg, #111110 0%, #101311 35%, #0F1210 70%, #111110 100%);
+  overflow: hidden;
+}
+
+.credibility-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Introductory statement: Left-aligned, clean medium-weight typography with generous breathing room */
+.credibility-statement {
+  font-family: var(--font-heading);
+  font-size: clamp(16.5px, 4.6vw, 19px);
+  line-height: 1.45;
+  font-weight: 450;
+  letter-spacing: -0.012em;
+  color: #EDE6DF;
+  text-align: left;
+  margin: 0 0 38px 0;
+  max-width: 370px;
+  text-wrap: pretty;
+}
+
+/* Vertical metrics arrangement */
+.credibility-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.credibility-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 310px;
+}
+
+/* Prominent figure in white text, using editorial display typography */
+.credibility-figure {
+  font-family: var(--font-display, "Newsreader", serif);
+  font-size: clamp(38px, 10.6vw, 46px);
+  font-weight: 450;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+  font-variant-numeric: lining-nums;
+  white-space: nowrap;
+}
+
+/* Supporting label in muted grey, natural wrapping */
+.credibility-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--text-secondary, #A39B92);
+  margin: 0;
+  letter-spacing: 0.005em;
+  max-width: 260px;
+}
+
+/* Sub-label for (Scripbox) */
+.credibility-sublabel {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--text-muted, #837D75);
+  margin-top: 3px;
+  letter-spacing: 0.005em;
+}
+
+/* Larger screens adaptation: natural grid distribution without excessive stretching */
+@media (min-width: 768px) {
+  .credibility-section {
+    max-width: 100%;
+    padding: 60px 32px 68px 32px;
+  }
+  .credibility-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .credibility-statement {
+    max-width: 540px;
+    font-size: 21px;
+    margin-bottom: 50px;
+  }
+  .credibility-metrics {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .credibility-metric {
+    max-width: 260px;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Sticky nav — slimmer, ledger tabs
    -------------------------------------------------------------------------- */
 .section-nav { background: rgba(17,17,16,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
@@ -1470,6 +1589,112 @@ body { counter-reset: sect; }
   font-weight: 500;
 }
 
+/* Strategic Thesis Banner */
+.strat-thesis-banner {
+  margin-top: 4px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(245, 128, 36, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(245, 128, 36, 0.18);
+  border-left: 2.5px solid var(--accent-orange);
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.strat-thesis-eyebrow {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-orange);
+}
+
+.strat-thesis-headline {
+  font-family: var(--font-serif);
+  font-size: 14.5px;
+  line-height: 1.45;
+  font-weight: 500;
+  color: #F5EFEB;
+  margin: 0;
+}
+
+/* Movement 2: Investment Philosophy & Trade-offs */
+.strat-philosophy-premise {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #C2BAB0;
+  margin: 0;
+}
+
+.strat-tradeoff-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+@media (min-width: 580px) {
+  .strat-tradeoff-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.strat-tradeoff-card {
+  padding: 12px 14px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.strat-tradeoff-card.is-prioritise {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.strat-tradeoff-card.is-avoid {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.strat-tradeoff-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.strat-tradeoff-card.is-prioritise .strat-tradeoff-icon {
+  color: var(--accent-orange);
+}
+
+.strat-tradeoff-card.is-avoid .strat-tradeoff-icon {
+  color: #8C847A;
+}
+
+.strat-tradeoff-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.strat-tradeoff-card.is-prioritise .strat-tradeoff-label {
+  color: #EDE7DF;
+}
+
+.strat-tradeoff-card.is-avoid .strat-tradeoff-label {
+  color: #9C948B;
+}
+
+.strat-tradeoff-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #B3ABA0;
+  margin: 0;
+}
+
 /* Section Containers & Headers */
 .strat-detail-section {
   display: flex;
@@ -1988,6 +2213,181 @@ body { counter-reset: sect; }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Progressive Disclosure Accordions Suite */
+.strat-accordion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.strat-accordion-item {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.strat-accordion-item:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.strat-accordion-trigger.strat-disclosure-btn {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.strat-accordion-trigger-title {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #F5EFEB;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+
+.strat-accordion-trigger-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.strat-accordion-trigger .strat-disclosure-btn-text {
+  font-size: 11px;
+  color: #9E968D;
+  transition: color 0.15s ease;
+}
+
+.strat-accordion-trigger:hover .strat-disclosure-btn-text {
+  color: #DDD6CE;
+}
+
+.strat-accordion-trigger[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.strat-accordion-panel {
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.strat-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.strat-panel-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-orange);
+  margin: 0;
+}
+
+/* Steps list for methodology */
+.strat-steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.strat-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.strat-step-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.strat-step-num {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-orange);
+  background: rgba(245, 128, 36, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.strat-step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.strat-step-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #EDE7DF;
+}
+
+.strat-step-desc {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #A39B92;
+  margin: 0;
+}
+
+/* Points list for construction, fees, risks */
+.strat-points-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strat-point-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.strat-point-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.strat-point-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8C847A;
+}
+
+.strat-point-val {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #DDD6CE;
+}
+
 /* Secondary Periods Table */
 .strat-perf-table-wrap {
   background: rgba(255, 255, 255, 0.02);
@@ -2366,24 +2766,1158 @@ body { counter-reset: sect; }
   text-align: center;
 }
 
+/* ==========================================================================
+   Structural Art Direction: Optimiser Portfolio Strategy Detail Experience
+   Continuous publication narrative, open typography, single connected timeline,
+   editorial manager spotlight, and exactly 1 restrained performance card module.
+   ========================================================================== */
+
+/* Sheet Container Adjustments for Optimiser, Focused Leadership & Select Direct Growth */
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-detail-body,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-detail-body,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-detail-body {
+  padding: 24px 20px 130px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Restrained Editorial Dividers */
+.strat-opt-divider {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 24px 0 20px 0;
+  width: 100%;
+}
+
+/* Movement 1: The Editorial Opening (One Clear Proposition, Prominent Serif & Strategic Visual) */
+.strat-opt-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.strat-opt-hero-eyebrow-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.strat-opt-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.strat-opt-tags .strat-pill {
+  font-size: 9.5px;
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+}
+
+.strat-opt-thesis-quiet-tag {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C847A;
+}
+
+.strat-opt-hero-showcase {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.strat-opt-hero-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strat-opt-title {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 5.5vw, 32px);
+  font-weight: 600;
+  color: #FAF6F0;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.strat-opt-thesis-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 4vw, 21px);
+  font-weight: 400;
+  font-style: italic;
+  color: #FAF6F0;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.strat-opt-thesis-lede {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #EDE7DF;
+  margin: 0;
+}
+
+.strat-opt-accent-text {
+  color: var(--accent-orange);
+  font-weight: 500;
+}
+
+.strat-opt-supporting-sentence {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #A39B92;
+  margin: 0;
+}
+
+.strat-opt-idea-inline {
+  display: inline;
+  color: #C2BAB0;
+}
+
+.strat-opt-hero-art {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(245, 128, 36, 0.1) 0%, rgba(255, 255, 255, 0.02) 70%, transparent 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.strat-opt-hero-art svg {
+  width: 46px;
+  height: 46px;
+}
+
+@media (min-width: 580px) {
+  .strat-opt-hero-art {
+    width: 76px;
+    height: 76px;
+  }
+  .strat-opt-hero-art svg {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* Open Typographic Facts Strip (NO card boxes, clean baseline data) */
+.strat-opt-facts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 14px 0 0 0;
+  margin-top: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  box-shadow: none;
+  gap: 0;
+}
+
+.strat-opt-fact-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 0 10px;
+  text-align: left;
+  background: none;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.strat-opt-fact-col:first-child {
+  padding-left: 0;
+}
+
+.strat-opt-fact-col:last-child {
+  border-right: none;
+}
+
+.strat-opt-fact-col .strat-priority-val {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: #FAF6F0;
+  line-height: 1.2;
+}
+
+.strat-opt-fact-col .strat-priority-label {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #8C847A;
+  line-height: 1.3;
+}
+
+/* Movement 2: Editorial Philosophy & Intentional Trade-offs */
+.strat-opt-section {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strat-opt-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.strat-opt-section-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: #FAF6F0;
+  margin: 0;
+}
+
+.strat-opt-narrative-p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #B3ABA0;
+  margin: 0;
+}
+
+/* Open Typographic Trade-offs (NO bordered boxes) */
+.strat-opt-tradeoffs-open {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+@media (min-width: 580px) {
+  .strat-opt-tradeoffs-open {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+}
+
+.strat-opt-tradeoff-open {
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.strat-opt-tradeoff-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.strat-opt-tradeoff-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.strat-opt-tradeoff-indicator.is-prioritise {
+  background: #FAF6F0;
+}
+
+.strat-opt-tradeoff-indicator.is-avoid {
+  background: #6E6760;
+}
+
+.strat-opt-tradeoff-open .strat-tradeoff-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.strat-opt-tradeoff-open.is-prioritise .strat-tradeoff-label {
+  color: #FAF6F0;
+}
+
+.strat-opt-tradeoff-open.is-avoid .strat-tradeoff-label {
+  color: #8C847A;
+}
+
+.strat-opt-tradeoff-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #A39B92;
+  margin: 0;
+  padding-left: 12px;
+}
+
+/* Movement 3: Three-Row Vertical Process Sequence */
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-visual-optimiser,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-visual-focused,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-visual-direct-growth {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Core & Satellite Allocation Visualizer Bar */
+.strat-dg-alloc-bar {
+  display: flex;
+  width: 100%;
+  height: 32px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 12px 0 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.strat-dg-alloc-bar .strat-alloc-seg.strat-alloc-core {
+  width: 65%;
+  background: rgba(239, 230, 218, 0.09);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #FAF6F0;
+  letter-spacing: 0.01em;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.strat-dg-alloc-bar .strat-alloc-seg.strat-alloc-sat {
+  width: 35%;
+  background: rgba(245, 128, 36, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #FFA048;
+  letter-spacing: 0.01em;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+.strat-opt-process-seq {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.strat-opt-seq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.strat-opt-seq-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  column-gap: 14px;
+  position: relative;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.strat-opt-seq-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.strat-opt-seq-num {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-orange);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  padding-top: 1px;
+  flex-shrink: 0;
+}
+
+.strat-opt-seq-line {
+  width: 1px;
+  flex: 1;
+  min-height: 24px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 6px 0;
+}
+
+.strat-opt-seq-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+.strat-opt-seq-step:last-child .strat-opt-seq-content {
+  padding-bottom: 4px;
+}
+
+.strat-opt-seq-heading {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: #FAF6F0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.strat-opt-seq-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #A39B92;
+  margin: 0;
+}
+
+/* Open Editorial Fund Manager Profile (Intentional trust moment) */
+.strat-opt-manager-profile {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.strat-opt-manager-photo-wrap {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.strat-opt-manager-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  display: block;
+}
+
+.strat-opt-manager-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.strat-opt-manager-fullname {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: #FAF6F0;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.strat-opt-manager-role {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8C847A;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.strat-opt-manager-bio {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #A39B92;
+  margin: 0;
+}
+
+@media (max-width: 360px) {
+  .strat-opt-manager-profile {
+    grid-template-columns: 60px 1fr;
+    gap: 12px;
+  }
+  .strat-opt-manager-photo,
+  .strat-opt-manager-photo-wrap {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Movement 4: The Performance Proof (Open Editorial Comparison) */
+.strat-opt-perf-showcase {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.strat-opt-perf-comparison {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 28px;
+  padding: 6px 0 2px 0;
+}
+
+.strat-opt-perf-divider {
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  align-self: center;
+}
+
+.strat-opt-perf-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.strat-opt-perf-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8C847A;
+}
+
+.strat-opt-perf-figure {
+  font-family: var(--font-body);
+  line-height: 1.05;
+}
+
+.strat-opt-perf-figure.strat-opt-perf-accent {
+  font-size: clamp(34px, 7vw, 40px);
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.strat-opt-perf-figure.strat-opt-perf-neutral {
+  font-size: clamp(26px, 5.2vw, 30px);
+  font-weight: 600;
+  color: #FAF6F0;
+}
+
+.strat-opt-perf-sublabel {
+  font-size: 11px;
+  color: #8C847A;
+}
+
+.strat-opt-perf-meta-row {
+  margin-top: 2px;
+}
+
+.strat-opt-perf-context {
+  font-size: 12px;
+  color: #8C847A;
+  margin: 0;
+}
+
+.strat-opt-perf-footnote {
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: #78716A;
+  margin: 6px 0 0 0;
+}
+
+/* Movement 5: Consultation Lead-in */
+.strat-opt-consultation-lead {
+  margin-top: 2px;
+}
+
+.strat-opt-consultation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+  text-align: left;
+}
+
+.strat-opt-consultation-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 500;
+  color: #FAF6F0;
+  margin: 0;
+}
+
+.strat-opt-consultation-desc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #B3ABA0;
+  margin: 0;
+}
+
+/* Hidden Compatibility Bridge for Legacy Editorial Query */
+.strat-opt-test-reference-hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.strat-opt-test-reference-hidden .strat-tradeoff-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 580px) {
+  .strat-opt-test-reference-hidden .strat-tradeoff-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Secondary Reference Index Header & Accordions */
+.strat-opt-index-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.strat-opt-index-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #FAF6F0;
+  margin: 0;
+}
+
+.strat-opt-index-sub {
+  font-size: 10px;
+  color: #78716A;
+}
+
+.strat-opt-index-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.strat-opt-accordion-item {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  transition: border-color 0.15s ease;
+}
+
+.strat-opt-accordion-item:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  background: none;
+}
+
+.strat-opt-accordion-trigger {
+  padding: 10px 0;
+  min-height: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.strat-opt-accordion-trigger .strat-accordion-trigger-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #D6CEC5;
+  transition: color 0.15s ease;
+}
+
+.strat-opt-accordion-trigger:hover .strat-accordion-trigger-title {
+  color: #FAF6F0;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-disclosure-btn-text,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-disclosure-btn-text,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-disclosure-btn-text {
+  display: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-disclosure-chevron,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-disclosure-chevron,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-disclosure-chevron {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
+  color: #8C847A;
+  flex-shrink: 0;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-accordion-trigger[aria-expanded="true"] .strat-disclosure-chevron,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-accordion-trigger[aria-expanded="true"] .strat-disclosure-chevron,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-accordion-trigger[aria-expanded="true"] .strat-disclosure-chevron {
+  transform: rotate(180deg);
+  color: #FAF6F0;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-accordion-panel,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-accordion-panel,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-accordion-panel {
+  padding: 8px 0 16px 0 !important;
+  background: none !important;
+  border: none !important;
+}
+
+.strat-opt-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strat-opt-subledger-heading {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C847A;
+  margin-bottom: 4px;
+}
+
+.strat-opt-perf-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.strat-opt-perf-asof {
+  font-size: 10px;
+  color: #78716A;
+}
+
+/* Accordion 1: Three Clearly Separated Stages */
+.strat-opt-method-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-method-stage,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-method-stage,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-method-stage {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding: 10px 0 12px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  text-align: left !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-method-stage:last-child,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-method-stage:last-child,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-method-stage:last-child {
+  border-bottom: none !important;
+}
+
+.strat-opt-stage-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #FAF6F0;
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.strat-opt-stage-title .strat-step-title {
+  color: #FAF6F0;
+  font-weight: 600;
+}
+
+.strat-opt-stage-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #A39B92;
+  margin: 0;
+}
+
+/* Stacked Left-Aligned Label-Value Pairs for Accordions 1, 3, and 4 */
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-stacked-group,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-stacked-group,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-stacked-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 4px 0 0 0 !important;
+  list-style: none !important;
+  grid-template-columns: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-stacked-item,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-stacked-item,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-stacked-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  padding: 8px 0 10px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  gap: 3px !important;
+  width: 100% !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-stacked-item:last-child,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-stacked-item:last-child,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-stacked-item:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-stacked-label,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-stacked-label,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-stacked-label {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #8C847A !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-stacked-val,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-stacked-val,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-stacked-val {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #FAF6F0 !important;
+  text-align: left !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Accordion 2: Performance Table & Compounding Callout (NO cards!) */
+.strat-opt-perf-table-container {
+  background: none;
+  border: none;
+  overflow-x: auto;
+  margin-bottom: 8px;
+}
+
+.strat-opt-perf-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+}
+
+.strat-opt-perf-table th {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #8C847A;
+  padding: 8px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.strat-opt-perf-table td {
+  font-size: 12px;
+  padding: 9px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.strat-opt-perf-table .strat-th-period,
+.strat-opt-perf-table .strat-td-period {
+  width: 34%;
+  text-align: left;
+  color: #DDD6CE;
+}
+
+.strat-opt-perf-table .strat-th-strat,
+.strat-opt-perf-table .strat-td-strat {
+  width: 22%;
+  text-align: right;
+  font-weight: 600;
+  color: #FAF6F0;
+}
+
+.strat-opt-perf-table .strat-td-strat.is-negative {
+  color: #A39B92 !important;
+  font-weight: 500;
+}
+
+.strat-opt-perf-table .strat-th-bench,
+.strat-opt-perf-table .strat-td-bench {
+  width: 22%;
+  text-align: right;
+  color: #8C847A;
+}
+
+.strat-opt-perf-table .strat-th-diff,
+.strat-opt-perf-table .strat-td-diff {
+  width: 22%;
+  text-align: right;
+  color: var(--accent-orange);
+  font-weight: 600;
+}
+
+.strat-opt-compounding-strip {
+  border-left: 2px solid var(--accent-orange);
+  padding: 8px 0 8px 14px;
+  margin: 10px 0 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(245, 128, 36, 0.03);
+  border-radius: 0 4px 4px 0;
+}
+
+.strat-opt-compounding-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8C847A;
+  font-weight: 600;
+}
+
+.strat-opt-compounding-figures {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 2px 0;
+}
+
+.strat-opt-compounding-val {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.strat-opt-compounding-footnote {
+  font-size: 10.5px;
+  color: #78716A;
+  line-height: 1.4;
+}
+
+.strat-opt-source-note {
+  font-size: 10px;
+  color: #6E6760;
+  line-height: 1.45;
+  margin: 6px 0 0 0;
+}
+
+/* Accordion 3: Compact Specification Ledger */
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-facts-ledger,
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-fee-ledger {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  gap: 0 !important;
+  box-shadow: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-fee-ledger {
+  margin-top: 4px !important;
+  border-top: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-ledger-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  padding: 7px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  gap: 16px !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-ledger-row:last-child {
+  border-bottom: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-ledger-key {
+  font-size: 11.5px !important;
+  color: #8C847A !important;
+  flex-shrink: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-ledger-val {
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: #FAF6F0 !important;
+  text-align: right !important;
+  line-height: 1.4 !important;
+}
+
+/* Accordion 4: Clean Editorial Risk Hierarchy */
+.strat-opt-risks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-risk-entry {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-risk-entry:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-risk-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #FAF6F0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-risk-text {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  color: #9E968D !important;
+  margin: 0 !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-statutory,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-statutory,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-statutory {
+  background: none !important;
+  border: none !important;
+  padding: 14px 0 0 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  margin-top: 12px !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-compliance-badge,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-compliance-badge,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-compliance-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #8C847A !important;
+}
+
+.strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-statutory-text,
+.strategy-detail-sheet[data-strat-id="focused"] .strat-opt-statutory-text,
+.strategy-detail-sheet[data-strat-id="direct-growth"] .strat-opt-statutory-text {
+  font-size: 10.5px !important;
+  line-height: 1.45 !important;
+  color: #6E6760 !important;
+  margin: 0 !important;
+}
+
 /* --------------------------------------------------------------------------
    05  Why Scripbox — Creative Editorial Direction
    -------------------------------------------------------------------------- */
 .difference-section {
   background: var(--bg-secondary);
-  padding: 44px 20px 44px;
+  padding: 44px 20px 48px;
   margin-bottom: 0 !important;
 }
 
 .diff-header {
-  margin-bottom: 16px; /* Intentional, proportional spacing below section intro */
+  margin-bottom: 28px;
 }
 
 .diff-main-heading {
   font-family: var(--font-display);
-  font-size: clamp(30px, 8.8vw, 42px);
+  font-size: clamp(28px, 7.5vw, 38px);
   font-weight: 450;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin: 0 0 10px 0;
@@ -2392,25 +3926,32 @@ body { counter-reset: sect; }
 
 .diff-main-subhead {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.5;
   color: var(--text-secondary);
   margin: 0;
-  max-width: 580px;
+  max-width: 460px;
+  text-wrap: pretty;
 }
 
 .diff-editorial-flow {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Consistent, balanced separation between feature rows */
+  gap: 28px; /* Distinct visual beat between features */
   margin-top: 0;
   width: 100%;
 }
 
-.diff-block {
+/* Consistent structural pattern for all features: Text Group LEFT, Illustration RIGHT */
+.diff-block,
+.diff-block--01,
+.diff-block--02,
+.diff-block--03,
+.diff-block--art-right,
+.diff-block--art-left {
   display: grid;
-  grid-template-columns: 46px 1fr;
-  column-gap: 14px;
+  grid-template-columns: 1fr 48px;
+  column-gap: 16px;
   row-gap: 6px;
   align-items: flex-start;
   position: relative;
@@ -2418,7 +3959,6 @@ body { counter-reset: sect; }
   padding: 0;
 }
 
-/* Seamless editorial flow without disruptive horizontal dividers */
 .diff-block:not(:last-child) {
   border-bottom: none;
   padding-bottom: 0;
@@ -2433,62 +3973,56 @@ body { counter-reset: sect; }
   display: contents;
 }
 
-/* Feature 02: Reference Layout — Illustration LEFT, [Heading + Description] RIGHT */
-.diff-block--art-left,
-.diff-block--02 {
-  grid-template-columns: 46px 1fr;
-  border-left: none;
-  padding-left: 0;
-}
-
-.diff-block--art-left .diff-visual-card,
-.diff-block--02 .diff-visual-card {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  justify-content: flex-start;
-}
-
-.diff-block--art-left .diff-heading-wrap,
-.diff-block--02 .diff-heading-wrap {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.diff-block--art-left .diff-content,
-.diff-block--02 .diff-content {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-/* Features 01 & 03: Mirrored Layout — [Heading + Description] LEFT, Illustration RIGHT */
-.diff-block--art-right,
-.diff-block--01,
-.diff-block--03 {
-  grid-template-columns: 1fr 46px;
-  border-left: none;
-  padding-left: 0;
-}
-
-.diff-block--art-right .diff-heading-wrap,
+.diff-heading-wrap,
 .diff-block--01 .diff-heading-wrap,
-.diff-block--03 .diff-heading-wrap {
+.diff-block--02 .diff-heading-wrap,
+.diff-block--03 .diff-heading-wrap,
+.diff-block--art-left .diff-heading-wrap,
+.diff-block--art-right .diff-heading-wrap {
   grid-column: 1;
   grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.diff-block--art-right .diff-content,
+.diff-content,
 .diff-block--01 .diff-content,
-.diff-block--03 .diff-content {
+.diff-block--02 .diff-content,
+.diff-block--03 .diff-content,
+.diff-block--art-left .diff-content,
+.diff-block--art-right .diff-content {
   grid-column: 1;
   grid-row: 2;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.diff-block--art-right .diff-visual-card,
+.diff-visual-card,
 .diff-block--01 .diff-visual-card,
-.diff-block--03 .diff-visual-card {
+.diff-block--02 .diff-visual-card,
+.diff-block--03 .diff-visual-card,
+.diff-block--art-left .diff-visual-card,
+.diff-block--art-right .diff-visual-card {
   grid-column: 2;
   grid-row: 1 / span 2;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: flex-start;
   justify-content: flex-end;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  margin: 2px 0 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-self: flex-start;
 }
 
 .diff-heading-wrap {
@@ -2505,12 +4039,12 @@ body { counter-reset: sect; }
 .pillar-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 19px;
-  line-height: 1.25;
+  font-size: 18.5px;
+  line-height: 1.28;
   letter-spacing: -0.015em;
-  color: #FFFFFF;
+  color: #F5EFEB;
   margin: 0;
-  text-wrap: balance; /* Eliminates single-word awkward orphan lines and balances line lengths */
+  text-wrap: balance;
 }
 
 .pillar-title::before {
@@ -2526,28 +4060,13 @@ body { counter-reset: sect; }
 
 .pillar-desc {
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13.5px;
+  line-height: 1.52;
   color: rgba(239, 230, 218, 0.72);
   margin: 0;
 }
 
-/* Dedicated, Consistent Illustration Slot (46px x 50px) */
-.diff-visual-card {
-  width: 46px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: visible;
-  margin: 2px 0 0 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Dedicated, Consistent Illustration Slot (48px x 48px) */
 .diff-svg-art {
   display: block;
   max-width: 100%;
@@ -2557,49 +4076,44 @@ body { counter-reset: sect; }
   overflow: visible;
 }
 
-/* Desktop Presentation — Alternating 2-Column Editorial Rhythm */
+/* Desktop Presentation — Editorial Rhythm */
 @media (min-width: 768px) {
   .difference-section {
     padding: 64px 32px 72px;
   }
+  .diff-header {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 32px;
+  }
   .diff-editorial-flow {
-    gap: 48px;
-    margin-top: 36px;
+    gap: 36px;
+    margin-top: 0;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .diff-block,
   .diff-block--01,
   .diff-block--02,
   .diff-block--03 {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 36px;
-    align-items: center;
+    grid-template-columns: 1fr 56px;
+    column-gap: 24px;
+    row-gap: 8px;
   }
-  .diff-block .diff-header-row {
-    display: flex;
-    align-items: center;
+  .diff-visual-card {
+    width: 56px;
+    height: 56px;
+    margin-top: 2px;
   }
-  .diff-block .diff-visual-card {
-    grid-column: auto;
-    grid-row: auto;
-    margin-top: 0;
-    min-height: 240px;
-    max-height: 280px;
-    width: auto;
-    height: auto;
-    justify-content: center;
+  .pillar-title {
+    font-size: 20px;
+    line-height: 1.3;
   }
-  .diff-block .diff-heading-wrap,
-  .diff-block .diff-content {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  /* Invert middle item for rhythmic alternating zigzag */
-  .diff-block:nth-child(2) .diff-visual-card {
-    order: 2;
-  }
-  .diff-block:nth-child(2) .diff-content {
-    order: 1;
+  .pillar-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
   }
 }
 
