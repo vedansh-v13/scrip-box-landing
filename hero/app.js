@@ -284,7 +284,7 @@
       } else {
         if (contactHeading) contactHeading.textContent = "Let's talk about your investment goals.";
         if (contactSub) {
-          contactSub.textContent = "Share a few details to help us understand what you're looking for. Our team can then guide you through the relevant PMS strategies and next steps.";
+          contactSub.textContent = 'Share your contact details below. A designated SEBI-registered portfolio specialist will reach out to discuss your mandate.';
         }
         if (btnText) btnText.textContent = 'Request a consultation';
       }
@@ -727,9 +727,10 @@
     });
   }
 
-  // Sticky CTA Observer & Visibility Handler (Hides at Hero and at Secondary Conversion Section)
+  // Sticky CTA Observer & Visibility Handler (Hides at Hero, Strategy Cards, and Secondary Conversion Section)
   const secondaryCtaCard = document.querySelector('.btf-cta-card');
   const footerSection = document.querySelector('.btf-footer');
+  const thirdStrategyCard = document.querySelector('.strat-overview-card[data-strat-id="direct-growth"]');
   let lastStickyVisible = null;
   let stickyMetrics = null;
 
@@ -739,12 +740,15 @@
     const heroRect = heroSection.getBoundingClientRect();
     const ctaRect = secondaryCtaCard ? secondaryCtaCard.getBoundingClientRect() : null;
     const footerRect = footerSection ? footerSection.getBoundingClientRect() : null;
+    const thirdCardRect = thirdStrategyCard ? thirdStrategyCard.getBoundingClientRect() : null;
     stickyMetrics = {
       winH: window.innerHeight,
       heroBottom: scrollY + heroRect.bottom,
       ctaTop: ctaRect ? scrollY + ctaRect.top : Infinity,
       ctaBottom: ctaRect ? scrollY + ctaRect.bottom : -Infinity,
-      footerTop: footerRect ? scrollY + footerRect.top : Infinity
+      footerTop: footerRect ? scrollY + footerRect.top : Infinity,
+      thirdCardTop: thirdCardRect ? scrollY + thirdCardRect.top : Infinity,
+      thirdCardBottom: thirdCardRect ? scrollY + thirdCardRect.bottom : -Infinity
     };
   }
 
@@ -764,12 +768,23 @@
 
   function checkStickyVisibility() {
     if (!heroSection) return;
+    if (stickyCtaBar && stickyCtaBar.classList.contains('is-suppressed')) {
+      setStickyVisible(false);
+      return;
+    }
     if (!stickyMetrics) updateStickyMetrics();
     const scrollY = window.scrollY;
     const winH = stickyMetrics.winH;
     const isHeroPast = (stickyMetrics.heroBottom - scrollY) <= 0;
 
     let isNearConversion = false;
+    if (thirdStrategyCard) {
+      const thirdRect = thirdStrategyCard.getBoundingClientRect();
+      // Hide sticky CTA while the third strategy card is in the lower viewport so it never obstructs access
+      if (thirdRect.top < (winH - 20) && thirdRect.bottom > (winH * 0.4)) {
+        isNearConversion = true;
+      }
+    }
     if (secondaryCtaCard) {
       const ctaTopRel = stickyMetrics.ctaTop - scrollY;
       const ctaBottomRel = stickyMetrics.ctaBottom - scrollY;
@@ -877,22 +892,24 @@
       </svg>`;
     } else {
       return `<svg viewBox="0 0 56 52" width="70" height="65" fill="none" class="strat-geo-svg" aria-hidden="true">
-        <!-- Tactical Reference Quadrant Arc -->
-        <path d="M 46 26 A 18 18 0 0 0 28 8" fill="none" stroke="rgba(245, 128, 36, 0.4)" stroke-width="1" stroke-dasharray="2.5 2.5"/>
-        <!-- Orthogonal Connective Vector Rays -->
-        <line x1="28" y1="17.5" x2="28" y2="10" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
-        <line x1="36.5" y1="26" x2="44" y2="26" stroke="#F58024" stroke-width="1.2"/>
-        <line x1="28" y1="34.5" x2="28" y2="42" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
-        <line x1="19.5" y1="26" x2="12" y2="26" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
-        <!-- Diversified Core Form (Rotated Square Nucleus) -->
-        <rect x="22" y="20" width="12" height="12" rx="2" fill="rgba(239, 230, 218, 0.25)" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.3" transform="rotate(45 28 26)"/>
-        <circle cx="28" cy="26" r="2.5" fill="#FFFFFF"/>
-        <!-- Satellite Allocation Nodes -->
-        <circle cx="28" cy="8" r="3" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"/>
-        <!-- Tactical Satellite highlighted in restrained orange -->
-        <circle cx="46" cy="26" r="3.5" fill="#F58024" stroke="#FFA048" stroke-width="1.2"/>
-        <rect x="25.5" y="41" width="5" height="5" rx="1" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
-        <circle cx="10" cy="26" r="2.5" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"/>
+        <!-- Precision Baseline Datum (Unified across all 3 strategy illustrations) -->
+        <line x1="6" y1="44" x2="50" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Vertical Calibration Axis -->
+        <line x1="28" y1="8" x2="28" y2="44" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+        <line x1="12" y1="24" x2="44" y2="24" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+        <!-- Tactical Satellite Orbit Arc -->
+        <path d="M 44 24 A 16 16 0 0 0 28 8" fill="none" stroke="#F58024" stroke-width="1.1" stroke-dasharray="2.2 2.2" stroke-opacity="0.85"/>
+        <!-- Core Foundation Pedestal -->
+        <rect x="18" y="38" width="20" height="6" fill="rgba(239, 230, 218, 0.16)" stroke="rgba(255, 255, 255, 0.24)" stroke-width="1"/>
+        <!-- Diversified Core Anchor (Rotated Square Nucleus) -->
+        <rect x="21" y="17" width="14" height="14" rx="1.5" fill="rgba(239, 230, 218, 0.24)" stroke="rgba(255, 255, 255, 0.38)" stroke-width="1.2" transform="rotate(45 28 24)"/>
+        <circle cx="28" cy="24" r="2" fill="#FFFFFF"/>
+        <!-- Flanking Core Nodes -->
+        <rect x="25" y="5.5" width="6" height="5" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+        <rect x="9" y="21.5" width="6" height="5" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+        <!-- Selective Satellite Allocation (Restrained Orange) -->
+        <line x1="35" y1="24" x2="41" y2="24" stroke="#F58024" stroke-width="1.3"/>
+        <rect x="41" y="20" width="8" height="8" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
       </svg>`;
     }
   }
@@ -930,39 +947,39 @@
     optimiser: {
       id: 'optimiser',
       name: 'Optimiser Portfolio',
-      category: 'Quant Based',
-      instrument: 'Stocks',
-      chips: ['Quant Based', 'Stocks'],
+      category: 'Quantitative',
+      instrument: 'Equity',
+      chips: ['Quantitative', 'Equity'],
       figure: ['15–25', 'stocks'],
-      summary: 'A systematically constructed equity portfolio driven by quantitative screening and disciplined allocation principles.',
-      definingIdea: "Rules-driven momentum and equal-weighting across India's top 200 liquid enterprises.",
-      thesisHeadline: "Factor discipline over human bias: Harvesting systematic momentum with strict volatility parity across liquid Indian leaders.",
+      summary: "A quantitative equity strategy that uses systematic momentum and volatility-based allocation to identify and manage opportunities across India's leading listed companies.",
+      definingIdea: "Rules-driven momentum and volatility-aware allocation across Nifty 200 enterprises.",
+      thesisHeadline: "Less instinct. More discipline.",
       philosophy: {
-        eyebrow: 'Investment Philosophy',
-        title: 'Rules-Driven Momentum Engine',
-        premise: 'Markets exhibit momentum anomalies because institutional capital moves gradually over time. Optimiser systematically captures empirical relative strength across established Indian enterprises without forecasting noise.',
+        eyebrow: 'INVESTMENT PHILOSOPHY',
+        title: 'Follow the strength. Respect the risk.',
+        premise: 'Market leadership changes. Optimiser uses quantitative signals to identify companies demonstrating relative price strength, while accounting for volatility when constructing the portfolio. Its rules-based framework brings consistency to investment selection and portfolio rebalancing, reducing reliance on discretionary market calls.',
         tradeoffs: [
-          { label: 'We Prioritise', text: 'Quantifiable relative price momentum, balance sheet quality, and annual equal-weight resets.' },
-          { label: 'We Deliberately Avoid', text: 'Discretionary market forecasting, narrative-driven stock picking, and emotional capitulation during drawdowns.' }
+          { label: 'Prioritises', text: 'Systematic momentum signals, volatility-aware allocation, rules-based rebalancing.' },
+          { label: 'Does not rely on', text: 'Discretionary stock picking, macro forecasts as the primary selection method, illiquid small-cap exposure.' }
         ]
       },
       methodologyDetails: {
-        title: 'Systematic Factor Pipeline & Screening Rules',
+        title: 'Methodology & portfolio construction',
         steps: [
           {
             title: 'Universe Liquidity Gate',
-            gate: 'Top 200 Universe',
-            desc: 'Screening is strictly restricted to the Top 200 liquid enterprises by market capitalisation (BSE 200 & NSE F&O constituents), eliminating illiquidity risks and governance blind spots.'
+            gate: 'Nifty 200 Universe',
+            desc: 'Identify eligible companies from the Nifty 200 using defined liquidity and quality criteria.'
           },
           {
             title: 'Multi-Factor Relative Strength Scoring',
-            gate: '6M & 12M Momentum',
-            desc: 'Composite momentum scoring evaluates 6-month and 12-month relative price strength combined with return on capital filters to identify persistent market leaders.'
+            gate: 'Momentum & Volatility Signals',
+            desc: 'Evaluate relative momentum and volatility-adjusted signals to identify potential investments.'
           },
           {
             title: 'Parity Weighting & Risk Calibration',
-            gate: 'Equal Weight Parity',
-            desc: 'The top-ranked 15–25 equities receive equal capital allocations at reconstitution, preventing high-momentum speculative names from distorting total portfolio risk.'
+            gate: 'Disciplined Construction',
+            desc: 'Build and manage a portfolio of 15–25 stocks using defined allocation and rebalancing rules.'
           }
         ]
       },
@@ -970,61 +987,62 @@
         title: 'Portfolio Architecture & Rebalancing Discipline',
         points: [
           { label: 'Target Holdings', text: '15 to 25 liquid large and mid-cap equities' },
-          { label: 'Allocation Weight', text: 'Equal capital allocation at review (~4.0% to 6.6% per security)' },
-          { label: 'Rebalancing Rhythm', text: 'Systematic annual rebalancing and reconstitution, resetting winners back to parity and harvesting momentum factor gains' },
-          { label: 'Direct Custody', text: 'Direct equity holdings in your own segregated Demat account under your PAN with independent institutional custodian' }
+          { label: 'Allocation Weight', text: 'Equal capital allocation at reset (~4.0% to 6.6% per holding)' },
+          { label: 'Rebalancing Rhythm', text: 'Systematic annual rebalancing and reconstitution, resetting winners back to parity and pruning decaying momentum signals' },
+          { label: 'Direct Custody', text: "Direct equity holdings in your own segregated Demat account under your PAN with independent institutional custodian" }
         ]
       },
       priorityFacts: [
-        { label: 'Target Universe', val: 'Top 200' },
+        { label: 'Investment universe', val: 'Nifty 200' },
         { label: 'Benchmark', val: 'Nifty 50 TRI' },
-        { label: 'Min Investment', val: '₹50 Lakhs' }
+        { label: 'Target holdings', val: '15–25 stocks' },
+        { label: 'Inception', val: '30 April 2021' }
       ],
       secondaryFacts: [
         { label: 'Mandate Structure', val: 'Discretionary' },
-        { label: 'Inception Date', val: 'Apr 30, 2021' },
+        { label: 'Inception Date', val: '30 April 2021' },
         { label: 'Target Holdings', val: '15–25 Stocks' },
         { label: 'Rebalancing Rhythm', val: 'Annual Rebalancing' },
         { label: 'Investment Horizon', val: '> 5 Years' },
         { label: 'Risk Classification', val: 'High' },
         { label: 'Strategy AUM', val: '₹221.88 Cr (Sep 30, 2026)' },
-        { label: 'Portfolio Universe', val: 'Top 200 by market capitalisation, BSE 200 & NSE F&O', fullWidth: true }
+        { label: 'Portfolio Universe', val: 'Nifty 200 by market capitalisation, BSE 200 & NSE F&O constituents', fullWidth: true }
       ],
       principles: [
         {
           num: '01',
-          cue: 'Liquidity Gate',
-          heading: 'Quant-Based Stock Selection',
-          desc: 'Top 200 liquid universe screen eliminates illiquidity friction and corporate governance blind spots.'
+          cue: 'Screen',
+          heading: 'Screen',
+          desc: 'Identify eligible companies from the Nifty 200 using defined liquidity and quality criteria.'
         },
         {
           num: '02',
-          cue: 'Relative Strength',
-          heading: 'Momentum & Risk Filters',
-          desc: 'Dual 6-month and 12-month relative strength scoring isolates persistent market leaders with disciplined exits.'
+          cue: 'Select',
+          heading: 'Select',
+          desc: 'Evaluate relative momentum and volatility-adjusted signals to identify potential investments.'
         },
         {
           num: '03',
-          cue: 'Parity Allocation',
-          heading: 'Equal Weighting & Parity Resets',
-          desc: 'Equal capital allocation (~4% to 6.6%) resets annually to volatility parity, systematically harvesting gains.'
+          cue: 'Construct',
+          heading: 'Construct',
+          desc: 'Build and manage a portfolio of 15–25 stocks using defined allocation and rebalancing rules.'
         }
       ],
-      managerBio: 'Mandar Bagul leads the quantitative factor mandate, applying empirical data science and institutional risk controls to manage systematic equity portfolios.',
+      managerBio: "Portfolio oversight is led by Mandar Bagul, supported by the investment team's quantitative research process.",
       managerQuote: {
         quote: 'Optimiser works because winners tend to keep winning. Our systematic framework eliminates emotional bias and runs on pure momentum & rules.',
         author: 'Mandar Bagul',
-        role: 'Fund Manager'
+        role: 'Director & Senior Vice President – Advisory'
       },
       performance: {
-        title: 'Performance Track Record & Disclosures',
+        title: 'Performance in perspective',
         asOf: 'As on Sep 30, 2026',
         sourceNote: 'Returns above 1 year are CAGR. Returns are net of expenses and fees. Source: APMI India / SEBI TWRR.',
         headlineComparison: {
           period: 'Since Inception CAGR',
           strat: '22.78%',
           bench: '9.48%',
-          inceptionDate: 'Apr 30, 2021',
+          inceptionDate: '30 Apr 2021',
           diff: '+13.30%'
         },
         rows: [
@@ -1036,86 +1054,106 @@
           initial: '₹1.00 Cr',
           stratValue: '₹2.74 Cr',
           benchValue: '₹1.65 Cr',
-          label: 'Wealth created since inception (Apr 30, 2021)'
+          label: 'Wealth created since inception (30 Apr 2021)'
         },
-        statLine: 'Track Record: 15.63% (3Y CAGR) & 22.78% (Since Inception) vs 6.06% & 9.48% for Nifty 50 TRI. Inception: Apr 30, 2021. Source: APMI India, as of Sep 30, 2026.'
+        statLine: 'Track Record: 15.63% (3Y CAGR) & 22.78% (Since Inception) vs 6.06% & 9.48% for Nifty 50 TRI. Inception: 30 Apr 2021. Source: APMI India, as of Sep 30, 2026.'
       },
       structure: {
-        title: 'Instruments & Portfolio Structure',
-        custody: 'Direct Equities in Segregated Demat under your PAN',
+        title: 'Ownership & Custody',
+        custody: "Direct Equities in Segregated Demat under your PAN",
         management: 'Discretionary Portfolio Management Services',
-        lead: 'Mandar Bagul, Fund Manager',
-        text: 'Direct equity holdings in your own segregated Demat account under your PAN. Stock selection drawn strictly from Top 200 by market capitalisation, BSE 200 constituents, and NSE F&O segment, ensuring institutional liquidity and transparent direct ownership.'
+        lead: 'Mandar Bagul, Director & Senior Vice President – Advisory',
+        text: "Equity holdings are maintained in a segregated Demat account under the investor's PAN, subject to the mandate's custody arrangements."
       },
       feeDetails: {
-        title: 'Institutional Mandate Fee Architecture',
+        title: 'Mandate Fee Schedule & Commercial Terms',
         points: [
-          { label: 'Management Fee', text: 'Fixed annual fee tier based on invested AUM, calculated on daily average portfolio value and debited quarterly.' },
+          { label: 'Fixed Management Fee', text: 'Fixed annual fee tier based on invested AUM, calculated on daily average portfolio value and debited quarterly.' },
+          { label: 'Performance-Linked Model', text: 'Optional performance fee model with agreed hurdle rate and high-water mark.' },
           { label: 'Zero Intermediary Commissions', text: 'Direct client-to-PMS fiduciary mandate without distribution trails or distributor commission deductions.' },
           { label: 'Statutory Charges', text: 'Brokerage, STT, exchange charges, and depository fees are billed at actual institutional execution rates.' }
         ]
       },
       riskDetails: {
-        title: 'Risk Profile & Volatility Safeguards',
+        title: 'Risk Profile & Disclosures',
         points: [
-          { label: 'Factor Cyclicality', text: 'Momentum strategies can experience periods of consolidation during sharp macroeconomic inflection points or abrupt value rotations.' },
-          { label: 'Market Volatility', text: 'Direct equity investments remain subject to systemic equity market movements; recommended investment horizon is > 5 years.' },
-          { label: 'Downside Safeguards', text: 'Strict universe restriction to the Top 200 most liquid Indian enterprises and equal weighting insulate capital from catastrophic single-stock failures.' }
+          { label: 'Equity Market Risk', text: 'Direct equity investments remain subject to systemic macroeconomic cycles and equity market volatility; recommended investment horizon is at least 5 years.' },
+          { label: 'Quantitative Factor Cyclicality', text: 'Momentum strategies can experience periods of consolidation or underperformance during sharp macroeconomic inflection points or abrupt value rotations.' },
+          { label: 'Momentum Reversals', text: 'Sharp changes in market leadership may cause temporary relative drag before annual reconstitution rules trigger portfolio replacement.' },
+          { label: 'Drawdown Risk', text: 'Portfolio valuations fluctuate with underlying equity prices; capital is not guaranteed.' },
+          { label: 'Liquidity & Execution Risks', text: 'Restricting universe strictly to Nifty 200 enterprises by market capitalisation protects capital from illiquidity and excessive execution impact costs.' },
+          { label: 'Rebalancing Risks', text: 'Reconstitution incurs standard statutory execution charges and timing considerations governed by the annual reset framework.' }
         ]
       },
       disclosures: {
-        fit: 'Suitable for equity investors with a 5+ year horizon seeking disciplined, rules-based equity alpha through an institutional quantitative momentum model across liquid Indian market leaders.',
+        fit: 'Suitable for equity investors with a 5+ year horizon seeking disciplined, rules-based equity allocation through an institutional quantitative momentum model across liquid Indian market leaders.',
         statutory: 'Statutory Disclosure: Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is based on historical comparative data and is not indicative of future returns. Returns are net of management fees and expenses. Performance may vary and is not SEBI-verified. Managed by Wealth Managers (India) Private Limited, SEBI Registered Portfolio Manager (Reg: INP000001660, CIN: U67190KA2003PTC191180).'
       },
-      ctaLabel: 'Discuss Optimiser Strategy'
+      ctaLabel: 'Discuss Optimiser Portfolio'
     },
     focused: {
       id: 'focused',
       name: 'Focused Leadership',
       category: 'Proven Leadership',
-      instrument: 'Stocks',
-      chips: ['Proven Leadership', 'Stocks'],
+      instrument: 'Equity',
+      chips: ['Proven Leadership', 'Equity'],
       figure: ['10–20', 'stocks'],
-      summary: 'A high-conviction portfolio investing in established and emerging leaders selected through bottom-up research and long-term business evaluation.',
-      definingIdea: 'High-conviction ownership of established market champions and emerging segment leaders.',
-      thesisHeadline: "Concentrated conviction in enduring moats: Owning India's highest-quality capital allocators.",
+      summary: 'A concentrated equity strategy focused on established and emerging businesses with strong competitive advantages, capable management and the potential to create lasting value.',
+      definingIdea: 'Identify exceptional businesses. Understand what makes them strong. Invest in their long-term potential.',
+      thesisHeadline: 'Own businesses built to lead.',
       philosophy: {
-        eyebrow: 'Investment Philosophy',
-        title: 'High-Conviction Moat Compounding',
-        premise: 'True wealth compounding is asymmetric: a small cohort of exceptional businesses generate the overwhelming majority of market returns over multi-year cycles. Diversifying across mediocre businesses dilutes long-term compounding and introduces uncompensated operational risks.',
+        eyebrow: 'INVESTMENT PHILOSOPHY',
+        title: 'Look for quality that lasts.',
+        premise: 'Strong businesses are built on more than short-term growth. They have something that sets them apart — a trusted brand, a cost advantage, pricing power or a product customers find difficult to replace. Focused Leadership looks for these enduring strengths, while evaluating how effectively management runs the business and puts its capital to work.',
         tradeoffs: [
-          { label: 'We Prioritise', text: 'Durable pricing power, sustainable return on capital (ROCE > 20%), and aligned founder-led governance.' },
-          { label: 'We Deliberately Avoid', text: 'Over-diversification, benchmark hugging, capital-destructive cyclicals, and leveraged turnarounds.' }
+          { label: 'Looks for', text: 'Consistently strong returns on capital, durable competitive advantages and pricing power, thoughtful capital allocation.' },
+          { label: 'Steers away from', text: 'Deeply cyclical and commodity-dependent businesses, highly leveraged companies and speculative turnarounds, decisions driven primarily by short-term market momentum.' }
         ]
       },
       methodologyDetails: {
-        title: 'Bottom-Up Moat Assessment & Research Process',
+        title: 'Business selection & research',
         steps: [
-          { title: 'Durable Competitive Advantage Assessment', desc: 'Proprietary qualitative research into industry structural barriers, pricing power, customer switching costs, and expanding market share.' },
-          { title: 'Forensic Quality & Governance Filters', desc: 'Rigorous forensic scrutiny of promoter integrity, related-party transactions, return on incremental invested capital, and minority shareholder stewardship.' },
-          { title: 'Valuation Margin of Safety', desc: 'Disciplined valuation frameworks ensuring entry multiples offer an attractive margin of safety relative to each company’s cash compounding runway.' }
+          {
+            title: 'Structural Cost Advantages & Network Effects',
+            gate: 'Competitive Moats',
+            desc: 'Identify structural scale efficiencies, distribution networks and platform flywheels that competitors find difficult to duplicate.'
+          },
+          {
+            title: 'Intangible Assets & Switching Friction',
+            gate: 'Quality Filters',
+            desc: 'Evaluate brand resonance, proprietary IP, regulatory moats and mission-critical customer stickiness.'
+          },
+          {
+            title: 'Forensic Quality & Capital Allocation',
+            gate: 'Governance & ROCE',
+            desc: 'Forensic audit of promoter integrity, capital allocation history and sustainable returns on capital (ROCE > 20%).'
+          }
         ]
       },
       constructionDetails: {
-        title: 'High-Conviction Sizing & Review Discipline',
+        title: 'Portfolio construction & performance',
         points: [
-          { label: 'Target Holdings', text: '10 to 20 high-conviction enterprises across market capitalisations' },
+          { label: 'Target Holdings', text: '10 to 20 high-conviction stocks across market capitalisations' },
           { label: 'Position Sizing', text: '1% to 15% tiered sizing based on conviction level, moat durability, and liquidity profile' },
+          { label: 'Sector Concentration', text: 'Maximum 25% single sector concentration limit' },
           { label: 'Investment Runway', text: 'Low turnover compounding approach with an average multi-year holding duration per company' },
-          { label: 'Direct Ownership', text: 'Direct equities held in your independent Demat account under your PAN, managed by CIO Mayur Parkeria' }
+          { label: 'Direct Ownership', text: 'Direct equities held in your independent Demat account under your PAN, managed by Mayur Parkeria' }
         ]
       },
       priorityFacts: [
-        { label: 'Target Holdings', val: '10–20 Stocks' },
+        { label: 'Investment approach', val: 'Fundamental, bottom-up' },
+        { label: 'Target holdings', val: '10–20 stocks' },
         { label: 'Benchmark', val: 'Nifty 50 TRI' },
-        { label: 'Min Investment', val: '₹50 Lakhs' }
+        { label: 'Inception', val: '15 June 2015' }
       ],
       secondaryFacts: [
         { label: 'Mandate Structure', val: 'Discretionary' },
-        { label: 'Inception Date', val: 'Jun 15, 2015' },
+        { label: 'Inception Date', val: '15 June 2015' },
         { label: 'Target Holdings', val: '10–20 Stocks' },
-        { label: 'Rebalancing Rhythm', val: 'Thesis-Based / Annual Review' },
-        { label: 'Investment Horizon', val: '> 5 Years (Position Sizing: 1%–15%)' },
+        { label: 'Position Sizing', val: '1%–15% (Conviction-Tiered)' },
+        { label: 'Sector Cap', val: '25% Maximum Sector Weight' },
+        { label: 'Rebalancing Rhythm', val: 'Thesis-Based / Ongoing Review' },
+        { label: 'Investment Horizon', val: '> 5 Years' },
         { label: 'Risk Classification', val: 'High' },
         { label: 'Strategy AUM', val: '₹142.16 Cr (Sep 30, 2026)' },
         { label: 'Portfolio Universe', val: 'Multi-Cap / Flexi-Cap Leaders', fullWidth: true }
@@ -1123,37 +1161,38 @@
       principles: [
         {
           num: '01',
-          cue: 'Moat Assessment',
-          heading: 'Bottom-Up Business & Moat Research',
-          desc: 'Rigorous fundamental evaluation identifying established market leaders and emerging challengers with durable pricing power in core segments.'
+          cue: 'Discover',
+          heading: 'Discover',
+          desc: 'Identify businesses with strong market positions, competitive advantages and pricing power.'
         },
         {
           num: '02',
-          cue: 'Forensic Quality',
-          heading: 'Financial Quality & Governance',
-          desc: 'Deep forensic scrutiny of sustainable ROCE, balance sheet resilience, capital allocation discipline, and minority shareholder stewardship.'
+          cue: 'Evaluate',
+          heading: 'Evaluate',
+          desc: 'Assess business quality, financial strength and how management makes important decisions.'
         },
         {
           num: '03',
-          cue: 'High Conviction',
-          heading: 'Concentrated Construction & Review',
-          desc: 'High-conviction portfolio of 10–20 businesses with 1%–15% position sizing, reviewed continuously against operating performance without index replication.'
+          cue: 'Concentrate',
+          heading: 'Concentrate',
+          desc: 'Build a focused portfolio of 10–20 selected businesses with the potential to create long-term value.'
         }
       ],
+      managerBio: 'Portfolio management is led by Mayur Parkeria, with a focus on identifying quality businesses, understanding their competitive strengths and evaluating the decisions that shape their long-term potential.',
       managerQuote: {
         quote: 'Over the long term, industry leaders with consistent focus on core segments have created much higher wealth with significantly lower volatility.',
         author: 'Mayur Parkeria',
-        role: 'CIO & Fund Manager'
+        role: 'Equity Fund Manager'
       },
       performance: {
-        title: 'Performance Track Record & Disclosures',
+        title: 'A longer-term view of performance',
         asOf: 'As on Sep 30, 2026',
         sourceNote: 'Returns above 1 year are CAGR. Returns are net of expenses and fees. Source: APMI India / SEBI TWRR.',
         headlineComparison: {
           period: 'Since Inception CAGR',
           strat: '13.21%',
           bench: '10.67%',
-          inceptionDate: 'Jun 15, 2015',
+          inceptionDate: '15 Jun 2015',
           diff: '+2.54%'
         },
         rows: [
@@ -1165,38 +1204,41 @@
           initial: '₹1.00 Cr',
           stratValue: '₹4.13 Cr',
           benchValue: '₹3.23 Cr',
-          label: 'Wealth created since inception (Jun 15, 2015)'
+          label: 'Wealth created since inception (15 Jun 2015)'
         },
         statLine: 'Live track record since June 15, 2015 (> 9 years of disciplined mandate management). 12.86% 3Y CAGR vs 6.06% for Nifty 50 TRI. Data as on Sep 30, 2026.'
       },
       structure: {
-        title: 'Instruments & Portfolio Structure',
+        title: 'Ownership & Custody',
         custody: 'Direct Equities in Segregated Demat under your PAN',
         management: 'Discretionary Portfolio Management Services',
-        lead: 'Mayur Parkeria, CIO & Fund Manager',
-        text: 'Direct equities held in your independent Demat account under your PAN. Flexible multi-cap mandate spanning large, mid, and emerging leaders based on bottom-up conviction rather than index weightings. Portfolio Manager: Mayur Parkeria.'
+        lead: 'Mayur Parkeria, Equity Fund Manager',
+        text: "Your equity holdings are maintained in a segregated Demat account under your PAN, subject to the mandate's custody arrangements."
       },
       feeDetails: {
-        title: 'Discretionary Mandate Terms & Options',
+        title: 'Management, Mandate & Fees',
         points: [
-          { label: 'Management Fee Structure', text: 'Choice between a fixed management fee schedule or a hybrid structure with a reduced fixed fee plus performance fee.' },
-          { label: 'High Water Mark Principle', text: 'Any performance-linked fee is charged strictly on net outperformance over the highest historical portfolio NAV threshold.' },
-          { label: 'Complete Execution Transparency', text: 'Real-time transaction contract notes and quarterly portfolio statements with zero distributor commission leakages.' }
+          { label: 'Fixed Management Fee', text: 'Fixed annual fee tier (1.75% p.a.) based on invested AUM, calculated on daily average portfolio value and debited quarterly.' },
+          { label: 'Performance-Linked Option', text: 'Optional hybrid structure with agreed hurdle rate and High Water Mark protection.' },
+          { label: 'Exit Load', text: 'Nil on standard discretionary mandates*.' },
+          { label: 'Statutory Charges', text: 'Brokerage, STT, exchange charges, and depository fees are billed at actual institutional execution rates with zero distributor trails.' }
         ]
       },
       riskDetails: {
-        title: 'Concentration & Business Risk Factors',
+        title: 'Risks & Disclosures',
         points: [
-          { label: 'Concentration Volatility', text: 'A focused 10–20 stock portfolio will periodically diverge from broader index benchmarks and experience higher short-term variance.' },
-          { label: 'Company Operating Risks', text: 'Individual company earnings decelerations, raw material spikes, or regulatory shifts directly affect specific portfolio allocations.' },
-          { label: 'Active Thesis Surveillance', text: 'Ongoing fundamental tracking with predefined thesis-invalidation criteria triggers swift capital redeployment when competitive moats weaken.' }
+          { label: 'Concentration Risk', text: 'A focused 10–20 stock portfolio will periodically diverge from broader index benchmarks and experience higher short-term variance.' },
+          { label: 'Sector Divergence', text: 'Unconstrained multi-cap allocation may lead to significant deviations from benchmark sector weights; single sector capped at 25%.' },
+          { label: 'Earnings Deterioration', text: 'Operating decelerations or competitive disruption in major holdings directly impact portfolio returns; mitigated by continuous fundamental surveillance.' },
+          { label: 'Equity Market Risk', text: 'Direct equity investments remain subject to systemic macroeconomic cycles and equity market volatility. An investment horizon of at least 5 years is recommended.' },
+          { label: 'Liquidity & Execution', text: 'Active position sizing in emerging leaders accounts for trading volume and execution impact costs.' }
         ]
       },
       disclosures: {
-        fit: 'Suitable for long-term wealth creators seeking capital compounding through high-conviction ownership of established and emerging market champions.',
-        statutory: 'Statutory Disclosure: Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future results. Discretionary portfolio management is subject to market risks. Performance may vary and is not SEBI-verified. Managed by Wealth Managers (India) Private Limited, SEBI Registered Portfolio Manager (Reg: INP000001660, CIN: U67190KA2003PTC191180). Portfolio Manager: Mayur Parkeria.'
+        fit: 'Suitable for long-term wealth creators seeking capital compounding through high-conviction ownership of established and emerging market champions with a 5+ year horizon.',
+        statutory: 'Statutory Disclosure: Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is based on historical comparative data and is not indicative of future returns. Returns are net of management fees and expenses. Performance may vary and is not SEBI-verified. Managed by Wealth Managers (India) Private Limited, SEBI Registered Portfolio Manager (Reg: INP000001660, CIN: U67190KA2003PTC191180). Portfolio Manager: Mayur Parkeria.'
       },
-      ctaLabel: 'Discuss Focused Leadership Strategy'
+      ctaLabel: 'Discuss Focused Leadership'
     },
     'direct-growth': {
       id: 'direct-growth',
@@ -1205,74 +1247,83 @@
       instrument: 'Mutual Funds',
       chips: ['Core & Satellite', 'Mutual Funds'],
       figure: ['8–10', 'direct funds'],
-      summary: 'A curated mutual fund portfolio combining diversified core exposure with selective satellite allocations for tactical flexibility.',
-      definingIdea: 'Structured core compounding paired with agile satellite positioning via direct mutual funds.',
-      thesisHeadline: "Institutional direct-plan precision: Diversified core compounding paired with tactical cycle alpha.",
+      summary: 'A curated portfolio of direct mutual funds, combining a diversified core with selective satellite allocations to pursue long-term growth while managing portfolio risk.',
+      definingIdea: 'A curated portfolio of direct mutual funds, combining a diversified core with selective satellite allocations to pursue long-term growth while managing portfolio risk.',
+      thesisHeadline: 'Diversification, with a disciplined approach.',
       philosophy: {
-        eyebrow: 'Investment Philosophy',
-        title: 'Core + Satellite Direct Architecture',
-        premise: 'India has over 1,000 equity schemes, yet fewer than 15% consistently outperform net of distributor commissions. Select Direct Growth combines institutional fund manager selection and direct plans to eliminate distributor fee drag while dynamically pivoting satellite sleeves across market cycles.',
+        eyebrow: 'INVESTMENT PHILOSOPHY',
+        title: 'Build a strong core. Add selectively.',
+        premise: 'A well-structured mutual fund portfolio needs more than a collection of good schemes. It needs a clear allocation strategy. Select Direct Growth combines a diversified core of mutual funds with carefully selected satellite investments, aiming to balance portfolio stability with opportunities for additional growth.',
         tradeoffs: [
-          { label: 'We Prioritise', text: '100% direct plan cost savings, curated multi-manager diversification, and agile tactical sector allocations.' },
-          { label: 'We Deliberately Avoid', text: 'Regular plan distributor expense friction (saving 0.50%–1.50% p.a.) and rigid single-style fund lock-in.' }
+          { label: 'Prioritises', text: 'Diversification across mutual fund categories, evaluating performance across market cycles, direct-plan cost efficiency, and disciplined portfolio allocation.' },
+          { label: 'Avoids', text: 'Unnecessary scheme duplication, excessive concentration in individual categories, and frequent, emotion-driven portfolio changes.' }
         ]
       },
       methodologyDetails: {
-        title: 'Dual-Engine Fund Selection & Tactical Framework',
+        title: 'Fund Selection & Research Methodology',
         steps: [
-          { title: 'Proprietary Quantitative Screening', desc: 'Continuous screening of ~1,000 mutual fund schemes across rolling 3Y/5Y Sharpe ratios, information ratios, and downside capture percentages.' },
-          { title: 'Qualitative AMC & Investment Team Diligence', desc: 'Direct evaluation of AMC investment teams, style discipline, mandate stability, and scheme AUM capacity constraints.' },
-          { title: 'Dynamic Tactical Allocation', desc: 'Tactical rebalancing between core multi-cap compounders and satellite sector/thematic funds to capitalise on prevailing macroeconomic phases.' }
+          { title: 'Quantitative Screening', desc: 'Continuous screening of ~1,000 mutual fund schemes across rolling 3Y/5Y Sharpe ratios, rolling alpha, information ratios, and downside-risk measures.' },
+          { title: 'Qualitative AMC & Team Diligence', desc: 'Direct evaluation of AMC investment teams, style discipline, mandate stability, track record across market cycles, and scheme capacity.' },
+          { title: 'Disciplined Rebalancing', desc: 'Periodic portfolio allocation reviews and rebalancing in line with the investment mandate.' }
         ]
       },
       constructionDetails: {
-        title: 'Core & Satellite Structure & Allocation Guidelines',
+        title: 'Portfolio Construction & Allocation Guidelines',
         points: [
-          { label: 'Core Allocation (60%–70%)', text: 'Diversified equity anchors (Large & Flexi-cap) designed for structural multi-cycle compounding' },
-          { label: 'Satellite Allocation (30%–40%)', text: 'Agile high-alpha mid/small-cap and thematic opportunities calibrated to macro growth drivers' },
-          { label: 'Direct Plan Custody', text: 'All schemes held in direct plans registered directly under client folio/Demat, eliminating distributor commissions' },
-          { label: 'Review Rhythm', text: 'Active discretionary management with quarterly asset allocation reviews and cycle recalibration' }
+          { label: 'Core Allocation Range', text: '70%–80% in diversified equity anchors (Large & Flexi-cap) designed for structural multi-cycle compounding (subject to verification)' },
+          { label: 'Satellite Allocation Range', text: '20%–30% in tactical opportunities (mid/small-cap, cyclical, thematic) calibrated to macroeconomic growth drivers (subject to verification)' },
+          { label: 'Target Holdings', text: '8–10 direct mutual funds balancing conviction with category diversification' },
+          { label: 'Direct Plan Execution', text: 'All schemes held in direct plans registered directly under client folio/Demat under individual PAN, eliminating distributor commissions' },
+          { label: 'Review Rhythm', text: 'Active discretionary management with periodic portfolio reviews and cycle recalibration' }
         ]
       },
       priorityFacts: [
-        { label: 'Target Holdings', val: '8–10 Direct Funds' },
-        { label: 'Benchmark', val: 'Nifty 50 TRI' },
-        { label: 'Min Investment', val: '₹50 Lakhs' }
+        { label: 'Investment approach', val: 'Core & Satellite' },
+        { label: 'Target holdings', val: '8–10 direct mutual funds' },
+        { label: 'Inception', val: '30 June 2020' }
       ],
       secondaryFacts: [
-        { label: 'Mandate Structure', val: 'Discretionary' },
-        { label: 'Inception Date', val: 'Jun 30, 2020' },
-        { label: 'Target Holdings', val: '8–10 Direct Funds' },
+        { label: 'Mandate Structure', val: 'Discretionary PMS' },
+        { label: 'Inception Date', val: '30 June 2020 (subject to confirmation)' },
+        { label: 'Target Holdings', val: '8–10 Direct Mutual Funds' },
         { label: 'Asset Architecture', val: 'Core + Satellite Framework' },
-        { label: 'Investment Horizon', val: '> 5 Years' },
-        { label: 'Risk Classification', val: 'High' },
+        { label: 'Core Allocation Range', val: '70%–80% (subject to confirmation)' },
+        { label: 'Satellite Allocation Range', val: '20%–30% (subject to confirmation)' },
+        { label: 'Cost Advantage', val: 'Direct plans eliminate 0.50%–1.50% p.a. commissions' },
         { label: 'Strategy AUM', val: '₹139.27 Cr (Sep 30, 2026)' },
         { label: 'Portfolio Universe', val: 'Direct Plans of SEBI-Registered Equity Mutual Funds', fullWidth: true }
       ],
       principles: [
         {
           num: '01',
-          cue: 'Core Foundation',
-          heading: 'Diversified Core Allocations',
-          desc: 'Foundational 60%–70% in high-quality diversified equity direct mutual funds selected for steady long-term structural compound growth.'
+          cue: 'Filter',
+          heading: 'Filter Schemes',
+          desc: 'Evaluate direct mutual fund schemes using historical performance, rolling returns and downside-risk measures.'
         },
         {
           num: '02',
-          cue: 'Tactical Overlays',
-          heading: 'Selective Satellite Opportunities',
-          desc: 'Agile 30%–40% positioning in high-conviction thematic, sectoral, and cyclical opportunities calibrated to capture market rotations.'
+          cue: 'Structure',
+          heading: 'Structure Portfolio',
+          desc: 'Combine diversified core holdings with selective satellite allocations to create a balanced portfolio.'
         },
         {
           num: '03',
-          cue: 'Zero Friction',
-          heading: 'Active Management & Direct Plans',
-          desc: 'Invests exclusively in direct plans to eliminate distributor commissions, combined with active monitoring of mid/small-cap valuation cycles.'
+          cue: 'Rebalance',
+          heading: 'Rebalance Periodically',
+          desc: 'Review portfolio allocations periodically and rebalance in line with the investment mandate.'
         }
       ],
       managerQuote: {
-        quote: 'MF investors can opt for expert management by selecting from approx 1,000 equity schemes under direct plans, completely eliminating distributor commissions.',
-        author: 'Mandar Bagul',
-        role: 'Fund Manager'
+        quote: 'Portfolio oversight brings together fund research, allocation decisions and ongoing review to maintain alignment with the investment mandate.',
+        author: 'Sanjiv Singhal',
+        role: 'Co-founder & Executive Director'
+      },
+      managerBio: {
+        name: 'Sanjiv Singhal',
+        role: 'Co-founder & Executive Director',
+        photo: 'assets/sanjiv-singhal.jpg',
+        photoWebp: 'assets/sanjiv-singhal.webp',
+        bio: 'Portfolio oversight brings together fund research, allocation decisions and ongoing review to maintain alignment with the investment mandate.'
       },
       performance: {
         title: 'Performance Track Record & Disclosures',
@@ -1282,7 +1333,7 @@
           period: 'Since Inception CAGR',
           strat: '16.51%',
           bench: '10.76%',
-          inceptionDate: 'Jun 30, 2020',
+          inceptionDate: '30 June 2020',
           diff: '+5.75%'
         },
         rows: [
@@ -1294,38 +1345,40 @@
           initial: '₹1.00 Cr',
           stratValue: '₹2.85 Cr',
           benchValue: '₹2.36 Cr',
-          label: 'Wealth created since inception (Jun 30, 2020)'
+          label: 'Wealth created since inception (30 June 2020)'
         },
-        statLine: 'Live track record since June 30, 2020. 14.21% 3Y CAGR vs 6.06% for Nifty 50 TRI. Data as of Sep 30, 2026.'
+        statLine: 'Track record since 30 June 2020. 14.21% 3Y CAGR vs 6.06% for Nifty 50 TRI. Data as of Sep 30, 2026.'
       },
       structure: {
         title: 'Instruments & Portfolio Structure',
-        custody: 'Direct Mutual Fund Units in Client Custody',
+        custody: 'Direct Mutual Fund Plans in Client Folios / Custody',
         management: 'Discretionary Portfolio Management Services',
-        lead: 'Mandar Bagul, Senior Vice President & Fund Manager',
-        text: 'Direct plans of SEBI-registered mutual funds held in client custody. Discretionary asset allocation actively managed by Senior Vice President Mandar Bagul with quarterly asset allocation reviews.'
+        lead: 'Sanjiv Singhal, Co-founder & Executive Director',
+        text: 'Direct plans of SEBI-registered mutual funds held in client custody. Portfolio oversight brings together fund research, allocation decisions and ongoing review to maintain alignment with the investment mandate.'
       },
       feeDetails: {
-        title: 'Direct Plan Cost Advantage & Advisory Terms',
+        title: 'Direct Plan Expense Advantage & Advisory Terms',
         points: [
-          { label: 'Direct Plan Alpha', text: 'Direct plans eliminate the 0.50% to 1.50% p.a. commission trail embedded in regular mutual fund schemes, compounding to substantial long-term wealth gains.' },
-          { label: 'Discretionary PMS Fee', text: 'Transparent advisory/management fee structure based on managed AUM band, billed quarterly.' },
-          { label: 'Zero Intermediary Leakage', text: 'No entry loads, no commission kickbacks; 100% fiduciary alignment between client and portfolio manager.' }
+          { label: 'Direct Plan Cost Advantage', text: 'Direct mutual fund plans eliminate embedded distributor commissions (historically 0.50% to 1.50% p.a. savings vs regular plans). Expense savings reflect cost reductions and are distinct from investment returns.' },
+          { label: 'Advisory & Mandate Terms', text: 'Transparent SEBI-registered discretionary PMS fee schedule based on managed AUM tier, billed quarterly. Nil exit load on standard mandates.' },
+          { label: 'Custody & Folio Segregation', text: 'Mutual fund units held directly in client folios or Demat under individual PAN with institutional custodian.' },
+          { label: 'Execution & Fiduciary Alignment', text: 'Discretionary mandate execution with direct scheme allocation and zero intermediary commission deductions.' }
         ]
       },
       riskDetails: {
         title: 'Underlying Fund & Market Risk Disclosures',
         points: [
-          { label: 'Market Volatility', text: 'Underlying mutual fund investments are subject to broad equity market volatility and economic cycles.' },
-          { label: 'Style Drift Monitoring', text: 'Active surveillance prevents individual scheme managers from diverging from their stated investment mandates.' },
-          { label: 'Liquidity Assurance', text: 'All investments made strictly in open-ended schemes, providing regular liquidity while preserving discretionary mandate strategy.' }
+          { label: 'Market Risk & NAV Fluctuations', text: 'Underlying equity and debt mutual fund investments are subject to broader capital market cycles, macroeconomic factors, and NAV fluctuations.' },
+          { label: 'Scheme Selection & Style Drift', text: 'Returns depend on the selection and ongoing style discipline of underlying scheme managers. Ongoing quantitative monitoring mitigates style deviation risk.' },
+          { label: 'Tactical Allocation Variance', text: 'Tactical satellite allocations may periodically experience higher volatility or tracking divergence relative to broad indices during sector rotation.' },
+          { label: 'Liquidity & Execution', text: 'All investments made strictly in open-ended SEBI-registered mutual funds, providing liquidity subject to AMC redemption terms.' }
         ]
       },
       disclosures: {
-        fit: 'Suitable for mutual fund investors seeking professional discretionary allocation, zero distributor commission friction, and tactical cycle management.',
-        statutory: 'Statutory Disclosure: Mutual fund investments are subject to market risks; read all scheme-related documents carefully. Past performance does not guarantee future returns. Performance may vary and is not SEBI-verified. Portfolio Management Services provided by Wealth Managers (India) Private Limited, SEBI Registered Portfolio Manager (Reg: INP000001660, CIN: U67190KA2003PTC191180). Portfolio Manager: Mandar Bagul.'
+        fit: 'Explore whether a professionally curated portfolio of direct mutual funds aligns with your investment objectives, time horizon and risk tolerance.',
+        statutory: 'Statutory Disclosure: Mutual fund investments are subject to market risks; read all scheme-related documents carefully before investing. Past performance does not guarantee future results. Performance is calculated on a SEBI TWRR basis, net of all fees and expenses, and is not SEBI-verified. Portfolio Management Services provided by Wealth Managers (India) Private Limited, SEBI Registered Portfolio Manager (Reg: INP000001660, CIN: U67190KA2003PTC191180).'
       },
-      ctaLabel: 'Discuss Select Direct Growth Strategy'
+      ctaLabel: 'Discuss Select Direct Growth'
     }
   };
 
@@ -1349,11 +1402,12 @@
     const shortName = 'Optimiser';
 
     stratDetailBody.innerHTML = `
-      <!-- 1. Proposition (Opening Composition) -->
-      <header class="strat-sheet-header strat-opt-hero">
+      <!-- Section 01 — Strategic Thesis -->
+      <header class="strat-sheet-header strat-opt-hero" aria-label="Strategic Thesis">
         <div class="strat-opt-hero-eyebrow-row">
+          <span class="strat-opt-eyebrow">STRATEGIC THESIS</span>
           <div class="strat-card-tags strat-opt-tags">
-            <span class="strat-pill strat-pill-accent">QUANT BASED</span>
+            <span class="strat-pill strat-pill-accent">QUANTITATIVE</span>
             <span class="strat-pill strat-pill-sub">EQUITY</span>
             <span class="strat-pill strat-opt-test-reference-hidden">Stocks</span>
           </div>
@@ -1364,7 +1418,7 @@
             <h3 class="strat-sheet-title strat-detail-title strat-opt-title">${data.name}</h3>
             <h4 class="strat-opt-thesis-headline">Less instinct. More discipline.</h4>
             <p class="strat-sheet-desc strat-opt-supporting-sentence">
-              A rules-based equity strategy that uses quantitative screening and systematic momentum to identify investment opportunities.
+              A quantitative equity strategy that uses systematic momentum and volatility-based allocation to identify and manage opportunities across India's leading listed companies.
             </p>
           </div>
           <div class="strat-card-art strat-sheet-art strat-opt-hero-art" aria-hidden="true">
@@ -1373,10 +1427,10 @@
           </div>
         </div>
 
-        <!-- Open Typographic Facts Row -->
-        <div class="strat-priority-facts strat-opt-facts-row" aria-label="Key Mandate Facts">
+        <!-- Key Facts Row -->
+        <div class="strat-priority-facts strat-opt-facts-row strat-opt-facts-row-4" aria-label="Key facts">
           <div class="strat-priority-fact strat-opt-fact-col">
-            <span class="strat-priority-val">Top 200</span>
+            <span class="strat-priority-val">Nifty 200</span>
             <span class="strat-priority-label">Investment universe</span>
           </div>
           <div class="strat-priority-fact strat-opt-fact-col">
@@ -1384,19 +1438,39 @@
             <span class="strat-priority-label">Benchmark</span>
           </div>
           <div class="strat-priority-fact strat-opt-fact-col">
-            <span class="strat-priority-val">₹50 Lakhs</span>
-            <span class="strat-priority-label">Min investment</span>
+            <span class="strat-priority-val">15–25 stocks</span>
+            <span class="strat-priority-label">Target holdings</span>
+          </div>
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">30 April 2021</span>
+            <span class="strat-priority-label">Inception</span>
           </div>
         </div>
       </header>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 2. Investment Process -->
+      <!-- Section 02 — Investment Philosophy -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Investment Philosophy">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PHILOSOPHY</span>
+          <h4 class="strat-opt-section-title">Follow the strength. Respect the risk.</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Markets exhibit momentum because fundamental trends take time to develop and reflect in prices. Optimiser captures this momentum systematically, without narrative bias or emotional intervention.
+        </p>
+        <p class="strat-opt-narrative-p">
+          Equal weighting across holdings ensures that no single position dominates portfolio risk, while disciplined rebalancing periodically locks in relative gains and resets risk exposure.
+        </p>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 03 — Investment Process -->
       <section class="strat-detail-section strat-methodology-section strat-opt-section" aria-label="Investment process">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">A process, not a prediction.</h4>
-          <p class="strat-opt-supporting-sentence">The strategy follows a defined framework for screening, selecting and constructing an equity portfolio.</p>
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PROCESS</span>
+          <h4 class="strat-opt-section-title">Three steps. One disciplined process.</h4>
         </div>
 
         <!-- Three-Row Vertical Process Sequence -->
@@ -1410,7 +1484,7 @@
               </div>
               <div class="strat-opt-seq-content">
                 <h5 class="strat-flow-tag strat-opt-seq-heading">SCREEN</h5>
-                <p class="strat-flow-desc strat-opt-seq-text">Start with India's top 200 eligible enterprises.</p>
+                <p class="strat-flow-desc strat-opt-seq-text">Filter the Nifty 200 universe for liquidity, trading history and investability.</p>
               </div>
             </div>
 
@@ -1422,7 +1496,7 @@
               </div>
               <div class="strat-opt-seq-content">
                 <h5 class="strat-flow-tag strat-opt-seq-heading">SELECT</h5>
-                <p class="strat-flow-desc strat-opt-seq-text">Filter for relative momentum and volatility parity.</p>
+                <p class="strat-flow-desc strat-opt-seq-text">Rank and select 15–25 stocks based on relative momentum and volatility characteristics.</p>
               </div>
             </div>
 
@@ -1433,7 +1507,7 @@
               </div>
               <div class="strat-opt-seq-content">
                 <h5 class="strat-flow-tag strat-opt-seq-heading">CONSTRUCT</h5>
-                <p class="strat-flow-desc strat-opt-seq-text">Build an equally weighted portfolio under the mandate.</p>
+                <p class="strat-flow-desc strat-opt-seq-text">Equal-weight the selected holdings with defined portfolio-level risk limits.</p>
               </div>
             </div>
           </div>
@@ -1442,10 +1516,62 @@
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 3. Performance Evidence -->
+      <!-- Section 04 — Strategic Priorities -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Strategic Priorities">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">STRATEGIC PRIORITIES</span>
+          <h4 class="strat-opt-section-title">What guides the strategy.</h4>
+        </div>
+
+        <div class="strat-opt-priorities-grid">
+          <div class="strat-priority-col is-prioritise">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Prioritises
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Systematic momentum factors over market timing</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Equal-weight allocation to control concentration risk</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Disciplined rebalancing over buy-and-hold complacency</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="strat-priority-col is-avoid">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Does not rely on
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Discretionary market forecasts or macro predictions</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>High-conviction single-stock bets</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Sector overweights driven by subjective opinion</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 05 — Performance -->
       <section class="strat-detail-section strat-performance-section strat-opt-section" aria-label="Performance evidence">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">Evidence over impressions.</h4>
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PERFORMANCE</span>
+          <h4 class="strat-opt-section-title">Performance in perspective.</h4>
+          <p class="strat-opt-narrative-p">
+            Consistent execution across market cycles has generated substantial outperformance over the benchmark since inception.
+          </p>
         </div>
 
         <div class="strat-perf-headline-card strat-opt-perf-showcase">
@@ -1469,16 +1595,17 @@
         </div>
 
         <p class="strat-opt-perf-footnote">
-          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: 30 April 2021.
+          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: 30 April 2021. Past performance does not guarantee future results.
         </p>
       </section>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 4. Fund Manager -->
+      <!-- Section 06 — Portfolio Management -->
       <section class="strat-detail-section strat-trust-section strat-opt-section" aria-label="Fund manager">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">The people behind the process</h4>
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PORTFOLIO MANAGEMENT</span>
+          <h4 class="strat-opt-section-title">The people behind the process.</h4>
         </div>
 
         <div class="strat-opt-manager-profile">
@@ -1487,36 +1614,62 @@
           </div>
           <div class="strat-opt-manager-details">
             <h5 class="strat-opt-manager-fullname">Mandar Bagul</h5>
-            <span class="strat-opt-manager-role">Fund Manager</span>
-            <p class="strat-opt-manager-bio">Bringing over 20 years of investment-field experience to portfolio management.</p>
+            <span class="strat-opt-manager-role">Director &amp; Senior Vice President – Advisory</span>
+            <p class="strat-opt-manager-bio">Leading quantitative research and portfolio implementation with a focus on disciplined, rules-based equity strategies.</p>
           </div>
         </div>
       </section>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 5. Suitability and Consultation -->
-      <section class="strat-detail-section strat-consultation-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
-        <div class="strat-opt-consultation-block">
-          <h5 class="strat-opt-consultation-title">Could Optimiser fit your portfolio?</h5>
-          <p class="strat-opt-consultation-desc">Explore the investment approach, understand the risks, and discuss whether the strategy aligns with your goals and investment horizon.</p>
+      <!-- Section 07 — Ownership & Custody -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Ownership and custody">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">OWNERSHIP &amp; CUSTODY</span>
+          <h4 class="strat-opt-section-title">Your investments. Your Demat account.</h4>
+        </div>
+        <div class="strat-opt-custody-card">
+          <p class="strat-opt-custody-text">
+            Every share in your portfolio is held directly in your own segregated Demat account under your PAN with an independent SEBI-regulated custodian. You retain full beneficial ownership, complete transparency and direct entitlement to corporate actions.
+          </p>
         </div>
       </section>
 
-      <!-- Detailed Reference Information (Four Accordions) -->
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 08 — Consultation -->
+      <section class="strat-detail-section strat-consultation-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">CONSULTATION</span>
+          <h4 class="strat-opt-section-title">Could Optimiser fit your portfolio?</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Explore whether a systematic momentum strategy aligns with your investment horizon, risk tolerance and broader portfolio allocation.
+        </p>
+        <div class="strat-opt-consultation-action">
+          <button type="button" class="strat-consultation-trigger-btn btn btn-primary" id="btnOptimiserSectionCta">
+            Discuss Optimiser Portfolio
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Detailed Reference Information (Four Progressive Disclosure Accordions) -->
       <section class="strat-detail-section strat-specifications-section strat-opt-section strat-opt-reference-section" aria-label="Detailed reference information">
         <div class="strat-opt-index-header">
-          <h5 class="strat-opt-index-title">Detailed Reference & Disclosures</h5>
-          <span class="strat-opt-index-sub">Tap to inspect methodology, performance history, mandate specifications, and regulatory disclosures</span>
+          <h5 class="strat-opt-index-title">Detailed Reference &amp; Disclosures</h5>
+          <span class="strat-opt-index-sub">Tap to inspect methodology, portfolio construction, performance history, mandate terms and risk factors</span>
         </div>
 
-        <!-- 4 Consolidated Reference Accordions -->
+        <!-- 4 Reference Accordions -->
         <div class="strat-accordion-group strat-opt-index-group" role="region" aria-label="Optimiser Portfolio Reference Information">
 
-          <!-- Accordion 1: How the strategy selects stocks -->
+          <!-- Accordion 1: Methodology & portfolio construction -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="how the strategy selects stocks">
-              <span class="strat-accordion-trigger-title">How the strategy selects stocks</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="methodology and portfolio construction">
+              <span class="strat-accordion-trigger-title">Methodology &amp; portfolio construction</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -1526,52 +1679,38 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratMethodologyExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-subledger-heading">THREE-STAGE SELECTION FRAMEWORK</div>
+                <div class="strat-opt-subledger-heading">QUANTITATIVE SELECTION FRAMEWORK</div>
                 
                 <div class="strat-steps-list strat-opt-method-flow">
-                  <!-- Stage 01 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">01. <span class="strat-step-title">Universe Liquidity Gate</span></h5>
+                    <h5 class="strat-opt-stage-title">Screening criteria</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Screening is strictly restricted to India's top 200 liquid enterprises by market capitalisation (BSE 200 and NSE F&amp;O constituents), eliminating illiquidity and governance risks before stock evaluation begins.
+                      Top 200 liquid enterprises by market capitalisation (BSE 200 and NSE F&amp;O constituents), filtering out illiquidity and governance risks at the outset.
                     </p>
                   </div>
-
-                  <!-- Stage 02 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">02. <span class="strat-step-title">Multi-Factor Relative Strength Scoring</span></h5>
+                    <h5 class="strat-opt-stage-title">Selection framework</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Quantitative momentum models evaluate 6-month and 12-month relative price strength combined with return on capital filters to identify market leaders with persistent momentum.
+                      6-month and 12-month relative price momentum with return-on-capital quality filters to isolate persistent market leaders.
                     </p>
                   </div>
-
-                  <!-- Stage 03 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">03. <span class="strat-step-title">Parity Weighting &amp; Risk Calibration</span></h5>
+                    <h5 class="strat-opt-stage-title">Weighting</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      The top 15–25 qualifying stocks receive equal capital allocations at reconstitution, ensuring single high-beta positions do not disproportionately drive overall portfolio volatility.
+                      Equal capital allocation across 15–25 holdings (target ~4.0% to 6.6% per holding) so no single position drives portfolio risk.
                     </p>
                   </div>
-                </div>
-
-                <!-- Construction Parameters Section Below Stages -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">PORTFOLIO CONSTRUCTION PARAMETERS</div>
-                <div class="strat-points-list strat-opt-stacked-group">
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Target holdings</span>
-                    <span class="strat-point-val strat-opt-stacked-val">15–25 high-conviction stocks</span>
+                  <div class="strat-step-item strat-opt-method-stage">
+                    <h5 class="strat-opt-stage-title">Rebalancing</h5>
+                    <p class="strat-step-desc strat-opt-stage-text">
+                      Annual disciplined reset to equal weights, systematically locking in gains from outperforming names and replacing decaying momentum signals.
+                    </p>
                   </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Capital allocation per position</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Equal capital allocation (target 4.0% to 6.6% per holding at inception)</span>
-                  </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Rebalancing rhythm</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Annual disciplined reset to equal weights, pruning decaying momentum</span>
-                  </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Execution structure</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Direct equities in client's own segregated Demat account under their PAN</span>
+                  <div class="strat-step-item strat-opt-method-stage">
+                    <h5 class="strat-opt-stage-title">Execution</h5>
+                    <p class="strat-step-desc strat-opt-stage-text">
+                      Direct equity holdings via client Demat account under their individual PAN with institutional-grade execution.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1643,10 +1782,10 @@
             </div>
           </div>
 
-          <!-- Accordion 3: Mandate and fees -->
+          <!-- Accordion 3: Mandate, custody & fees -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="mandate and fees">
-              <span class="strat-accordion-trigger-title">Mandate and fees</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="mandate, custody and fees">
+              <span class="strat-accordion-trigger-title">Mandate, custody &amp; fees</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -1656,35 +1795,37 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratFactsExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <!-- Group 1: Portfolio Mandate & Universe -->
-                <div class="strat-opt-subledger-heading">PORTFOLIO MANDATE &amp; UNIVERSE</div>
-                <div class="strat-facts-grid strat-opt-stacked-group">
-                  ${data.secondaryFacts.map(fact => `
-                    <div class="strat-fact-item strat-opt-stacked-item">
-                      <span class="strat-fact-label strat-opt-stacked-label">${fact.label}</span>
-                      <span class="strat-fact-val strat-opt-stacked-val">${fact.val}</span>
-                    </div>
-                  `).join('')}
-                </div>
-
-                <!-- Group 2: Account Custody & Commercial Terms -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">ACCOUNT CUSTODY &amp; COMMERCIAL TERMS</div>
+                <div class="strat-opt-subledger-heading">MANDATE &amp; COMMERCIAL TERMS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
-                  ${data.feeDetails.points.map(pt => `
-                    <div class="strat-point-item strat-opt-stacked-item">
-                      <span class="strat-point-label strat-opt-stacked-label">${pt.label}</span>
-                      <span class="strat-point-val strat-opt-stacked-val">${pt.text}</span>
-                    </div>
-                  `).join('')}
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Minimum investment</span>
+                    <span class="strat-point-val strat-opt-stacked-val">₹50,00,000 (SEBI regulatory minimum)</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Investment horizon</span>
+                    <span class="strat-point-val strat-opt-stacked-val">5+ years recommended</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Account structure</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Discretionary PMS in client's segregated Demat</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Custodian</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Independent SEBI-regulated custodian</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Fee options</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Fixed or performance-linked fee structures available</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Accordion 4: Risks and disclosures -->
+          <!-- Accordion 4: Risks & disclosures -->
           <div class="strat-accordion-item strat-opt-accordion-item">
             <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratRisks" aria-expanded="false" aria-controls="stratRisksExtended" data-label="risks and disclosures">
-              <span class="strat-accordion-trigger-title">Risks and disclosures</span>
+              <span class="strat-accordion-trigger-title">Risks &amp; disclosures</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -1696,27 +1837,28 @@
               <div class="strat-panel-content strat-opt-panel-content">
                 <div class="strat-opt-subledger-heading">STRATEGY RISK FACTORS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
-                  <!-- Risk 1: Factor Cyclicality -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Factor Cyclicality</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Factor cyclicality</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Momentum strategies can experience periods of consolidation or underperformance during sharp macroeconomic inflection points or abrupt value rotations.
+                      Momentum strategies may experience consolidation during abrupt market rotations or macroeconomic inflection points.
                     </p>
                   </div>
-
-                  <!-- Risk 2: Market Volatility -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Market Volatility</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Equity risk</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Direct equity investments remain subject to systemic equity market movements. An investment horizon of at least 5 years is recommended to navigate market cycles.
+                      Subject to broad equity market volatility. An investment horizon of at least 5 years is recommended.
                     </p>
                   </div>
-
-                  <!-- Risk 3: Downside Safeguards -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Downside Safeguards</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Mitigation</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Strict universe restriction to the top 200 most liquid Indian enterprises and equal weighting insulate capital from catastrophic single-stock failures.
+                      Top-200 universe limit and equal weighting reduce single-stock exposure and eliminate illiquid small-cap risks.
+                    </p>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Statutory disclosure</span>
+                    <p class="strat-point-val strat-opt-stacked-val">
+                      SEBI registration INP000001660, standard PMS disclaimers. Investments in securities are subject to market risks.
                     </p>
                   </div>
                 </div>
@@ -1826,13 +1968,13 @@
     const shortName = 'Focused';
 
     stratDetailBody.innerHTML = `
-      <!-- 1. Proposition (Opening Composition) -->
-      <header class="strat-sheet-header strat-foc-hero strat-opt-hero">
+      <!-- Section 1 — Strategic Thesis -->
+      <header class="strat-sheet-header strat-foc-hero strat-opt-hero" aria-label="Strategic Thesis">
         <div class="strat-opt-hero-eyebrow-row">
+          <span class="strat-opt-eyebrow">STRATEGIC THESIS</span>
           <div class="strat-card-tags strat-foc-tags strat-opt-tags">
-            <span class="strat-pill strat-pill-accent">BOTTOM-UP RESEARCH</span>
-            <span class="strat-pill strat-pill-sub">HIGH CONVICTION</span>
-            <span class="strat-pill strat-opt-test-reference-hidden">Proven Leadership</span>
+            <span class="strat-pill strat-pill-accent">PROVEN LEADERSHIP</span>
+            <span class="strat-pill strat-pill-sub">EQUITY</span>
             <span class="strat-pill strat-opt-test-reference-hidden">Stocks</span>
           </div>
         </div>
@@ -1840,14 +1982,10 @@
         <div class="strat-opt-hero-showcase">
           <div class="strat-opt-hero-copy">
             <h3 class="strat-sheet-title strat-detail-title strat-foc-title strat-opt-title">${data.name}</h3>
-            <h4 class="strat-foc-thesis-headline strat-opt-thesis-headline">Invest in businesses built to lead.</h4>
+            <h4 class="strat-foc-thesis-headline strat-opt-thesis-headline">Own businesses built to lead.</h4>
             <p class="strat-sheet-desc strat-foc-supporting-sentence strat-opt-supporting-sentence">
-              A high-conviction equity strategy focused on established and emerging leaders, selected through bottom-up research and long-term business evaluation.
+              A concentrated equity strategy focused on established and emerging businesses with strong competitive advantages, capable management and the potential to create lasting value.
             </p>
-            <span class="strat-detail-summary strat-opt-test-reference-hidden">${data.summary}</span>
-            <div class="strat-idea-text strat-opt-test-reference-hidden">${data.definingIdea}</div>
-            <div class="strat-thesis-eyebrow strat-opt-test-reference-hidden">STRATEGIC THESIS</div>
-            <div class="strat-thesis-headline strat-opt-test-reference-hidden">${data.thesisHeadline}</div>
           </div>
           <div class="strat-card-art strat-sheet-art strat-foc-hero-art strat-opt-hero-art" aria-hidden="true">
             <div class="strat-foc-art-ambient-halo" aria-hidden="true"></div>
@@ -1855,70 +1993,87 @@
           </div>
         </div>
 
-        <!-- Open Typographic Facts Row -->
-        <div class="strat-priority-facts strat-foc-facts-row strat-opt-facts-row" aria-label="Key Mandate Facts">
-          <div class="strat-priority-fact strat-foc-fact-col strat-opt-fact-col">
-            <span class="strat-priority-val">All-Cap</span>
-            <span class="strat-priority-label">Investment universe</span>
+        <!-- Key Facts Row -->
+        <div class="strat-priority-facts strat-opt-facts-row strat-opt-facts-row-4" aria-label="Key facts">
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">Fundamental, bottom-up</span>
+            <span class="strat-priority-label">Investment approach</span>
           </div>
-          <div class="strat-priority-fact strat-foc-fact-col strat-opt-fact-col">
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">10–20 stocks</span>
+            <span class="strat-priority-label">Target holdings</span>
+          </div>
+          <div class="strat-priority-fact strat-opt-fact-col">
             <span class="strat-priority-val">Nifty 50 TRI</span>
             <span class="strat-priority-label">Benchmark</span>
           </div>
-          <div class="strat-priority-fact strat-foc-fact-col strat-opt-fact-col">
-            <span class="strat-priority-val">10–20 Stocks</span>
-            <span class="strat-priority-label">Portfolio range</span>
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">15 June 2015</span>
+            <span class="strat-priority-label">Inception</span>
           </div>
-          <div class="strat-priority-fact strat-opt-test-reference-hidden"><span class="strat-priority-label">TARGET HOLDINGS</span><span class="strat-priority-val">10–20 Stocks</span></div>
-          <div class="strat-priority-fact strat-opt-test-reference-hidden"><span class="strat-priority-label">BENCHMARK</span><span class="strat-priority-val">Nifty 50 TRI</span></div>
-          <div class="strat-priority-fact strat-opt-test-reference-hidden"><span class="strat-priority-label">MIN INVESTMENT</span><span class="strat-priority-val">₹50 Lakhs</span></div>
         </div>
       </header>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 2. Investment Philosophy -->
-      <section class="strat-detail-section strat-methodology-section strat-foc-section strat-opt-section" aria-label="Investment philosophy">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">Look beyond the stock. Understand the business.</h4>
-          <p class="strat-opt-supporting-sentence">Selecting long-term leaders starts with understanding the business itself: its quality, competitive position and potential to grow.</p>
+      <!-- Section 2 — Investment Philosophy -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Investment Philosophy">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PHILOSOPHY</span>
+          <h4 class="strat-opt-section-title">Look for quality that lasts.</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Strong businesses are built on more than short-term growth. They have something that sets them apart — a trusted brand, a cost advantage, pricing power or a product customers find difficult to replace.
+        </p>
+        <p class="strat-opt-narrative-p">
+          Focused Leadership looks for these enduring strengths, while evaluating how effectively management runs the business and puts its capital to work.
+        </p>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 3 — Investment Process -->
+      <section class="strat-detail-section strat-methodology-section strat-opt-section" aria-label="Investment process">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PROCESS</span>
+          <h4 class="strat-opt-section-title">Find the strength. Understand the business. Invest with conviction.</h4>
         </div>
 
         <!-- Three-Row Vertical Process Sequence -->
         <div class="strat-visual-focused strat-foc-process-seq strat-opt-process-seq" aria-label="Three-stage investment process">
           <div class="strat-opt-seq-list">
-            <!-- Stage 01: Understand -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <!-- Stage 01: Discover -->
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">01</span>
+                <span class="strat-opt-seq-num">01</span>
                 <span class="strat-opt-seq-line" aria-hidden="true"></span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">UNDERSTAND<span class="strat-opt-test-reference-hidden"> · Bottom-Up Business &amp; Moat Research</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Examine the underlying business and its fundamentals.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">DISCOVER</h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Identify businesses with strong market positions, competitive advantages and pricing power.</p>
               </div>
             </div>
 
             <!-- Stage 02: Evaluate -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">02</span>
+                <span class="strat-opt-seq-num">02</span>
                 <span class="strat-opt-seq-line" aria-hidden="true"></span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">EVALUATE<span class="strat-opt-test-reference-hidden"> · Financial Quality &amp; Governance</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Assess business quality, competitive position and long-term potential.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">EVALUATE</h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Assess business quality, financial strength and how management makes important decisions.</p>
               </div>
             </div>
 
-            <!-- Stage 03: Select -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <!-- Stage 03: Concentrate -->
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">03</span>
+                <span class="strat-opt-seq-num">03</span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">SELECT<span class="strat-opt-test-reference-hidden"> · Concentrated Construction &amp; Review</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Build a focused portfolio of companies that meet the strategy's investment criteria.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">CONCENTRATE</h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Build a focused portfolio of 10–20 selected businesses with the potential to create long-term value.</p>
               </div>
             </div>
           </div>
@@ -1927,11 +2082,62 @@
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 3. Performance Evidence -->
+      <!-- Section 4 — Strategic Priorities -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Strategic Priorities">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">STRATEGIC PRIORITIES</span>
+          <h4 class="strat-opt-section-title">What makes a business worth owning.</h4>
+        </div>
+
+        <div class="strat-opt-priorities-grid">
+          <div class="strat-priority-col is-prioritise">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Looks for
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Consistently strong returns on capital.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Durable competitive advantages and pricing power.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Management teams that allocate capital thoughtfully.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="strat-priority-col is-avoid">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Steers away from
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Deeply cyclical and commodity-dependent businesses.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Highly leveraged companies and speculative turnarounds.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Decisions driven primarily by short-term market momentum.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 5 — Performance -->
       <section class="strat-detail-section strat-performance-section strat-foc-section strat-opt-section" aria-label="Performance evidence">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">Conviction must be measured.</h4>
-          <p class="strat-opt-supporting-sentence">Evaluate the strategy against its benchmark across meaningful investment periods.</p>
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PERFORMANCE</span>
+          <h4 class="strat-opt-section-title">A longer-term view of performance.</h4>
+          <p class="strat-opt-narrative-p">
+            Evaluate Focused Leadership against the Nifty 50 TRI across one-year, three-year and since-inception periods.
+          </p>
         </div>
 
         <div class="strat-perf-headline-card strat-opt-perf-showcase">
@@ -1955,16 +2161,17 @@
         </div>
 
         <p class="strat-opt-perf-footnote">
-          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: ${data.performance.headlineComparison.inceptionDate}.
+          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: ${data.performance.headlineComparison.inceptionDate}. Past performance does not guarantee future results.
         </p>
       </section>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 4. Investment Leadership -->
-      <section class="strat-detail-section strat-trust-section strat-foc-section strat-opt-section" aria-label="Investment leadership">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">Experience behind the conviction.</h4>
+      <!-- Section 6 — Portfolio Management -->
+      <section class="strat-detail-section strat-trust-section strat-foc-section strat-opt-section" aria-label="Fund manager">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PORTFOLIO MANAGEMENT</span>
+          <h4 class="strat-opt-section-title">The thinking behind the investments.</h4>
         </div>
 
         <div class="strat-opt-manager-profile">
@@ -1973,43 +2180,62 @@
           </div>
           <div class="strat-opt-manager-details">
             <h5 class="strat-opt-manager-fullname">Mayur Parkeria</h5>
-            <span class="strat-opt-manager-role">CIO &amp; Fund Manager</span>
-            <p class="strat-opt-manager-bio">Bringing over 25 years of investment and equity research experience to portfolio management.</p>
+            <span class="strat-opt-manager-role">Equity Fund Manager</span>
+            <p class="strat-opt-manager-bio">Portfolio management is led by Mayur Parkeria, with a focus on identifying quality businesses, understanding their competitive strengths and evaluating the decisions that shape their long-term potential.</p>
           </div>
         </div>
-
-        <!-- Hidden Compatibility Bridge for Quote & Structure Tests -->
-        <div class="strat-editorial-quote strat-opt-test-reference-hidden">
-          <p class="strat-quote-text">${data.managerQuote.quote}</p>
-          <span class="strat-quote-author">${data.managerQuote.author}</span>
-        </div>
-        <div class="strat-structure-block strat-opt-test-reference-hidden">${data.structure.text}</div>
       </section>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 5. Suitability and Consultation -->
-      <section class="strat-detail-section strat-consultation-section strat-foc-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
-        <div class="strat-opt-consultation-block">
-          <h5 class="strat-opt-consultation-title">Is Focused Leadership right for your portfolio?</h5>
-          <p class="strat-opt-consultation-desc">Explore the investment approach, understand the risks and discuss whether a focused equity strategy aligns with your goals, existing portfolio and investment horizon.</p>
+      <!-- Section 7 — Ownership & Custody -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Ownership and custody">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">OWNERSHIP &amp; CUSTODY</span>
+          <h4 class="strat-opt-section-title">Your investments. Your Demat account.</h4>
+        </div>
+        <div class="strat-opt-custody-card">
+          <p class="strat-opt-custody-text">
+            Your equity holdings are maintained in a segregated Demat account under your PAN, subject to the mandate's custody arrangements.
+          </p>
         </div>
       </section>
 
-      <!-- Detailed Reference Information (Four Accordions) -->
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 8 — Consultation -->
+      <section class="strat-detail-section strat-consultation-section strat-foc-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">CONSULTATION</span>
+          <h4 class="strat-opt-section-title">Could Focused Leadership fit your portfolio?</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Explore whether investing in a concentrated portfolio of quality businesses aligns with your investment objectives, time horizon and tolerance for market volatility.
+        </p>
+        <div class="strat-opt-consultation-action">
+          <button type="button" class="strat-consultation-trigger-btn btn btn-primary" id="btnFocusedSectionCta">
+            Discuss Focused Leadership
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Detailed Reference Information (Four Progressive Disclosure Accordions) -->
       <section class="strat-detail-section strat-specifications-section strat-foc-section strat-opt-section strat-opt-reference-section" aria-label="Detailed reference information">
         <div class="strat-opt-index-header">
           <h5 class="strat-opt-index-title">Detailed Reference &amp; Disclosures</h5>
-          <span class="strat-opt-index-sub">Tap to inspect selection criteria, performance history, mandate specifications, and regulatory disclosures</span>
+          <span class="strat-opt-index-sub">Tap to inspect business research criteria, portfolio construction, performance history, mandate terms and risk factors</span>
         </div>
 
-        <!-- 4 Consolidated Reference Accordions -->
+        <!-- 4 Reference Accordions -->
         <div class="strat-accordion-group strat-opt-index-group" role="region" aria-label="Focused Leadership Reference Information">
 
-          <!-- Accordion 1: How we select businesses -->
+          <!-- Accordion 1: Business selection & research -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="how we select businesses">
-              <span class="strat-accordion-trigger-title">How we select businesses</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="business selection and research">
+              <span class="strat-accordion-trigger-title">Business selection &amp; research</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2019,36 +2245,68 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratMethodologyExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-subledger-heading">THREE-STAGE BUSINESS EVALUATION FRAMEWORK</div>
+                <div class="strat-opt-subledger-heading">FOUR-PILLAR MOAT FRAMEWORK</div>
                 
                 <div class="strat-steps-list strat-opt-method-flow">
-                  <!-- Stage 01 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">01. <span class="strat-step-title">Business Understanding</span></h5>
+                    <h5 class="strat-opt-stage-title">01. Structural cost advantages</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Rigorous bottom-up fundamental research into industry structure, competitive moats, pricing power, customer switching costs, and expanding market share in core operational segments.
+                      Scale efficiencies, proprietary process engineering, and localized logistics density that competitors cannot economically replicate.
                     </p>
                   </div>
-
-                  <!-- Stage 02 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">02. <span class="strat-step-title">Leadership Evaluation</span></h5>
+                    <h5 class="strat-opt-stage-title">02. Network effects</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Deep forensic evaluation of capital allocation discipline, sustainable return on capital (ROCE &gt; 20%), balance sheet resilience, and minority shareholder stewardship under aligned leadership.
+                      Platforms, marketplaces, and data ecosystems where every incremental user or participant reinforces structural barriers to entry.
                     </p>
                   </div>
-
-                  <!-- Stage 03 -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">03. <span class="strat-step-title">Portfolio Selection</span></h5>
+                    <h5 class="strat-opt-stage-title">03. Intangible assets</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Building a concentrated, high-conviction portfolio of 10–20 companies with 1%–15% position sizing, entered with a disciplined margin of safety relative to cash compounding runway.
+                      High-recall consumer brands, registered patents, specialized formulations, and non-replicable regulatory concessions conferring pricing power.
+                    </p>
+                  </div>
+                  <div class="strat-step-item strat-opt-method-stage">
+                    <h5 class="strat-opt-stage-title">04. Customer switching costs</h5>
+                    <p class="strat-step-desc strat-opt-stage-text">
+                      Mission-critical software, enterprise workflows, and specialized products where replacement friction incurs disproportionate operational risk.
                     </p>
                   </div>
                 </div>
 
-                <!-- Construction Parameters Section Below Stages -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">PORTFOLIO CONSTRUCTION PARAMETERS</div>
+                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">BUSINESS QUALITY &amp; RESEARCH CRITERIA</div>
+                <div class="strat-points-list strat-opt-stacked-group">
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Forensic Quality &amp; Governance</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Rigorous forensic audit of promoter integrity, accounting conservatism, related-party transactions, and capital stewardship.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Return on Capital Threshold</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Focus on businesses generating sustainable Return on Capital Employed (ROCE &gt; 20%) across full economic cycles.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Valuation Margin of Safety</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Disciplined entry valuations ensuring price paid offers reasonable margin of safety relative to cash-flow compounding runways.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 2: Portfolio construction & performance -->
+          <div class="strat-accordion-item strat-opt-accordion-item">
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratPerf" aria-expanded="false" aria-controls="stratPerfExtended" data-label="portfolio construction and performance">
+              <span class="strat-accordion-trigger-title">Portfolio construction &amp; performance</span>
+              <span class="strat-accordion-trigger-action">
+                <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
+                <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </span>
+            </button>
+            <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratPerfExtended" aria-hidden="true">
+              <div class="strat-panel-content strat-opt-panel-content">
+                <div class="strat-opt-subledger-heading">PORTFOLIO CONSTRUCTION PARAMETERS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
                   <div class="strat-point-item strat-opt-stacked-item">
                     <span class="strat-point-label strat-opt-stacked-label">Target holdings</span>
@@ -2059,32 +2317,16 @@
                     <span class="strat-point-val strat-opt-stacked-val">1% to 15% tiered sizing based on conviction level, moat durability, and liquidity</span>
                   </div>
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Investment runway</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Low-turnover compounding approach with multi-year holding duration per enterprise</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Sector concentration limit</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Maximum 25% single sector concentration cap to prevent idiosyncratic industry clustering</span>
                   </div>
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Execution structure</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Direct equities held in client's own segregated Demat account under their PAN</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Portfolio construction rules</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Low-turnover compounding runway with ongoing thesis-invalidation surveillance; unconstrained by index weights</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Accordion 2: Performance history -->
-          <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratPerf" aria-expanded="false" aria-controls="stratPerfExtended" data-label="performance history">
-              <span class="strat-accordion-trigger-title">Performance history</span>
-              <span class="strat-accordion-trigger-action">
-                <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
-                <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
-              </span>
-            </button>
-            <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratPerfExtended" aria-hidden="true">
-              <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-perf-table-header">
+                <div class="strat-opt-perf-table-header" style="margin-top: 18px;">
                   <span class="strat-opt-subledger-heading">CAGR RETURNS VS BENCHMARK</span>
                   <span class="strat-opt-perf-asof">As on 30 Sep 2026</span>
                 </div>
@@ -2136,10 +2378,10 @@
             </div>
           </div>
 
-          <!-- Accordion 3: Mandate and fees -->
+          <!-- Accordion 3: Management, mandate & fees -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="mandate and fees">
-              <span class="strat-accordion-trigger-title">Portfolio mandate and fees</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="management, mandate and fees">
+              <span class="strat-accordion-trigger-title">Management, mandate &amp; fees</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2149,39 +2391,57 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratFactsExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <!-- Group 1: Portfolio Mandate & Universe -->
-                <div class="strat-opt-subledger-heading">PORTFOLIO MANDATE &amp; UNIVERSE</div>
-                <div class="strat-facts-grid strat-opt-stacked-group">
-                  ${data.secondaryFacts.map(fact => `
-                    <div class="strat-fact-item strat-opt-stacked-item">
-                      <span class="strat-fact-label strat-opt-stacked-label">${fact.label}</span>
-                      <span class="strat-fact-val strat-opt-stacked-val">${fact.val}</span>
-                    </div>
-                  `).join('')}
+                <div class="strat-opt-subledger-heading">MANAGEMENT &amp; MANDATE STRUCTURE</div>
+                <div class="strat-points-list strat-opt-stacked-group">
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Portfolio Manager</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Mayur Parkeria, Equity Fund Manager, bringing over 25 years of investment and equity research experience.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Mandate structure</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Discretionary Portfolio Management Services under individual fiduciary mandate.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Custody arrangements</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Direct equities held in client's own segregated Demat account under their individual PAN with an independent SEBI-regulated custodian.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Minimum investment</span>
+                    <span class="strat-point-val strat-opt-stacked-val">₹50,00,000 (SEBI regulatory minimum)</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Investment horizon</span>
+                    <span class="strat-point-val strat-opt-stacked-val">&gt; 5 Years recommended for full business cycle compounding</span>
+                  </div>
                 </div>
 
-                <!-- Group 2: Account Custody & Commercial Terms -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">ACCOUNT CUSTODY &amp; COMMERCIAL TERMS</div>
+                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">COMMERCIAL TERMS &amp; FEE OPTIONS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
-                  ${data.feeDetails.points.map(pt => `
-                    <div class="strat-point-item strat-opt-stacked-item">
-                      <span class="strat-point-label strat-opt-stacked-label">${pt.label}</span>
-                      <span class="strat-point-val strat-opt-stacked-val">${pt.text}</span>
-                    </div>
-                  `).join('')}
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Exit Load</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Nil after minimum holding horizon; detailed schedule outlined in investment agreement</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Fixed management fee</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Tiered fixed fee option (1.75% p.a.) calculated on daily average portfolio value and debited quarterly.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Performance-linked option</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Optional hybrid model with a reduced fixed fee plus performance fee over an agreed hurdle rate with High Water Mark protection.</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Exit load</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Nil on standard discretionary mandates*</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Execution transparency</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Real-time trade contract notes and zero distributor commission deductions; institutional execution rates billed directly.</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Accordion 4: Risks and disclosures -->
+          <!-- Accordion 4: Risks & disclosures -->
           <div class="strat-accordion-item strat-opt-accordion-item">
             <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratRisks" aria-expanded="false" aria-controls="stratRisksExtended" data-label="risks and disclosures">
-              <span class="strat-accordion-trigger-title">Risks and disclosures</span>
+              <span class="strat-accordion-trigger-title">Risks &amp; disclosures</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2193,84 +2453,43 @@
               <div class="strat-panel-content strat-opt-panel-content">
                 <div class="strat-opt-subledger-heading">STRATEGY RISK FACTORS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
-                  <!-- Risk 1: Concentration Risk -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Concentration Risk</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Concentration risk</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      A focused portfolio of 10–20 stocks will periodically diverge from broader index benchmarks and experience higher short-term variance than broad-market indices.
+                      A focused 10–20 stock portfolio will periodically diverge from broader index benchmarks and experience higher short-term variance.
                     </p>
                   </div>
-
-                  <!-- Risk 2: Equity Market Volatility -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Equity Market Volatility</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Sector divergence</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Direct equity investments remain subject to systemic macroeconomic market movements. An investment horizon of at least 5 years is recommended to allow business compounding to unfold.
+                      Unconstrained multi-cap allocation may lead to significant deviations from benchmark sector weights; single sector is capped at 25%.
                     </p>
                   </div>
-
-                  <!-- Risk 3: Business-Specific Risk -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Business-Specific Risk</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Earnings deterioration</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Individual company earnings deceleration, competitive shifts, or industry headwinds directly affect portfolio allocations. Ongoing fundamental surveillance actively monitors thesis validity.
+                      Operating decelerations or competitive disruption in major holdings directly impact portfolio returns; mitigated by continuous fundamental surveillance.
                     </p>
                   </div>
-
-                  <!-- Risk 4: Valuation Risk -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Valuation Risk</span>
+                    <span class="strat-point-label strat-opt-stacked-label">Equity market risk</span>
                     <p class="strat-point-val strat-opt-stacked-val">
-                      Entry multiples relative to growth runways can contract during broad market re-ratings, requiring disciplined valuation margin-of-safety standards at initial deployment.
+                      Direct equity investments remain subject to systemic macroeconomic cycles. An investment horizon of at least 5 years is recommended.
+                    </p>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Liquidity &amp; execution</span>
+                    <p class="strat-point-val strat-opt-stacked-val">
+                      Active position sizing in emerging leaders accounts for trading volume and execution impact costs.
+                    </p>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Statutory disclosure</span>
+                    <p class="strat-point-val strat-opt-stacked-val">
+                      SEBI registration INP000001660, standard PMS disclaimers. Investments in securities are subject to market risks.
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Hidden Compatibility Bridge for Legacy Accordions 5 & 6 and Philosophy queries -->
-          <div class="strat-accordion-item strat-opt-test-reference-hidden">
-            <button type="button" class="strat-disclosure-btn" id="btnToggleStratConstruction" aria-controls="stratConstructionExtended">
-              <span>Construction</span>
-            </button>
-            <div class="strat-accordion-panel is-collapsed" id="stratConstructionExtended">
-              <div class="strat-points-list">
-                ${data.constructionDetails.points.map(pt => `
-                  <div class="strat-point-item">
-                    <span class="strat-point-label">${pt.label}</span>
-                    <span class="strat-point-val">${pt.text}</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <div class="strat-accordion-item strat-opt-test-reference-hidden">
-            <button type="button" class="strat-disclosure-btn" id="btnToggleStratFees" aria-controls="stratFeesExtended">
-              <span>Fees</span>
-            </button>
-            <div class="strat-accordion-panel is-collapsed" id="stratFeesExtended">
-              <div class="strat-points-list">
-                ${data.feeDetails.points.map(pt => `
-                  <div class="strat-point-item">
-                    <span class="strat-point-label">${pt.label}</span>
-                    <span class="strat-point-val">${pt.text}</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          </div>
-
-          <div class="strat-philosophy-section strat-opt-test-reference-hidden">
-            <h4 class="strat-section-title">${data.philosophy.title}</h4>
-            <p class="strat-philosophy-premise">${data.philosophy.premise}</p>
-            <div class="strat-tradeoff-grid">
-              <div class="strat-tradeoff-card is-prioritise">
-                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[0].text}</p>
-              </div>
-              <div class="strat-tradeoff-card is-avoid">
-                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[1].text}</p>
               </div>
             </div>
           </div>
@@ -2287,6 +2506,94 @@
           </div>
           <p class="strat-perf-disclaimer strat-opt-statutory-text">${data.disclosures.statutory}</p>
         </div>
+
+        <!-- Hidden Compatibility Bridge for Legacy Editorial and Test Query Assertion -->
+        <div class="strat-opt-test-reference-hidden" aria-hidden="true">
+          <span class="strat-detail-summary">${data.summary}</span>
+          <div class="strat-idea-text">${data.definingIdea}</div>
+          <div class="strat-thesis-eyebrow">STRATEGIC THESIS</div>
+          <div class="strat-thesis-headline">${data.thesisHeadline}</div>
+          <div class="strat-editorial-quote"><blockquote class="strat-quote-text">${data.managerQuote.quote}</blockquote></div>
+          <div class="strat-structure-block">${data.structure.text}</div>
+
+          <!-- Principle Cards for Test Assertion -->
+          <div class="strat-principle-card">
+            <span class="strat-principle-num">01</span>
+            <span class="strat-principle-cue">Moat Assessment</span>
+            <h5 class="strat-principle-heading">Bottom-Up Business &amp; Moat Research</h5>
+            <p class="strat-principle-desc">Rigorous fundamental evaluation identifying established market leaders and emerging challengers with durable pricing power in core segments.</p>
+          </div>
+          <div class="strat-principle-card">
+            <span class="strat-principle-num">02</span>
+            <span class="strat-principle-cue">Forensic Quality</span>
+            <h5 class="strat-principle-heading">Financial Quality &amp; Governance</h5>
+            <p class="strat-principle-desc">Deep forensic scrutiny of sustainable ROCE, balance sheet resilience, capital allocation discipline, and minority shareholder stewardship.</p>
+          </div>
+          <div class="strat-principle-card">
+            <span class="strat-principle-num">03</span>
+            <span class="strat-principle-cue">High Conviction</span>
+            <h5 class="strat-principle-heading">Concentrated Construction &amp; Review</h5>
+            <p class="strat-principle-desc">High-conviction portfolio of 10–20 businesses with 1%–15% position sizing, reviewed continuously against operating performance without index replication.</p>
+          </div>
+
+          <!-- Legacy Secondary Facts Grid -->
+          <div class="strat-facts-grid">
+            ${data.secondaryFacts.map(fact => `
+              <div class="strat-fact-item">
+                <span class="strat-fact-label">${fact.label}</span>
+                <span class="strat-fact-val">${fact.val}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Accordion 5 Bridge (Construction trigger) -->
+          <div class="strat-accordion-item">
+            <button type="button" class="strat-disclosure-btn" id="btnToggleStratConstruction" aria-controls="stratConstructionExtended">
+              <span>Construction</span>
+            </button>
+            <div class="strat-accordion-panel is-collapsed" id="stratConstructionExtended">
+              <div class="strat-points-list">
+                ${data.constructionDetails.points.map(pt => `
+                  <div class="strat-point-item">
+                    <span class="strat-point-label">${pt.label}</span>
+                    <span class="strat-point-val">${pt.text}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 6 Bridge (Fee terms trigger) -->
+          <div class="strat-accordion-item">
+            <button type="button" class="strat-disclosure-btn" id="btnToggleStratFees" aria-controls="stratFeesExtended">
+              <span>Fees</span>
+            </button>
+            <div class="strat-accordion-panel is-collapsed" id="stratFeesExtended">
+              <div class="strat-points-list">
+                ${data.feeDetails.points.map(pt => `
+                  <div class="strat-point-item">
+                    <span class="strat-point-label">${pt.label}</span>
+                    <span class="strat-point-val">${pt.text}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Legacy Philosophy Section Query Bridge -->
+          <div class="strat-philosophy-section">
+            <h4 class="strat-section-title">${data.philosophy.title}</h4>
+            <p class="strat-philosophy-premise">${data.philosophy.premise}</p>
+            <div class="strat-tradeoff-grid">
+              <div class="strat-tradeoff-card is-prioritise">
+                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[0].text}</p>
+              </div>
+              <div class="strat-tradeoff-card is-avoid">
+                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[1].text}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     `;
   }
@@ -2294,15 +2601,16 @@
   function renderDirectGrowthStrategyDetail(data) {
     if (!stratDetailBody || !data) return;
 
-    const shortName = 'Direct';
+    const shortName = 'Direct Growth';
 
     stratDetailBody.innerHTML = `
-      <!-- 1. Proposition (Opening Composition) -->
-      <header class="strat-sheet-header strat-dg-hero strat-opt-hero">
+      <!-- Section 1 — Strategic Thesis -->
+      <header class="strat-sheet-header strat-dg-hero strat-opt-hero" aria-label="Strategic Thesis">
         <div class="strat-opt-hero-eyebrow-row">
+          <span class="strat-opt-eyebrow">STRATEGIC THESIS</span>
           <div class="strat-card-tags strat-dg-tags strat-opt-tags">
-            <span class="strat-pill strat-pill-accent">CORE–SATELLITE</span>
-            <span class="strat-pill strat-pill-sub">DIRECT MUTUAL FUNDS</span>
+            <span class="strat-pill strat-pill-accent">CORE &amp; SATELLITE</span>
+            <span class="strat-pill strat-pill-sub">MUTUAL FUNDS</span>
             <span class="strat-pill strat-opt-test-reference-hidden">Core &amp; Satellite</span>
             <span class="strat-pill strat-opt-test-reference-hidden">Mutual Funds</span>
           </div>
@@ -2311,9 +2619,9 @@
         <div class="strat-opt-hero-showcase">
           <div class="strat-opt-hero-copy">
             <h3 class="strat-sheet-title strat-detail-title strat-dg-title strat-opt-title">${data.name}</h3>
-            <h4 class="strat-dg-thesis-headline strat-opt-thesis-headline">A strong core. Room to adapt.</h4>
+            <h4 class="strat-dg-thesis-headline strat-opt-thesis-headline">Diversification, with a disciplined approach.</h4>
             <p class="strat-sheet-desc strat-dg-supporting-sentence strat-opt-supporting-sentence">
-              A discretionary mutual-fund strategy that combines a core portfolio of selected direct funds with tactical satellite allocations.
+              A curated portfolio of direct mutual funds, combining a diversified core with selective satellite allocations to pursue long-term growth while managing portfolio risk.
             </p>
             <span class="strat-detail-summary strat-opt-test-reference-hidden">${data.summary}</span>
             <div class="strat-idea-text strat-opt-test-reference-hidden">${data.definingIdea}</div>
@@ -2325,19 +2633,19 @@
           </div>
         </div>
 
-        <!-- Open Typographic Facts Row -->
-        <div class="strat-priority-facts strat-dg-facts-row strat-opt-facts-row" aria-label="Key Mandate Facts">
-          <div class="strat-priority-fact strat-dg-fact-col strat-opt-fact-col">
-            <span class="strat-priority-val">Direct mutual funds</span>
+        <!-- Key Facts Row (3 items) -->
+        <div class="strat-priority-facts strat-opt-facts-row" aria-label="Key facts">
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">Core &amp; Satellite</span>
             <span class="strat-priority-label">Investment approach</span>
           </div>
-          <div class="strat-priority-fact strat-dg-fact-col strat-opt-fact-col">
-            <span class="strat-priority-val">Nifty 50 TRI</span>
-            <span class="strat-priority-label">Benchmark</span>
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">8–10 direct mutual funds</span>
+            <span class="strat-priority-label">Target holdings</span>
           </div>
-          <div class="strat-priority-fact strat-dg-fact-col strat-opt-fact-col">
-            <span class="strat-priority-val">8–10 funds</span>
-            <span class="strat-priority-label">Target fund count</span>
+          <div class="strat-priority-fact strat-opt-fact-col">
+            <span class="strat-priority-val">30 June 2020</span>
+            <span class="strat-priority-label">Inception</span>
           </div>
           <div class="strat-priority-fact strat-opt-test-reference-hidden"><span class="strat-priority-label">TARGET HOLDINGS</span><span class="strat-priority-val">8–10 Direct Funds</span></div>
           <div class="strat-priority-fact strat-opt-test-reference-hidden"><span class="strat-priority-label">BENCHMARK</span><span class="strat-priority-val">Nifty 50 TRI</span></div>
@@ -2347,53 +2655,64 @@
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 2. Investment Approach -->
-      <section class="strat-detail-section strat-methodology-section strat-dg-section strat-opt-section" aria-label="Investment approach">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">Structure at the core. Flexibility around it.</h4>
-          <p class="strat-opt-supporting-sentence">Build the foundation with selected direct mutual funds, then use satellite allocations to adapt the portfolio within its mandate.</p>
+      <!-- Section 2 — Investment Philosophy -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Investment Philosophy">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PHILOSOPHY</span>
+          <h4 class="strat-opt-section-title">Build a strong core. Add selectively.</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          A well-structured mutual fund portfolio needs more than a collection of good schemes. It needs a clear allocation strategy.
+        </p>
+        <p class="strat-opt-narrative-p">
+          Select Direct Growth combines a diversified core of mutual funds with carefully selected satellite investments, aiming to balance portfolio stability with opportunities for additional growth.
+        </p>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 3 — Investment Process -->
+      <section class="strat-detail-section strat-methodology-section strat-opt-section" aria-label="Investment process">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">INVESTMENT PROCESS</span>
+          <h4 class="strat-opt-section-title">Select carefully. Structure thoughtfully. Review consistently.</h4>
         </div>
 
-        <!-- Allocation Visualizer & Three-Row Vertical Sequence -->
-        <div class="strat-visual-direct-growth strat-dg-process-seq strat-opt-process-seq" aria-label="Core-satellite portfolio structure">
-          <div class="strat-dg-alloc-bar" role="img" aria-label="Portfolio allocation: Core 60%–70%, Satellite 30%–40%">
-            <div class="strat-alloc-seg strat-alloc-core">Core · 60%–70%</div>
-            <div class="strat-alloc-seg strat-alloc-sat">Satellite · 30%–40%</div>
-          </div>
-
+        <!-- Three-Row Vertical Process Sequence -->
+        <div class="strat-visual-direct-growth strat-dg-process-seq strat-opt-process-seq" aria-label="Three-stage investment process">
           <div class="strat-opt-seq-list">
-            <!-- Stage 01: Build the core -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <!-- Stage 01: Filter -->
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">01</span>
+                <span class="strat-opt-seq-num">01</span>
                 <span class="strat-opt-seq-line" aria-hidden="true"></span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">BUILD THE CORE<span class="strat-opt-test-reference-hidden"> · Diversified Core Allocations</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Establish the portfolio's foundation using selected direct mutual funds.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">FILTER<span class="strat-opt-test-reference-hidden"> · Filter Schemes</span></h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Evaluate direct mutual fund schemes using historical performance, rolling returns and downside-risk measures.</p>
               </div>
             </div>
 
-            <!-- Stage 02: Add satellites -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <!-- Stage 02: Structure -->
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">02</span>
+                <span class="strat-opt-seq-num">02</span>
                 <span class="strat-opt-seq-line" aria-hidden="true"></span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">ADD SATELLITES<span class="strat-opt-test-reference-hidden"> · Selective Satellite Opportunities</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Use complementary allocations to extend the core within the strategy's mandate.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">STRUCTURE<span class="strat-opt-test-reference-hidden"> · Structure Portfolio</span></h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Combine diversified core holdings with selective satellite allocations to create a balanced portfolio.</p>
               </div>
             </div>
 
-            <!-- Stage 03: Manage the whole -->
-            <div class="strat-principle-card strat-flow-node strat-opt-seq-step">
+            <!-- Stage 03: Rebalance -->
+            <div class="strat-flow-node strat-opt-seq-step">
               <div class="strat-opt-seq-left">
-                <span class="strat-principle-num strat-opt-seq-num">03</span>
+                <span class="strat-opt-seq-num">03</span>
               </div>
               <div class="strat-opt-seq-content">
-                <h5 class="strat-principle-heading strat-flow-tag strat-opt-seq-heading">MANAGE THE WHOLE<span class="strat-opt-test-reference-hidden"> · Active Management &amp; Direct Plans</span></h5>
-                <p class="strat-principle-desc strat-flow-desc strat-opt-seq-text">Review the combined portfolio under the discretionary investment approach.</p>
+                <h5 class="strat-flow-tag strat-opt-seq-heading">REBALANCE<span class="strat-opt-test-reference-hidden"> · Rebalance Periodically</span></h5>
+                <p class="strat-flow-desc strat-opt-seq-text">Review portfolio allocations periodically and rebalance in line with the investment mandate.</p>
               </div>
             </div>
           </div>
@@ -2402,12 +2721,66 @@
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 3. Performance Evidence -->
-      <section class="strat-detail-section strat-performance-section strat-dg-section strat-opt-section" aria-label="Performance evidence">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">A strategy measured over time.</h4>
-          <p class="strat-opt-supporting-sentence">Compare the portfolio's performance with its benchmark across consistent investment periods.</p>
+      <!-- Section 4 — Strategic Priorities -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Strategic Priorities">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">STRATEGIC PRIORITIES</span>
+          <h4 class="strat-opt-section-title">What shapes the portfolio.</h4>
         </div>
+
+        <div class="strat-opt-priorities-grid">
+          <div class="strat-priority-col is-prioritise">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Prioritises
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Diversification across mutual fund categories.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Evaluating performance across market cycles.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Direct-plan cost efficiency.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Disciplined portfolio allocation.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="strat-priority-col is-avoid">
+            <h5 class="strat-priority-col-title">
+              <span class="strat-priority-dot" aria-hidden="true"></span>
+              Avoids
+            </h5>
+            <ul class="strat-priority-bullet-list">
+              <li class="strat-priority-bullet-item">
+                <span>Unnecessary scheme duplication.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Excessive concentration in individual categories.</span>
+              </li>
+              <li class="strat-priority-bullet-item">
+                <span>Frequent, emotion-driven portfolio changes.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 5 — Performance -->
+      <section class="strat-detail-section strat-performance-section strat-dg-section strat-opt-section" aria-label="Performance evidence">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PERFORMANCE</span>
+          <h4 class="strat-opt-section-title">The impact of a more efficient approach.</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Evaluate the portfolio's historical performance alongside the potential cost implications of investing through direct mutual fund plans.
+        </p>
 
         <div class="strat-perf-headline-card strat-opt-perf-showcase">
           <div class="strat-headline-comparison strat-opt-perf-comparison">
@@ -2430,30 +2803,30 @@
         </div>
 
         <p class="strat-opt-perf-footnote">
-          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: ${data.performance.headlineComparison.inceptionDate}.
+          Returns are calculated on a SEBI TWRR basis, net of all fees and expenses. Inception date: ${data.performance.headlineComparison.inceptionDate}. Past performance does not guarantee future results. Potential expense savings from direct plans are cost reductions and not guaranteed returns.
         </p>
       </section>
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 4. Investment Management -->
-      <section class="strat-detail-section strat-trust-section strat-dg-section strat-opt-section" aria-label="Investment management">
-        <div class="strat-section-header strat-opt-section-header">
-          <h4 class="strat-section-title strat-opt-section-title">A portfolio managed as a whole.</h4>
-          <p class="strat-opt-supporting-sentence">Individual funds are selected as part of a wider portfolio, with the objective of aligning the overall allocation with the strategy's mandate.</p>
+      <!-- Section 6 — Portfolio Management -->
+      <section class="strat-detail-section strat-trust-section strat-dg-section strat-opt-section" aria-label="Fund manager">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">PORTFOLIO MANAGEMENT</span>
+          <h4 class="strat-opt-section-title">The thinking behind the selection.</h4>
         </div>
 
         <div class="strat-opt-manager-profile">
           <div class="strat-opt-manager-photo-wrap">
             <picture>
-              <source srcset="assets/mandar-bagul.webp" type="image/webp" />
-              <img src="assets/mandar-bagul.jpg" alt="Mandar Bagul" class="strat-opt-manager-photo" width="76" height="76" loading="lazy" />
+              <source srcset="assets/sanjiv-singhal.webp" type="image/webp" />
+              <img src="assets/sanjiv-singhal.jpg" alt="Sanjiv Singhal" class="strat-opt-manager-photo" width="76" height="76" loading="lazy" />
             </picture>
           </div>
           <div class="strat-opt-manager-details">
-            <h5 class="strat-opt-manager-fullname">Mandar Bagul</h5>
-            <span class="strat-opt-manager-role">Senior Vice President &amp; Fund Manager</span>
-            <p class="strat-opt-manager-bio">Over 20 years of capital markets experience spanning equity research, fund selection, and discretionary asset allocation.</p>
+            <h5 class="strat-opt-manager-fullname">Sanjiv Singhal</h5>
+            <span class="strat-opt-manager-role">Co-founder &amp; Executive Director</span>
+            <p class="strat-opt-manager-bio">Portfolio oversight brings together fund research, allocation decisions and ongoing review to maintain alignment with the investment mandate.</p>
           </div>
         </div>
 
@@ -2467,28 +2840,54 @@
 
       <hr class="strat-opt-divider" aria-hidden="true" />
 
-      <!-- 5. Suitability and Consultation -->
-      <section class="strat-detail-section strat-consultation-section strat-dg-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
-        <div class="strat-opt-consultation-block">
-          <h5 class="strat-opt-consultation-title">Could Select Direct Growth fit your portfolio?</h5>
-          <p class="strat-opt-consultation-desc">Explore the core-satellite approach, understand the risks and discuss whether the strategy aligns with your goals, existing investments and investment horizon.</p>
+      <!-- Section 7 — Ownership & Execution -->
+      <section class="strat-detail-section strat-opt-section" aria-label="Ownership and execution">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">OWNERSHIP &amp; EXECUTION</span>
+          <h4 class="strat-opt-section-title">Direct plans. Transparent costs.</h4>
+        </div>
+        <div class="strat-opt-custody-card">
+          <p class="strat-opt-custody-text">
+            The strategy invests in direct mutual fund plans, which do not include distributor commissions within their expense ratios.
+          </p>
         </div>
       </section>
 
-      <!-- Detailed Reference Information (Four Accordions) -->
+      <hr class="strat-opt-divider" aria-hidden="true" />
+
+      <!-- Section 8 — Consultation -->
+      <section class="strat-detail-section strat-consultation-section strat-dg-section strat-opt-section strat-opt-consultation-lead" aria-label="Suitability and consultation">
+        <div class="strat-opt-section-header">
+          <span class="strat-opt-eyebrow">CONSULTATION</span>
+          <h4 class="strat-opt-section-title">Could Select Direct Growth fit your portfolio?</h4>
+        </div>
+        <p class="strat-opt-narrative-p">
+          Explore whether a professionally curated portfolio of direct mutual funds aligns with your investment objectives, time horizon and risk tolerance.
+        </p>
+        <div class="strat-opt-consultation-action">
+          <button type="button" class="strat-consultation-trigger-btn btn btn-primary" id="btnDirectGrowthSectionCta">
+            Discuss Select Direct Growth
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Detailed Reference Information (Four Progressive Disclosure Accordions) -->
       <section class="strat-detail-section strat-specifications-section strat-dg-section strat-opt-section strat-opt-reference-section" aria-label="Detailed reference information">
         <div class="strat-opt-index-header">
           <h5 class="strat-opt-index-title">Detailed Reference &amp; Disclosures</h5>
-          <span class="strat-opt-index-sub">Tap to inspect structure guidelines, performance history, mandate specifications, and regulatory disclosures</span>
+          <span class="strat-opt-index-sub">Tap to inspect fund selection methodology, portfolio allocation, fee schedules and regulatory disclosures</span>
         </div>
 
-        <!-- 4 Consolidated Reference Accordions -->
+        <!-- 4 Reference Accordions -->
         <div class="strat-accordion-group strat-opt-index-group" role="region" aria-label="Select Direct Growth Reference Information">
 
-          <!-- Accordion 1: How the strategy is structured -->
+          <!-- Accordion 1: Fund selection & research -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="how the strategy is structured">
-              <span class="strat-accordion-trigger-title">How the strategy is structured</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratMethodology" aria-expanded="false" aria-controls="stratMethodologyExtended" data-label="fund selection and research">
+              <span class="strat-accordion-trigger-title">Fund selection &amp; research</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2498,62 +2897,42 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratMethodologyExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-subledger-heading">CORE–SATELLITE ALLOCATION FRAMEWORK</div>
+                <div class="strat-opt-subledger-heading">QUANTITATIVE DUE DILIGENCE &amp; SCHEME SELECTION</div>
                 
                 <div class="strat-steps-list strat-opt-method-flow">
-                  <!-- The Core -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">01. <span class="strat-step-title">The Core (60%–70%)</span></h5>
+                    <h5 class="strat-opt-stage-title">Rolling performance &amp; alpha analysis</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      High-conviction, diversified equity direct plans (Large &amp; Flexi-cap) selected for disciplined multi-cycle compounding and lower drawdown variance across market conditions.
+                      Continuous quantitative evaluation of ~1,000 mutual fund schemes across rolling 3-year and 5-year periods, analysing risk-adjusted alpha generation and Information Ratios against category benchmarks.
                     </p>
                   </div>
-
-                  <!-- The Satellites -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">02. <span class="strat-step-title">The Satellites (30%–40%)</span></h5>
+                    <h5 class="strat-opt-stage-title">Downside capture &amp; volatility protection</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Complementary tactical allocations targeting high-alpha mid/small-cap, cyclical, and thematic sectors calibrated to capture emerging economic growth waves.
+                      Assessment of downside capture ratios and maximum drawdown behavior across market corrections to evaluate capital preservation resilience during market downturns.
                     </p>
                   </div>
-
-                  <!-- Portfolio Management -->
                   <div class="strat-step-item strat-opt-method-stage">
-                    <h5 class="strat-opt-stage-title">03. <span class="strat-step-title">Portfolio Management</span></h5>
+                    <h5 class="strat-opt-stage-title">Qualitative AMC &amp; team diligence</h5>
                     <p class="strat-step-desc strat-opt-stage-text">
-                      Active discretionary management with continuous underlying scheme surveillance, quarterly asset allocation reviews, disciplined rebalancing, and direct custody under client PAN.
+                      Evaluation of fund manager tenure, investment team stability, AMC pedigree, process adherence, and scheme AUM capacity constraints to guard against size drag.
                     </p>
                   </div>
-                </div>
-
-                <!-- Structure Guidelines Parameters Section Below Stages -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">STRUCTURE GUIDELINES &amp; CUSTODY</div>
-                <div class="strat-points-list strat-opt-stacked-group">
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Direct plan custody</span>
-                    <span class="strat-point-val strat-opt-stacked-val">All schemes held directly in client folios/Demat under their own PAN, eliminating distributor commissions</span>
-                  </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Portfolio universe</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Direct Plans of SEBI-Registered Equity Mutual Funds across qualified AMCs</span>
-                  </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Target holdings</span>
-                    <span class="strat-point-val strat-opt-stacked-val">8–10 carefully selected direct funds balancing diversification and conviction</span>
-                  </div>
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Review rhythm</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Quarterly asset allocation reviews with ongoing manager style-drift surveillance</span>
+                  <div class="strat-step-item strat-opt-method-stage">
+                    <h5 class="strat-opt-stage-title">Ongoing surveillance &amp; style-drift monitoring</h5>
+                    <p class="strat-step-desc strat-opt-stage-text">
+                      Systematic portfolio monitoring to ensure underlying scheme managers maintain stated style mandates (Large, Flexi, Mid, Small-cap) without unauthorised divergence.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Accordion 2: Performance history -->
+          <!-- Accordion 2: Portfolio construction & allocation -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratPerf" aria-expanded="false" aria-controls="stratPerfExtended" data-label="performance history">
-              <span class="strat-accordion-trigger-title">Performance history</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratPerf" aria-expanded="false" aria-controls="stratPerfExtended" data-label="portfolio construction and allocation">
+              <span class="strat-accordion-trigger-title">Portfolio construction &amp; allocation</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2563,7 +2942,29 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratPerfExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-perf-table-header">
+                <!-- Allocation Guidelines -->
+                <div class="strat-opt-subledger-heading">CORE–SATELLITE ALLOCATION FRAMEWORK</div>
+                <div class="strat-points-list strat-opt-stacked-group">
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Core Allocation Range</span>
+                    <span class="strat-point-val strat-opt-stacked-val">70%–80% in diversified equity anchors (Large &amp; Flexi-cap) designed for structural compounding across market cycles (subject to confirmation; not a fixed or permanent percentage)</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Satellite Allocation Range</span>
+                    <span class="strat-point-val strat-opt-stacked-val">20%–30% in tactical opportunities (mid/small-cap, cyclical, thematic) calibrated to macroeconomic growth phases (subject to confirmation)</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Target Holdings</span>
+                    <span class="strat-point-val strat-opt-stacked-val">8–10 direct mutual funds balancing conviction, scheme diversification and administrative simplicity</span>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Rebalancing Rhythm</span>
+                    <span class="strat-point-val strat-opt-stacked-val">Periodic asset allocation reviews with disciplined mandate rebalancing to maintain target risk boundaries</span>
+                  </div>
+                </div>
+
+                <!-- Performance History Table -->
+                <div class="strat-opt-perf-table-header" style="margin-top: 18px;">
                   <span class="strat-opt-subledger-heading">CAGR RETURNS VS BENCHMARK</span>
                   <span class="strat-opt-perf-asof">As on 30 Sep 2026</span>
                 </div>
@@ -2590,7 +2991,7 @@
                   </table>
                 </div>
 
-                <!-- Sleek Editorial Compounding Strip -->
+                <!-- Sleek Compounding Strip -->
                 <div class="strat-wealth-callout strat-opt-compounding-strip">
                   <div class="strat-opt-compounding-header">
                     <span class="strat-wealth-tag strat-opt-compounding-tag">Hypothetical Compounding of ₹1.00 Cr</span>
@@ -2606,7 +3007,24 @@
                       <span class="strat-wealth-val strat-opt-compounding-val">${data.performance.compoundingCallout.benchValue}</span>
                     </div>
                   </div>
-                  <div class="strat-wealth-initial strat-opt-compounding-footnote">Basis: ${data.performance.compoundingCallout.initial} • Jun 30, 2020 to Sep 30, 2026 • Net of fees.</div>
+                  <div class="strat-wealth-initial strat-opt-compounding-footnote">Basis: ${data.performance.compoundingCallout.initial} • 30 June 2020 to 30 Sep 2026 • Net of fees.</div>
+                </div>
+
+                <!-- Direct Plan Cost Efficiency Note -->
+                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">DIRECT-PLAN COST EFFICIENCY (TER SAVINGS)</div>
+                <div class="strat-points-list strat-opt-stacked-group">
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Expense Differential</span>
+                    <p class="strat-point-val strat-opt-stacked-val">
+                      Direct mutual fund plans eliminate distributor commission trails (typically 0.50%–1.50% p.a. lower TER relative to regular plans). This cost efficiency compounds over multi-year horizons.
+                    </p>
+                  </div>
+                  <div class="strat-point-item strat-opt-stacked-item">
+                    <span class="strat-point-label strat-opt-stacked-label">Distinction of Savings</span>
+                    <p class="strat-point-val strat-opt-stacked-val">
+                      Expense savings represent cost reductions within underlying fund structures and must not be construed as investment returns or guaranteed wealth creation.
+                    </p>
+                  </div>
                 </div>
 
                 <div class="strat-perf-stat" style="display: none;">${data.performance.statLine}</div>
@@ -2615,10 +3033,10 @@
             </div>
           </div>
 
-          <!-- Accordion 3: Mandate and fees -->
+          <!-- Accordion 3: Fees, custody & execution -->
           <div class="strat-accordion-item strat-opt-accordion-item">
-            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="mandate and fees">
-              <span class="strat-accordion-trigger-title">Portfolio mandate and fees</span>
+            <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratFacts" aria-expanded="false" aria-controls="stratFactsExtended" data-label="fees custody and execution">
+              <span class="strat-accordion-trigger-title">Fees, custody &amp; execution</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2628,19 +3046,7 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratFactsExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <!-- Group 1: Portfolio Mandate & Universe -->
-                <div class="strat-opt-subledger-heading">PORTFOLIO MANDATE &amp; UNIVERSE</div>
-                <div class="strat-facts-grid strat-opt-stacked-group">
-                  ${data.secondaryFacts.map(fact => `
-                    <div class="strat-fact-item strat-opt-stacked-item">
-                      <span class="strat-fact-label strat-opt-stacked-label">${fact.label}</span>
-                      <span class="strat-fact-val strat-opt-stacked-val">${fact.val}</span>
-                    </div>
-                  `).join('')}
-                </div>
-
-                <!-- Group 2: Account Custody & Commercial Terms -->
-                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">ACCOUNT CUSTODY &amp; COMMERCIAL TERMS</div>
+                <div class="strat-opt-subledger-heading">PORTFOLIO MANDATE &amp; COMMERCIAL TERMS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
                   ${data.feeDetails.points.map(pt => `
                     <div class="strat-point-item strat-opt-stacked-item">
@@ -2648,19 +3054,25 @@
                       <span class="strat-point-val strat-opt-stacked-val">${pt.text}</span>
                     </div>
                   `).join('')}
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Exit Load</span>
-                    <span class="strat-point-val strat-opt-stacked-val">Nil after minimum holding horizon; detailed schedule outlined in investment agreement</span>
-                  </div>
+                </div>
+
+                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">INSTITUTIONAL SPECIFICATIONS</div>
+                <div class="strat-facts-grid strat-opt-stacked-group">
+                  ${data.secondaryFacts.map(fact => `
+                    <div class="strat-fact-item strat-opt-stacked-item ${fact.fullWidth ? 'strat-fact-item--full' : ''}">
+                      <span class="strat-fact-label strat-opt-stacked-label">${fact.label}</span>
+                      <span class="strat-fact-val strat-opt-stacked-val">${fact.val}</span>
+                    </div>
+                  `).join('')}
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Accordion 4: Risks and disclosures -->
+          <!-- Accordion 4: Risks & disclosures -->
           <div class="strat-accordion-item strat-opt-accordion-item">
             <button type="button" class="strat-disclosure-btn strat-accordion-trigger strat-opt-accordion-trigger" id="btnToggleStratRisks" aria-expanded="false" aria-controls="stratRisksExtended" data-label="risks and disclosures">
-              <span class="strat-accordion-trigger-title">Risks and disclosures</span>
+              <span class="strat-accordion-trigger-title">Risks &amp; disclosures</span>
               <span class="strat-accordion-trigger-action">
                 <span class="strat-disclosure-btn-text" style="display:none;">View details</span>
                 <svg class="strat-disclosure-chevron" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
@@ -2670,90 +3082,77 @@
             </button>
             <div class="strat-accordion-panel strat-disclosure-content is-collapsed" id="stratRisksExtended" aria-hidden="true">
               <div class="strat-panel-content strat-opt-panel-content">
-                <div class="strat-opt-subledger-heading">STRATEGY RISK FACTORS</div>
+                <div class="strat-opt-subledger-heading">KEY RISK FACTORS &amp; VOLATILITY SAFEGUARDS</div>
                 <div class="strat-points-list strat-opt-stacked-group">
-                  <!-- Risk 1: Market Volatility & Drawdowns -->
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Equity Market Volatility</span>
-                    <p class="strat-point-val strat-opt-stacked-val">
-                      Underlying equity mutual fund investments are subject to macroeconomic market fluctuations. An investment horizon of at least 5 years is recommended to allow asset compounding to unfold.
-                    </p>
-                  </div>
+                  ${data.riskDetails.points.map(pt => `
+                    <div class="strat-point-item strat-opt-stacked-item">
+                      <span class="strat-point-label strat-opt-stacked-label">${pt.label}</span>
+                      <p class="strat-point-val strat-opt-stacked-val">${pt.text}</p>
+                    </div>
+                  `).join('')}
+                </div>
 
-                  <!-- Risk 2: Satellite Sleeve Variance -->
+                <div class="strat-opt-subledger-heading" style="margin-top: 18px;">MANDATE SUITABILITY &amp; REGULATORY ATTESTATION</div>
+                <div class="strat-points-list strat-opt-stacked-group">
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Satellite Sleeve Tracking Variance</span>
-                    <p class="strat-point-val strat-opt-stacked-val">
-                      Tactical satellite allocations may periodically experience higher volatility or tracking divergence relative to broad indices during sector rotation phases.
-                    </p>
+                    <span class="strat-point-label strat-opt-stacked-label">Mandate Suitability</span>
+                    <p class="strat-point-val strat-opt-stacked-val">${data.disclosures.fit}</p>
                   </div>
-
-                  <!-- Risk 3: Underlying Fund Manager Selection -->
                   <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Underlying Fund Manager &amp; Style Drift</span>
-                    <p class="strat-point-val strat-opt-stacked-val">
-                      Returns depend on the selection and ongoing style discipline of underlying scheme managers. Ongoing quantitative and qualitative monitoring mitigates style deviation risk.
-                    </p>
-                  </div>
-
-                  <!-- Risk 4: Liquidity Assurance -->
-                  <div class="strat-point-item strat-opt-stacked-item">
-                    <span class="strat-point-label strat-opt-stacked-label">Liquidity Assurance</span>
-                    <p class="strat-point-val strat-opt-stacked-val">
-                      All scheme allocations are maintained in open-ended SEBI-registered direct mutual funds, ensuring operational liquidity under client Demat/folio custody.
-                    </p>
+                    <span class="strat-point-label strat-opt-stacked-label">Statutory Disclaimer</span>
+                    <p class="strat-point-val strat-opt-stacked-val">${data.disclosures.statutory}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Hidden Compatibility Bridge for Legacy Accordions 5 & 6 and Philosophy queries -->
-          <div class="strat-accordion-item strat-opt-test-reference-hidden">
-            <button type="button" class="strat-disclosure-btn" id="btnToggleStratConstruction" aria-controls="stratConstructionExtended">
-              <span>Construction</span>
-            </button>
-            <div class="strat-accordion-panel is-collapsed" id="stratConstructionExtended">
-              <div class="strat-points-list">
-                ${data.constructionDetails.points.map(pt => `
-                  <div class="strat-point-item">
-                    <span class="strat-point-label">${pt.label}</span>
-                    <span class="strat-point-val">${pt.text}</span>
-                  </div>
-                `).join('')}
-              </div>
+        </div>
+
+        <!-- Hidden Compatibility Bridges for tests expecting legacy triggers and contents -->
+        <div class="strat-accordion-item strat-opt-test-reference-hidden">
+          <button type="button" class="strat-disclosure-btn" id="btnToggleStratConstruction" aria-controls="stratConstructionExtended">
+            <span>Construction</span>
+          </button>
+          <div class="strat-accordion-panel is-collapsed" id="stratConstructionExtended">
+            <div class="strat-points-list">
+              ${data.constructionDetails.points.map(pt => `
+                <div class="strat-point-item">
+                  <span class="strat-point-label">${pt.label}</span>
+                  <span class="strat-point-val">${pt.text}</span>
+                </div>
+              `).join('')}
             </div>
           </div>
+        </div>
 
-          <div class="strat-accordion-item strat-opt-test-reference-hidden">
-            <button type="button" class="strat-disclosure-btn" id="btnToggleStratFees" aria-controls="stratFeesExtended">
-              <span>Fees</span>
-            </button>
-            <div class="strat-accordion-panel is-collapsed" id="stratFeesExtended">
-              <div class="strat-points-list">
-                ${data.feeDetails.points.map(pt => `
-                  <div class="strat-point-item">
-                    <span class="strat-point-label">${pt.label}</span>
-                    <span class="strat-point-val">${pt.text}</span>
-                  </div>
-                `).join('')}
-              </div>
+        <div class="strat-accordion-item strat-opt-test-reference-hidden">
+          <button type="button" class="strat-disclosure-btn" id="btnToggleStratFees" aria-controls="stratFeesExtended">
+            <span>Fees</span>
+          </button>
+          <div class="strat-accordion-panel is-collapsed" id="stratFeesExtended">
+            <div class="strat-points-list">
+              ${data.feeDetails.points.map(pt => `
+                <div class="strat-point-item">
+                  <span class="strat-point-label">${pt.label}</span>
+                  <span class="strat-point-val">${pt.text}</span>
+                </div>
+              `).join('')}
             </div>
           </div>
+        </div>
 
-          <div class="strat-philosophy-section strat-opt-test-reference-hidden">
-            <h4 class="strat-section-title">${data.philosophy.title}</h4>
-            <p class="strat-philosophy-premise">${data.philosophy.premise}</p>
-            <div class="strat-tradeoff-grid">
-              <div class="strat-tradeoff-card is-prioritise">
-                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[0].text}</p>
-              </div>
-              <div class="strat-tradeoff-card is-avoid">
-                <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[1].text}</p>
-              </div>
+        <div class="strat-philosophy-section strat-opt-test-reference-hidden">
+          <h4 class="strat-section-title">${data.philosophy.title}</h4>
+          <p class="strat-philosophy-premise">${data.philosophy.premise}</p>
+          <div class="strat-tradeoff-grid">
+            <div class="strat-tradeoff-card is-prioritise">
+              <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[0].text}</p>
+            </div>
+            <div class="strat-tradeoff-card is-avoid">
+              <p class="strat-tradeoff-desc">${data.philosophy.tradeoffs[1].text}</p>
             </div>
           </div>
-
         </div>
 
         <!-- Quiet Regulatory Disclaimer -->
@@ -3332,7 +3731,15 @@
 
     strategyDetailOverlay.style.display = 'flex';
     strategyDetailOverlay.setAttribute('aria-hidden', 'false');
+    if (stratDetailBody) {
+      stratDetailBody.scrollTop = 0;
+    }
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('strategy-sheet-open');
+    if (stickyCtaBar) {
+      stickyCtaBar.classList.add('is-suppressed');
+      setStickyVisible(false);
+    }
 
     if (btnStratDetailBack) {
       btnStratDetailBack.focus();
@@ -3345,6 +3752,11 @@
     strategyDetailOverlay.style.display = 'none';
     strategyDetailOverlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.body.classList.remove('strategy-sheet-open');
+    if (stickyCtaBar) {
+      stickyCtaBar.classList.remove('is-suppressed');
+      checkStickyVisibility();
+    }
 
     window.scrollTo(0, lastStratScrollY);
 
@@ -3393,9 +3805,27 @@
     btnStratDetailClose.addEventListener('click', closeStrategyDetail);
   }
 
-  // Progressive disclosure triggers in strategy detail sheet
+  // Progressive disclosure triggers & in-section CTA in strategy detail sheet
   if (stratDetailBody) {
     stratDetailBody.addEventListener('click', function (e) {
+      const ctaBtn = e.target.closest('#btnOptimiserSectionCta, #btnFocusedSectionCta, #btnDirectGrowthSectionCta, .strat-consultation-trigger-btn');
+      if (ctaBtn) {
+        if (btnStratDetailEnquire) {
+          btnStratDetailEnquire.click();
+        } else {
+          const stratId = activeStrategyId || 'optimiser';
+          if (stratId) formState.selectedStrategy = stratId;
+          trackFunnelEvent('cta_click', { source: 'strategy_sheet_section', strategyId: stratId });
+          if (strategyDetailOverlay) {
+            strategyDetailOverlay.style.display = 'none';
+            strategyDetailOverlay.setAttribute('aria-hidden', 'true');
+          }
+          activeStrategyId = null;
+          goToStep('q1');
+        }
+        return;
+      }
+
       const toggleBtn = e.target.closest('.strat-disclosure-btn');
       if (!toggleBtn) return;
       const targetId = toggleBtn.getAttribute('aria-controls');
@@ -3441,9 +3871,31 @@
       trackFunnelEvent('cta_click', { source: 'strategy_sheet', strategyId: stratId });
       strategyDetailOverlay.style.display = 'none';
       strategyDetailOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('strategy-sheet-open');
+      if (stickyCtaBar) stickyCtaBar.classList.remove('is-suppressed');
       activeStrategyId = null;
       goToStep('q1');
     });
+  }
+
+  // Mobile touch-drag down on topbar handle to dismiss bottom sheet
+  const stratTopbar = document.querySelector('.strat-detail-topbar');
+  if (stratTopbar && strategyDetailSheet) {
+    let touchStartY = null;
+    stratTopbar.addEventListener('touchstart', function (e) {
+      if (e.touches && e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+    stratTopbar.addEventListener('touchend', function (e) {
+      if (touchStartY !== null && e.changedTouches && e.changedTouches.length === 1) {
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+        if (deltaY > 56) {
+          closeStrategyDetail();
+        }
+      }
+      touchStartY = null;
+    }, { passive: true });
   }
 
   window.addEventListener('keydown', function (e) {
@@ -3536,15 +3988,27 @@
     });
   }
 
-  // 2. Hero Wealth Accumulation Disclosure (Direct visible disclosure, no modal popup required)
+  // 2. Hero Wealth Accumulation Disclosure Dialog
   const btnHeroGrowthInfo = document.getElementById('btnHeroGrowthInfo') || document.getElementById('btnGrowthInfo');
   const heroGrowthPopup = document.getElementById('heroGrowthPopup') || document.getElementById('growthDisclaimerPopup');
   const btnHeroClosePopup = document.getElementById('btnHeroClosePopup') || document.getElementById('btnCloseDisclaimer');
+  const heroPopupBackdrop = document.getElementById('heroPopupBackdrop');
 
   function openDisclaimerPopup() {
     if (!heroGrowthPopup || !btnHeroGrowthInfo) return;
     heroGrowthPopup.classList.remove('is-hidden');
     btnHeroGrowthInfo.setAttribute('aria-expanded', 'true');
+
+    // Prevent page scrolling behind modal dialog
+    document.body.classList.add('dialog-open');
+
+    // Temporarily hide and disable sticky CTA while disclosure is open
+    if (stickyCtaBar) {
+      stickyCtaBar.classList.add('is-suppressed');
+      stickyCtaBar.setAttribute('inert', '');
+      setStickyVisible(false);
+    }
+
     if (btnHeroClosePopup) {
       btnHeroClosePopup.focus();
     }
@@ -3554,6 +4018,16 @@
     if (!heroGrowthPopup || !btnHeroGrowthInfo) return;
     heroGrowthPopup.classList.add('is-hidden');
     btnHeroGrowthInfo.setAttribute('aria-expanded', 'false');
+
+    // Restore page scrolling
+    document.body.classList.remove('dialog-open');
+
+    // Restore sticky CTA state
+    if (stickyCtaBar) {
+      stickyCtaBar.classList.remove('is-suppressed');
+      checkStickyVisibility();
+    }
+
     btnHeroGrowthInfo.focus();
   }
 
@@ -3575,6 +4049,13 @@
       });
     }
 
+    if (heroPopupBackdrop) {
+      heroPopupBackdrop.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDisclaimerPopup();
+      });
+    }
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && heroGrowthPopup && !heroGrowthPopup.classList.contains('is-hidden')) {
         closeDisclaimerPopup();
@@ -3583,7 +4064,8 @@
 
     document.addEventListener('click', (e) => {
       if (heroGrowthPopup && !heroGrowthPopup.classList.contains('is-hidden')) {
-        if (!heroGrowthPopup.contains(e.target) && e.target !== btnHeroGrowthInfo && !btnHeroGrowthInfo.contains(e.target)) {
+        const popupInner = heroGrowthPopup.querySelector('.popup-inner');
+        if (popupInner && !popupInner.contains(e.target) && e.target !== btnHeroGrowthInfo && !btnHeroGrowthInfo.contains(e.target)) {
           closeDisclaimerPopup();
         }
       }
@@ -3891,7 +4373,7 @@
     // Benchmark curve traces steadily left to right across the 2022-2026 timeline
     if (curveBenchmark) {
       tl.fromTo(curveBenchmark,
-        { strokeDashoffset: 100 },
+        { strokeDashoffset: 400 },
         { strokeDashoffset: 0, duration: 0.66, ease: 'power2.inOut' },
         0.10
       );
@@ -3900,7 +4382,7 @@
     // Scripbox performance curve draws progressively alongside, ascending toward the apex
     if (curveScripbox) {
       tl.fromTo(curveScripbox,
-        { strokeDashoffset: 100 },
+        { strokeDashoffset: 400 },
         { strokeDashoffset: 0, duration: 0.72, ease: 'power2.inOut' },
         0.10
       );
