@@ -4452,7 +4452,10 @@
       s2.style.height = cardHeight + 'px';
       s3.style.height = 'auto';
 
-      const trackHeight = cardHeight + 48; // room for card + 28px bottom peeking + padding
+      // Track height fits Card 3 (the final card) at rest with balanced breathing room (24px).
+      // Since s3 is at top: 12px, its bottom is at 12 + h3. Setting trackHeight = h3 + 36px
+      // eliminates the ~365px ghost space caused by taller preceding cards and creates a natural 24px gap.
+      const trackHeight = h3 > 0 ? (h3 + 36) : (cardHeight + 48);
       track.style.height = trackHeight + 'px';
       container.style.setProperty('--paddle-track-height', trackHeight + 'px');
       container.style.setProperty('--paddle-card-height', cardHeight + 'px');
