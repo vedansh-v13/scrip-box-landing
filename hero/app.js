@@ -4632,7 +4632,16 @@
   initSectionNav();
   initFaqAccordion();
 
-  const heroTl = initHeroAnimation();
+  let heroTl = null;
+  if (typeof requestAnimationFrame !== 'undefined') {
+    requestAnimationFrame(() => {
+      heroTl = initHeroAnimation();
+      window.__sbHeroTimeline = heroTl;
+    });
+  } else {
+    heroTl = initHeroAnimation();
+    window.__sbHeroTimeline = heroTl;
+  }
 
   // Expose state and functions for testing inspection
   window.__sbFormState = formState;
@@ -4641,5 +4650,4 @@
   window.__sbOpenDisclaimerPopup = openDisclaimerPopup;
   window.__sbCloseDisclaimerPopup = closeDisclaimerPopup;
   window.__sbScrollLeadership = scrollLeaderTo;
-  window.__sbHeroTimeline = heroTl;
 })();

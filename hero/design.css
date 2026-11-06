@@ -35,13 +35,13 @@
   size-adjust: 99.5%;
 }
 
-/* Inline @font-face declarations for Newsreader (avoids render-blocking Google Fonts CSS round-trip) */
+/* Inline @font-face declarations for Newsreader (self-hosted to eliminate 3rd-party latency) */
 @font-face {
   font-family: 'Newsreader';
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/newsreader/v26/cY9kfjOCX1hbuyalUrK439vogqC9yFZCYg7oRZaLP4obnf7fTXglsMwoT9ZHFjSShVCjzSY.woff2) format('woff2');
+  src: url('fonts/newsreader-italic.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -49,7 +49,7 @@
   font-style: normal;
   font-weight: 400 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/newsreader/v26/cY9VfjOCX1hbuyalUrK49dLac06G1ZGsZBtoBAbNJYQ5ayZC.woff2) format('woff2');
+  src: url('fonts/newsreader-normal.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
@@ -57,7 +57,7 @@
   font-style: normal;
   font-weight: 400 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/l/font?kit=cY9VfjOCX1hbuyalUrK49dLac06G1ZGsZBtoBDbPL4MbaRxBFP2J&skey=e69ba3232be0ce27&v=v26) format('woff2');
+  src: url('fonts/newsreader-rupee.woff2') format('woff2');
   unicode-range: U+20B9;
 }
 
@@ -7974,12 +7974,21 @@ body.strategy-sheet-open .sticky-cta-bar,
 .problem-editorial-lede,
 .process-main-subhead,
 .leadership-section .btf-body,
-.strategies-section .btf-body,
+.strategies-section .btf-body {
+  font-size: 15.5px !important;
+  line-height: 1.6 !important;
+  color: #D8D0C6 !important;
+  margin: 0 auto 28px auto !important;
+  text-align: center !important;
+  text-wrap: pretty !important;
+  max-width: 32em !important;
+}
+
 .secondary-cta-body,
 .btf-cta-card .secondary-cta-body {
   font-size: 15.5px !important;
   line-height: 1.6 !important;
-  color: #D8D0C6 !important;
+  color: #12100E !important;
   margin: 0 auto 28px auto !important;
   text-align: center !important;
   text-wrap: pretty !important;
