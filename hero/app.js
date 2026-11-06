@@ -779,9 +779,10 @@
 
     let isNearConversion = false;
     if (thirdStrategyCard) {
-      const thirdRect = thirdStrategyCard.getBoundingClientRect();
+      const thirdTopRel = stickyMetrics.thirdCardTop - scrollY;
+      const thirdBottomRel = stickyMetrics.thirdCardBottom - scrollY;
       // Hide sticky CTA while the third strategy card is in the lower viewport so it never obstructs access
-      if (thirdRect.top < (winH - 20) && thirdRect.bottom > (winH * 0.4)) {
+      if (thirdTopRel < (winH - 20) && thirdBottomRel > (winH * 0.4)) {
         isNearConversion = true;
       }
     }
@@ -813,7 +814,19 @@
     checkStickyVisibility();
   };
 
-  window.addEventListener('scroll', checkStickyVisibility, { passive: true });
+  // Throttled RAF scroll listener to eliminate layout thrashing and maintain 60/120fps scrolling
+  let stickyScrollTicking = false;
+  function onStickyScroll() {
+    if (!stickyScrollTicking) {
+      stickyScrollTicking = true;
+      requestAnimationFrame(() => {
+        checkStickyVisibility();
+        stickyScrollTicking = false;
+      });
+    }
+  }
+
+  window.addEventListener('scroll', onStickyScroll, { passive: true });
   window.addEventListener('resize', () => {
     updateStickyMetrics();
     checkStickyVisibility();
@@ -3756,6 +3769,10 @@
 
   // GSAP Hero Animation: Message-Led Choreography
   function initHeroAnimation() {
+    // Hero chart is rendered fully drawn from first paint (no draw-in delay).
+    // The compounding-curve choreography below is intentionally disabled.
+    return null;
+    // eslint-disable-next-line no-unreachable
     // 1. Fallback & Safe Degradation Check
     if (typeof gsap === 'undefined') {
       return null;
@@ -3902,13 +3919,8 @@
         const navHeight = nav.offsetHeight || 48;
         let targetTop = 0;
 
-        if (targetEl.id === 'sec-problem' || targetEl.id === 'sec-approach' || targetEl.id === 'perfSection') {
-          const container = document.getElementById('paddleStackContainer');
-          targetTop = (container ? container.offsetTop : 850) - navHeight;
-        } else {
-          const targetRect = targetEl.getBoundingClientRect();
-          targetTop = window.scrollY + targetRect.top - navHeight - 12;
-        }
+        const targetRect = targetEl.getBoundingClientRect();
+        targetTop = window.scrollY + targetRect.top - navHeight - 12;
 
         window.scrollTo({
           top: Math.max(0, targetTop),
@@ -3987,8 +3999,19 @@
       }
     };
 
+    let navScrollTicking = false;
+    const onNavScroll = () => {
+      if (!navScrollTicking) {
+        navScrollTicking = true;
+        requestAnimationFrame(() => {
+          handleScroll();
+          navScrollTicking = false;
+        });
+      }
+    };
+
     refreshNavMetrics();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', onNavScroll, { passive: true });
     window.addEventListener('resize', refreshNavMetrics, { passive: true });
     window.__sbRefreshNavMetrics = refreshNavMetrics;
     window.__sbHandleNavScroll = () => {

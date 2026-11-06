@@ -30,10 +30,8 @@
   <link rel="preload" href="fonts/newsreader-italic.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="preload" href="style.min.css?v=4.5" as="style">
-  <link rel="preload" href="design.min.css?v=4.5" as="style">
-  <link rel="stylesheet" href="style.min.css?v=4.5">
-  <link rel="stylesheet" href="design.min.css?v=4.5">
+  <link rel="stylesheet" href="style.min.css?v=4.9">
+  <link rel="stylesheet" href="design.min.css?v=4.9">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -149,9 +147,9 @@
             </div>
           </div>
 
-          <!-- Chart Area (Compact ~88px Height) -->
+          <!-- Chart Area (taller ~2x, renders fully drawn) -->
           <div class="hero-illustration-graphic" aria-hidden="true">
-            <svg viewBox="0 0 340 88" width="100%" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
+            <svg viewBox="0 0 340 170" width="100%" preserveAspectRatio="xMidYMid meet" class="hero-ray-svg" role="img" aria-label="Compounding comparison chart: 1 Crore invested in 2022 grew to 2.47 Crore in Scripbox Portfolio Optimiser versus 1.62 Crore in Nifty 50 TRI">
               <defs>
                 <!-- Subtle Airy Gradient Fill -->
                 <linearGradient id="scripboxCurveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -161,33 +159,33 @@
               </defs>
 
               <!-- Subtle Reference Lines (Unobtrusive) -->
-              <line x1="12" y1="30" x2="328" y2="30" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1" stroke-dasharray="2 3" />
-              <line x1="12" y1="49" x2="328" y2="49" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1" stroke-dasharray="2 3" />
+              <line x1="12" y1="56" x2="328" y2="56" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" stroke-dasharray="2 3" />
+              <line x1="12" y1="99" x2="328" y2="99" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" stroke-dasharray="2 3" />
               <!-- Baseline at ₹1.00 Cr (2022 origin) -->
-              <line x1="12" y1="68" x2="328" y2="68" stroke="rgba(255, 255, 255, 0.07)" stroke-width="1" />
+              <line x1="12" y1="142" x2="328" y2="142" stroke="rgba(255, 255, 255, 0.09)" stroke-width="1" />
 
               <!-- Under-Curve Subtle Gradient Fill -->
-              <path d="M 12 68 C 25.2 66.4, 64.7 61.9, 91 58.3 C 117.3 54.7, 143.7 50.8, 170 46.2 C 196.3 41.7, 222.7 36.7, 249 31 C 275.3 25.3, 314.8 15.2, 328 12 L 328 68 L 12 68 Z" fill="url(#scripboxCurveGrad)" class="curve-fill" />
+              <path d="M 12 142 C 25.2 138.3, 64.7 128.1, 91 119.8 C 117.3 111.6, 143.7 102.7, 170 92.2 C 196.3 81.9, 222.7 70.5, 249 57.4 C 275.3 44.4, 314.8 21.3, 328 14 L 328 142 L 12 142 Z" fill="url(#scripboxCurveGrad)" class="curve-fill" />
 
               <!-- Benchmark (Nifty 50 TRI) Compounding Trajectory (Muted Warm Grey) -->
-              <path d="M 12 68 C 25.2 67.2, 64.7 64.8, 91 63.1 C 117.3 61.4, 143.7 59.6, 170 57.7 C 196.3 55.8, 222.7 53.7, 249 51.5 C 275.3 49.3, 314.8 45.7, 328 44.5" fill="none" stroke="#7D7770" stroke-width="1.5" stroke-linecap="round" class="curve-line curve-benchmark" />
+              <path d="M 12 142 C 25.2 140.2, 64.7 134.7, 91 130.8 C 117.3 126.9, 143.7 122.8, 170 118.5 C 196.3 114.1, 222.7 109.3, 249 104.3 C 275.3 99.3, 314.8 91, 328 88.3" fill="none" stroke="#7D7770" stroke-width="1.5" stroke-linecap="round" class="curve-line curve-benchmark" />
 
               <!-- Scripbox Portfolio Optimiser Compounding Trajectory (Restrained Green) -->
-              <path d="M 12 68 C 25.2 66.4, 64.7 61.9, 91 58.3 C 117.3 54.7, 143.7 50.8, 170 46.2 C 196.3 41.7, 222.7 36.7, 249 31 C 275.3 25.3, 314.8 15.2, 328 12" fill="none" stroke="#2EB872" stroke-width="2.2" stroke-linecap="round" class="curve-line curve-scripbox" />
+              <path d="M 12 142 C 25.2 138.3, 64.7 128.1, 91 119.8 C 117.3 111.6, 143.7 102.7, 170 92.2 C 196.3 81.9, 222.7 70.5, 249 57.4 C 275.3 44.4, 314.8 21.3, 328 14" fill="none" stroke="#2EB872" stroke-width="2.2" stroke-linecap="round" class="curve-line curve-scripbox" />
 
               <!-- 2022 Origin Starting Node -->
-              <circle cx="12" cy="68" r="2.5" fill="rgba(255, 255, 255, 0.35)" class="node-origin" />
+              <circle cx="12" cy="142" r="2.5" fill="rgba(255, 255, 255, 0.35)" class="node-origin" />
 
               <!-- Terminal Endpoints (Small & Understated) -->
-              <circle cx="328" cy="44.5" r="2.5" fill="#8E877F" class="node-benchmark" />
-              <circle cx="328" cy="12.0" r="2.8" fill="#2EB872" class="node-scripbox" />
+              <circle cx="328" cy="88.3" r="2.5" fill="#8E877F" class="node-benchmark" />
+              <circle cx="328" cy="14" r="2.8" fill="#2EB872" class="node-scripbox" />
 
               <!-- X-Axis Timeline Labels -->
-              <g class="timeline-group" fill="#7D7770" font-size="10.5px" font-weight="500" font-family="'Inter', sans-serif">
-                <text x="91" y="82" text-anchor="middle" class="time-tick">2023</text>
-                <text x="170" y="82" text-anchor="middle" class="time-tick">2024</text>
-                <text x="249" y="82" text-anchor="middle" class="time-tick">2025</text>
-                <text x="328" y="82" text-anchor="end" class="time-tick">2026</text>
+              <g class="timeline-group" fill="#B5ADA3" font-size="10.5px" font-weight="500" font-family="'Inter', sans-serif">
+                <text x="91" y="163" text-anchor="middle" class="time-tick">2023</text>
+                <text x="170" y="163" text-anchor="middle" class="time-tick">2024</text>
+                <text x="249" y="163" text-anchor="middle" class="time-tick">2025</text>
+                <text x="328" y="163" text-anchor="end" class="time-tick">2026</text>
               </g>
             </svg>
           </div>
@@ -221,90 +219,13 @@
       </div>
     </header>
 
-    <!-- Credibility & Scale Section (Directly Below Hero) -->
-    <section class="credibility-section" id="sec-credibility" aria-labelledby="headingCredibility">
-      <div class="credibility-container">
-        <!-- Introductory Editorial Statement -->
-        <p class="credibility-statement" id="headingCredibility">
-          “We prioritise repeatable frameworks over prediction and consistency over impulse.”
-        </p>
-      </div>
-
-      <!-- Endlessly Moving Metrics Marquee Ticker -->
-      <div class="credibility-ticker" role="region" aria-label="Key Scale Metrics">
-        <div class="credibility-ticker-track">
-          <!-- Metric Set 1 (Primary accessible set) -->
-          <div class="ticker-group">
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">₹21,500 Cr+</span>
-              <span class="credibility-label">Overall Group AUM <span class="credibility-sublabel">(Scripbox)</span></span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">23 Years+</span>
-              <span class="credibility-label">Experience in Wealth Management</span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">4+</span>
-              <span class="credibility-label">Defined, Focused Portfolio Mandates</span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-          </div>
-
-          <!-- Metric Set 2 (Seamless Infinite Duplicate for Continuous Animation) -->
-          <div class="ticker-group" aria-hidden="true">
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">₹21,500 Cr+</span>
-              <span class="credibility-label">Overall Group AUM <span class="credibility-sublabel">(Scripbox)</span></span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">23 Years+</span>
-              <span class="credibility-label">Experience in Wealth Management</span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-            <div class="credibility-metric ticker-item">
-              <span class="credibility-figure">4+</span>
-              <span class="credibility-label">Defined, Focused Portfolio Mandates</span>
-            </div>
-            <span class="ticker-sep" aria-hidden="true">
-              <svg width="8" height="8" viewBox="0 0 8 8" fill="#F58024">
-                <rect width="5.6" height="5.6" transform="translate(4 0) rotate(45)" />
-              </svg>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Subtle Hairline Section Divider (Hero to BTF) -->
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- Sticky Section Navigation Tabs -->
     <nav class="section-nav" id="sectionNav" aria-label="Page navigation">
       <div class="section-nav-track" id="sectionNavTrack" role="tablist">
-        <a href="#sec-problem" class="section-nav-link is-active" role="tab" aria-selected="true">About Us</a>
+        <a href="#perfSection" class="section-nav-link is-active" role="tab" aria-selected="true">About Us</a>
         <a href="#strategiesSection" class="section-nav-link" role="tab" aria-selected="false">Strategies</a>
         <a href="#headingDifference" class="section-nav-link" role="tab" aria-selected="false">Why Scripbox</a>
         <a href="#headingProcess" class="section-nav-link" role="tab" aria-selected="false">Process</a>
@@ -317,137 +238,9 @@
     <!-- Below-the-Fold Experience -->
     <main class="below-fold-content" id="belowFoldContent">
       
-      <!-- Paddle-Inspired Sticky Card Stack Container (Dark Mode) -->
-      <div class="paddle-stack-container" id="paddleStackContainer">
-        <div class="paddle-stack-track" id="paddleStackTrack">
-
-        <!-- 1. The Investor Problem: The Challenge -->
-        <section class="btf-section problem-section stack-panel stack-panel-1" id="sec-problem" aria-labelledby="headingProblem">
-          <div class="btf-badge">THE CHALLENGE</div>
-          <h2 id="headingProblem" class="btf-title btf-title--serif">More wealth. <span class="challenge-title-accent">More to manage.</span></h2>
-          <div class="problem-editorial-content">
-            <p class="problem-editorial-lede">
-              As your wealth grows, investments can become scattered, overlapping and harder to manage as one portfolio.
-            </p>
-          </div>
-
-          <!-- Vertically Stacked Feature Cards: Wealth Management Challenges -->
-          <div class="challenge-editorial-list feature-cards-stack" role="list" aria-label="Key wealth management challenges">
-            
-            <div class="editorial-feature-card challenge-editorial-row" role="listitem">
-              <div class="feature-card-icon challenge-icon-anchor" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="feature-card-svg challenge-standalone-svg">
-                  <!-- Dispersed portfolio holdings across accounts -->
-                  <circle cx="12" cy="12" r="2.5" fill="#F58024" stroke="#F58024"/>
-                  <circle cx="5" cy="7" r="2" stroke="#E5D3BA"/>
-                  <circle cx="19" cy="6" r="2" stroke="#E5D3BA"/>
-                  <circle cx="6" cy="18" r="2" stroke="#E5D3BA"/>
-                  <circle cx="18" cy="17" r="2" stroke="#E5D3BA"/>
-                  <path d="M7 8l3.5 2.5M17 7.5l-3.5 3M7.5 16.5l3-3M16.5 15.5l-3-2" stroke="rgba(229, 211, 186, 0.35)" stroke-dasharray="2 2"/>
-                </svg>
-              </div>
-              <div class="feature-card-text challenge-text-block">
-                <h3 class="feature-card-title challenge-point-title">Scattered investments</h3>
-                <p class="feature-card-desc challenge-point-desc">Your investments are spread across funds, accounts and statements.</p>
-              </div>
-            </div>
-
-            <div class="editorial-feature-card challenge-editorial-row" role="listitem">
-              <div class="feature-card-icon challenge-icon-anchor" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="feature-card-svg challenge-standalone-svg">
-                  <!-- Intersecting funds holding overlapping positions -->
-                  <circle cx="9" cy="12" r="6.5" stroke="#E5D3BA"/>
-                  <circle cx="15" cy="12" r="6.5" stroke="#E5D3BA"/>
-                  <path d="M12 6.85a6.5 6.5 0 0 1 0 10.3 6.5 6.5 0 0 1 0-10.3z" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.6"/>
-                </svg>
-              </div>
-              <div class="feature-card-text challenge-text-block">
-                <h3 class="feature-card-title challenge-point-title">Overlapping exposure</h3>
-                <p class="feature-card-desc challenge-point-desc">Different funds can leave you holding the same stocks.</p>
-              </div>
-            </div>
-
-            <div class="editorial-feature-card challenge-editorial-row" role="listitem">
-              <div class="feature-card-icon challenge-icon-anchor" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="feature-card-svg challenge-standalone-svg">
-                  <!-- Diverging investment decisions -->
-                  <circle cx="4" cy="12" r="2" fill="#E5D3BA" stroke="#E5D3BA"/>
-                  <path d="M6 12h4" stroke="#E5D3BA"/>
-                  <path d="M10 12l5-5h4" stroke="#E5D3BA"/>
-                  <path d="M10 12l5 5h4" stroke="#E5D3BA"/>
-                  <circle cx="19" cy="7" r="2" fill="#F58024" stroke="#F58024"/>
-                  <circle cx="19" cy="17" r="2" stroke="#E5D3BA"/>
-                  <line x1="19" y1="11" x2="19" y2="13" stroke="rgba(245, 128, 36, 0.5)" stroke-dasharray="1.5 1.5"/>
-                </svg>
-              </div>
-              <div class="feature-card-text challenge-text-block">
-                <h3 class="feature-card-title challenge-point-title">Disconnected decisions</h3>
-                <p class="feature-card-desc challenge-point-desc">Individual investment choices don't always add up to a cohesive portfolio.</p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- 2. The Scripbox Approach: Systematic Thinking & Human Oversight -->
-        <section class="btf-section approach-section stack-panel stack-panel-2" id="sec-approach" aria-labelledby="headingOverview">
-          <div class="btf-badge">THE SCRIPBOX APPROACH</div>
-          <h2 id="headingOverview" class="btf-title">Systematic thinking. Human oversight.</h2>
-          <p class="btf-body">
-            A structured investment process combines quantitative research with active portfolio oversight.
-          </p>
-
-          <!-- Dual-Engine Architecture Block -->
-          <div class="dual-engine-container">
-            <div class="dual-engine-split">
-              <!-- Pillar 01: Systematic Research -->
-              <div class="engine-pillar">
-                <div class="engine-badge-row">
-                  <span class="engine-badge-label">SYSTEMATIC RESEARCH</span>
-                </div>
-                <p class="engine-desc">Models assess valuation, momentum and balance-sheet quality across the investment universe.</p>
-              </div>
-
-              <!-- Inter-Engine Connector -->
-              <div class="engine-divider-accent" aria-hidden="true">
-                <span class="engine-plus-symbol">+</span>
-              </div>
-
-              <!-- Pillar 02: Human Oversight -->
-              <div class="engine-pillar">
-                <div class="engine-badge-row">
-                  <span class="engine-badge-label">HUMAN OVERSIGHT</span>
-                </div>
-                <p class="engine-desc">Portfolio managers evaluate governance, debt, promoter integrity and liquidity.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Integrated Mandate Covenant Strip (Demat Custody + ₹50L SEBI Threshold) -->
-          <div class="approach-covenant-strip">
-            <div class="covenant-col-demat">
-              <div class="covenant-icon-wrap" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                </svg>
-              </div>
-              <div class="covenant-text">
-                <span class="covenant-title">Direct Demat Custody</span>
-                <span class="covenant-detail">Securities held under your PAN. Individual cost basis, zero pooled funds.</span>
-              </div>
-            </div>
-
-            <div class="covenant-col-threshold">
-              <span class="threshold-tag">SEBI Statutory Minimum</span>
-              <span class="threshold-figure">₹50 Lakhs</span>
-              <span class="threshold-note">Designed for portfolios of ₹1Cr+</span>
-            </div>
-          </div>
-        </section>
-
+      <!-- Performance → merged Challenge/Approach (static flow) -->
       <!-- 2. Performance Comparison: Flagship Strategy vs Industry Benchmark -->
-      <section class="btf-section perf-section stack-panel stack-panel-3" id="perfSection" aria-labelledby="headingPerf">
+      <section class="btf-section perf-section" id="perfSection" aria-labelledby="headingPerf">
         <div class="btf-badge">PERFORMANCE</div>
         <h2 id="headingPerf" class="btf-title">A track record across market cycles.</h2>
         <p class="btf-body">
@@ -525,10 +318,92 @@
             *Latest APMI comparative filing period. Historical returns are net of fees and not indicative of future performance.
           </div>
         </div>
+
+        <!-- Compact Closing Credibility Strip -->
+        <div class="credibility-ticker perf-credibility-strip" role="region" aria-label="Key Scale Metrics">
+          <div class="credibility-ticker-track">
+            <div class="ticker-group">
+              <div class="credibility-metric ticker-item">
+                <span class="credibility-figure">₹21,500 Cr+</span>
+                <span class="credibility-label">Overall Group AUM <span class="credibility-sublabel">(Scripbox)</span></span>
+              </div>
+              <div class="credibility-metric ticker-item">
+                <span class="credibility-figure">23 Years+</span>
+                <span class="credibility-label">Experience in Wealth Management</span>
+              </div>
+              <div class="credibility-metric ticker-item">
+                <span class="credibility-figure">4+</span>
+                <span class="credibility-label">Defined, Focused Portfolio Mandates</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-        </div> <!-- /.paddle-stack-track -->
-      </div> <!-- /#paddleStackContainer -->
+      <!-- 3. The Challenge & The Scripbox Approach (merged, compact) -->
+      <section class="btf-section problem-section approach-section merged-approach" id="sec-problem" aria-labelledby="headingProblem">
+        <div class="btf-badge">THE CHALLENGE &amp; OUR APPROACH</div>
+        <h2 id="headingProblem" class="btf-title btf-title--serif">More wealth. <span class="challenge-title-accent">More to manage.</span></h2>
+        <div class="problem-editorial-content">
+          <p class="problem-editorial-lede">
+            As your wealth grows, investments can become scattered, overlapping and harder to manage as one portfolio.
+          </p>
+        </div>
+        <ul class="merged-challenge-points" aria-label="Key wealth management challenges">
+          <li>Scattered investments</li>
+          <li>Overlapping exposure</li>
+          <li>Disconnected decisions</li>
+        </ul>
+
+        <!-- Dual-Engine Architecture Block (The Approach in Two Points) -->
+        <div class="dual-engine-container">
+          <div class="merged-approach-kicker">SYSTEMATIC THINKING &amp; HUMAN OVERSIGHT</div>
+          <div class="dual-engine-split">
+            <!-- Pillar 01: Systematic Research -->
+            <div class="engine-pillar">
+              <div class="engine-badge-row">
+                <span class="engine-badge-label">SYSTEMATIC RESEARCH</span>
+              </div>
+              <p class="engine-desc">Models assess valuation, momentum and balance-sheet quality across the investment universe.</p>
+            </div>
+
+            <!-- Inter-Engine Connector -->
+            <div class="engine-divider-accent" aria-hidden="true">
+              <span class="engine-plus-symbol">+</span>
+            </div>
+
+            <!-- Pillar 02: Human Oversight -->
+            <div class="engine-pillar">
+              <div class="engine-badge-row">
+                <span class="engine-badge-label">HUMAN OVERSIGHT</span>
+              </div>
+              <p class="engine-desc">Portfolio managers evaluate governance, debt, promoter integrity and liquidity.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrated Mandate Covenant Strip (Demat Custody + ₹50L SEBI Threshold) -->
+        <div class="approach-covenant-strip">
+            <div class="covenant-col-demat">
+              <div class="covenant-icon-wrap" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="covenant-text">
+                <span class="covenant-title">Direct Demat Custody</span>
+                <span class="covenant-detail">Securities held under your PAN. Individual cost basis, zero pooled funds.</span>
+              </div>
+            </div>
+
+            <div class="covenant-col-threshold">
+              <span class="threshold-tag">SEBI Statutory Minimum</span>
+              <span class="threshold-figure">₹50 Lakhs</span>
+              <span class="threshold-note">Designed for portfolios of ₹1Cr+</span>
+            </div>
+          </div>
+      </section>
 
       <!-- 3. Core Investment Strategies — Overview Cards -->
       <section class="btf-section strategies-section" aria-labelledby="headingStrategies" id="strategiesSection">
@@ -1326,7 +1201,6 @@
                 <div class="option-text-stack">
                   <div class="option-title-row">
                     <span class="option-label">Under ₹50 Lakhs</span>
-                    <span class="option-pill-badge">Direct Fund Advisory</span>
                   </div>
                   <span class="option-sublabel">Direct Mutual Fund Advisory &bull; PMS starts at ₹50L</span>
                 </div>
@@ -1614,8 +1488,7 @@
     </div>
   </div>
 
-  <script src="gsap.min.js?v=4.5" defer></script>
-  <script src="performance-data.js?v=4.5" defer></script>
-  <script src="app.min.js?v=4.5" defer></script>
+  <script src="performance-data.js?v=4.9" defer></script>
+  <script src="app.min.js?v=4.9" defer></script>
 </body>
 </html>

@@ -9547,3 +9547,205 @@ body.strategy-sheet-open .sticky-cta-bar,
 .strat-opt-returns-table tr.is-selected-row {
   background: rgba(245, 128, 36, 0.07);
 }
+
+/* ==========================================================================
+   Feedback pass: taller hero chart, fixed stats, Performance-first flow,
+   merged Challenge/Approach, equal form options
+   ========================================================================== */
+
+/* Hero chart: taller, fully drawn from first paint */
+.hero-section .hero-illustration-graphic { margin-top: 6px; margin-bottom: 10px; }
+
+/* Compact closing credibility strip inside Performance section */
+.credibility-ticker {
+  width: 100% !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  overflow: visible !important;
+  padding: 16px 0 0 !important;
+  margin-top: 18px;
+  border-top: 1px solid rgba(26, 22, 19, 0.14);
+  box-sizing: border-box;
+}
+.credibility-ticker-track {
+  animation: none !important;
+  transform: none !important;
+  width: 100% !important;
+  display: block;
+}
+.ticker-group {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 0.95fr;
+  column-gap: 10px;
+  align-items: stretch;
+  width: 100%;
+}
+.credibility-metric.ticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 0 !important;
+  border: 0 !important;
+  text-align: left;
+  min-width: 0;
+}
+.credibility-metric.ticker-item + .credibility-metric.ticker-item {
+  padding-left: 10px !important;
+  border-left: 1px solid rgba(26, 22, 19, 0.12) !important;
+}
+.credibility-metric .credibility-figure {
+  font-size: clamp(18px, 5vw, 21px) !important;
+  line-height: 1.1 !important;
+  color: #1A1613 !important;
+}
+.credibility-metric .credibility-label {
+  white-space: normal !important;
+  font-size: 11.5px !important;
+  line-height: 1.32 !important;
+  color: #4A4239 !important;
+}
+.credibility-metric .credibility-sublabel {
+  font-size: 11px !important;
+  color: #544B42 !important;
+}
+
+/* Performance is the first content card (static flow, paper surface) */
+#perfSection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Merged Challenge + Approach (compact single narrative block) */
+#sec-problem.merged-approach {
+  padding-top: 38px !important;
+  padding-bottom: 42px !important;
+}
+.merged-approach .problem-editorial-content { margin-top: 4px !important; }
+.merged-challenge-points {
+  list-style: none;
+  margin: 12px auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #E5D3BA;
+}
+.merged-challenge-points li { display: inline-flex; align-items: center; }
+.merged-challenge-points li + li::before {
+  content: "";
+  width: 4px; height: 4px;
+  margin: 0 10px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  flex: none;
+}
+.merged-approach .dual-engine-container {
+  margin-top: 22px !important;
+  padding-top: 20px !important;
+  border-top: 1px solid var(--rule) !important;
+}
+.merged-approach-kicker {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C2B9AE;
+  text-align: center;
+  margin: 0 0 12px;
+}
+.merged-approach .engine-pillar {
+  padding: 6px 0 12px 46px !important;
+}
+.merged-approach .engine-pillar::before {
+  font-size: 40px !important;
+  top: 2px !important;
+}
+.merged-approach .engine-divider-accent {
+  margin: 2px 0 6px 46px !important;
+}
+.merged-approach .approach-covenant-strip {
+  margin-top: 8px !important;
+  padding: 16px !important;
+  gap: 12px !important;
+}
+
+/* Form steps 1 & 2: identical option treatment before selection */
+.objective-list,
+.options-list {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 12px;
+}
+.objective-card,
+.option-tile {
+  min-height: 92px;
+  box-sizing: border-box;
+}
+
+/* WCAG AA contrast upgrades for small grey text on dark backgrounds */
+.hero-section .hero-trust-line {
+  color: #C2B9AE !important;
+}
+.hero-illustration-eyebrow {
+  color: #C4BBB0 !important;
+}
+.hero-ray-svg .timeline-group,
+.hero-ray-svg .time-tick {
+  fill: #B5ADA3 !important;
+}
+.hero-growth-popup .popup-disclaimer,
+.popup-disclaimer,
+.hero-illus-disclosure-text,
+.popup-calc-note,
+.legend-text {
+  color: #B8AFA5 !important;
+}
+.feature-card-desc {
+  color: #D8D0C6 !important;
+}
+.strat-meta-label,
+.fee-group-disclaimer,
+.terms-disclaimer {
+  color: #C2B9AE !important;
+}
+.footer-license,
+.footer-disclaimer-text {
+  color: #B8AFA5 !important;
+}
+.btf-footer .copyright {
+  color: #B5ADA3 !important;
+}
+.secondary-reassurance .dot-sep {
+  color: #241D17 !important;
+}
+.option-sublabel,
+.objective-desc,
+.step-subnote,
+.step-helper,
+.field-helper-hint,
+.optional-tag,
+.reassurance-item,
+.strat-detail-footer-note {
+  color: #BFB6AB !important;
+}
+.strat-wealth-label,
+.strat-wealth-sub,
+.strat-wealth-arrow,
+.strat-wealth-initial,
+.strat-perf-source-note,
+.strat-priority-label,
+.strat-fact-label,
+.strat-badge-lbl,
+.strat-principle-cue,
+.strat-dg-period-btn:not(.is-active),
+.strat-dg-kpi-label,
+.strat-dg-kpi-sub {
+  color: #B8AFA5 !important;
+}
