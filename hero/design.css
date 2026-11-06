@@ -140,6 +140,9 @@ body { counter-reset: sect; }
   border: 1px solid rgba(26, 22, 19, 0.12) !important;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.25) !important;
   transform: translate3d(0, var(--stack-offset-3, 28px), 0);
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 28px 20px 22px !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -277,14 +280,53 @@ body { counter-reset: sect; }
   font-size: clamp(26.6px, 7.4vw, 32.2px);
   line-height: 1.16;
   letter-spacing: -0.018em;
-  color: #A39B90 !important;
-  -webkit-text-fill-color: #A39B90 !important;
   margin: 0;
+  background: linear-gradient(
+    110deg,
+    #F58024 0%,
+    #F58024 35%,
+    #FFEAD4 50%,
+    #F58024 65%,
+    #F58024 100%
+  ) !important;
+  background-size: 240% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #F58024 !important;
+  animation: heroHeadlineShimmer 8s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
 }
+
 .hero-title.accent-text,
 .headline-imperative.accent-text {
-  color: #A39B90 !important;
-  -webkit-text-fill-color: #A39B90 !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #F58024 !important;
+}
+
+@keyframes heroHeadlineShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  30% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .headline-imperative,
+  .hero-title.accent-text,
+  .headline-imperative.accent-text {
+    animation: none !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: #F58024 !important;
+    color: #F58024 !important;
+  }
 }
 
 /* Performance surface: subtle elevated card with understated shimmering border */
@@ -5211,7 +5253,7 @@ body.dialog-open .sticky-cta-bar {
 .faq-question {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 15px !important;
-  font-weight: 550 !important;
+  font-weight: 400 !important;
   line-height: 1.45 !important;
   color: #F7F3EE !important;
   margin: 0 !important;
@@ -7923,56 +7965,123 @@ body.strategy-sheet-open .sticky-cta-bar,
 }
 
 .problem-editorial-content {
-  gap: 12px !important;
-  margin-top: 12px !important;
+  margin-top: 10px !important;
 }
 
 .problem-editorial-lede {
   font-size: 16px !important;
   line-height: 1.58 !important;
   color: #FAF6F0 !important;
+  margin: 0 !important;
 }
 
-.problem-editorial-body {
-  font-size: 15px !important;
-  line-height: 1.58 !important;
-  color: #D8D0C6 !important;
-}
-
-.challenge-editorial-list {
-  border-top: 0 !important;
-  display: flex;
-  flex-direction: column;
-  gap: 22px !important;
+/* ==========================================================================
+   Unified Feature Cards System (The Challenge & Why Scripbox)
+   Reference Design: Vertically stacked cards, icon top-left, title, desc
+   ========================================================================== */
+.feature-cards-stack,
+.challenge-editorial-list,
+.diff-editorial-flow {
+  border: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
   margin-top: 24px !important;
-}
-
-.challenge-editorial-row {
-  border-bottom: 0 !important;
+  width: 100% !important;
   padding: 0 !important;
-  gap: 16px !important;
 }
 
-.challenge-icon-anchor {
-  width: 26px !important;
-  height: 26px !important;
-  margin-top: 2px !important;
+.editorial-feature-card,
+.challenge-editorial-row,
+.diff-block {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  padding: 26px 24px 28px 24px !important;
+  background: #171513 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  position: relative !important;
 }
 
-.challenge-standalone-svg {
-  width: 24px !important;
-  height: 24px !important;
+@media (max-width: 375px) {
+  .editorial-feature-card,
+  .challenge-editorial-row,
+  .diff-block {
+    padding: 22px 18px 24px 18px !important;
+    border-radius: 18px !important;
+  }
 }
 
-.challenge-point-title {
-  font-size: 19.5px !important;
+.editorial-feature-card::after,
+.challenge-editorial-row::after,
+.diff-block::after {
+  display: none !important;
+}
+
+.feature-card-icon,
+.challenge-icon-anchor,
+.diff-visual-card {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 0 22px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.feature-card-svg,
+.challenge-standalone-svg,
+.diff-svg-art {
+  width: 46px !important;
+  height: 46px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  display: block !important;
+}
+
+.feature-card-text,
+.challenge-text-block,
+.diff-text-col {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.feature-card-title,
+.challenge-point-title,
+.pillar-title {
+  font-family: var(--font-display, 'Newsreader', serif) !important;
+  font-size: 21.5px !important;
+  font-weight: 500 !important;
   line-height: 1.25 !important;
+  color: #FAF6F0 !important;
+  margin: 0 0 10px 0 !important;
+  letter-spacing: -0.015em !important;
+  text-wrap: balance !important;
 }
 
-.challenge-point-desc {
-  font-size: 15px !important;
-  line-height: 1.56 !important;
-  color: #D8D0C6 !important;
+.feature-card-desc,
+.challenge-point-desc,
+.pillar-desc {
+  font-family: var(--font-body) !important;
+  font-size: 14.5px !important;
+  line-height: 1.55 !important;
+  color: rgba(239, 230, 218, 0.72) !important;
+  margin: 0 !important;
 }
 
 #sec-approach .btf-body {
@@ -7985,23 +8094,21 @@ body.strategy-sheet-open .sticky-cta-bar,
 
 .engine-pillar {
   border-top: 0 !important;
-  padding: 10px 0 20px 52px !important;
+  padding: 6px 0 16px 52px !important;
 }
 
 .engine-pillar::before {
-  font-size: 48px !important;
-  top: 6px !important;
+  font-size: 46px !important;
+  top: 0px !important;
+}
+
+.engine-badge-row {
+  margin-bottom: 6px !important;
 }
 
 .engine-badge-label {
   font-size: 11.5px !important;
   letter-spacing: 0.1em !important;
-}
-
-.engine-name {
-  font-size: 21px !important;
-  line-height: 1.22 !important;
-  margin: 4px 0 6px !important;
 }
 
 .engine-desc,
@@ -8094,29 +8201,6 @@ body.strategy-sheet-open .sticky-cta-bar,
   padding: 22px 20px 0 !important;
 }
 
-/* 6. Why Scripbox, How We Work, Leadership, Fees & FAQs */
-.diff-editorial-flow {
-  gap: 28px !important;
-  margin-top: 0 !important;
-}
-
-.diff-block {
-  border-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  column-gap: 18px !important;
-  row-gap: 6px !important;
-}
-
-.pillar-title {
-  font-size: 21px !important;
-  line-height: 1.25 !important;
-}
-
-.pillar-desc {
-  font-size: 15px !important;
-  line-height: 1.58 !important;
-  color: #D8D0C6 !important;
-}
 
 .process-header {
   margin-bottom: 0 !important;
@@ -8225,6 +8309,7 @@ body.strategy-sheet-open .sticky-cta-bar,
 .faq-question {
   font-family: var(--font-body) !important;
   font-size: 15.5px !important;
+  font-weight: 400 !important;
   line-height: 1.45 !important;
 }
 
@@ -8413,13 +8498,15 @@ body.strategy-sheet-open .sticky-cta-bar,
   padding: 0 0 24px 0;
 }
 
-/* Overview Section Header */
+/* Overview Section Header — White Background (#FFFFFF) */
 .strat-opt-overview-hero {
-  display: flex;
-  flex-direction: column;
-  padding-top: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #FFFFFF !important;
+  margin: 0 -20px 0 -20px !important;
+  padding: 24px 20px 22px 20px !important;
+  border-bottom: 1px solid #ECE7E1 !important;
+  box-sizing: border-box !important;
 }
 
 .strat-opt-overview-header {
@@ -8431,55 +8518,55 @@ body.strategy-sheet-open .sticky-cta-bar,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .strat-opt-eyebrow-badge {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--accent-orange);
-  text-transform: uppercase;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  color: #D96918 !important;
+  text-transform: uppercase !important;
 }
 
 .strat-opt-overview-title {
-  font-family: var(--font-display);
-  font-size: 27px;
-  font-weight: 400;
-  line-height: 1.15;
-  color: #FAF6F0;
-  letter-spacing: -0.015em;
-  margin: 0;
+  font-family: var(--font-display, 'Newsreader', serif) !important;
+  font-size: 28px !important;
+  font-weight: 500 !important;
+  line-height: 1.15 !important;
+  color: #1A1714 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
 }
 
 .strat-opt-overview-headline {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #E8833A;
-  margin: 5px 0 10px 0;
+  font-family: var(--font-display, 'Newsreader', serif) !important;
+  font-size: 16.5px !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  color: #C25A0E !important;
+  margin: 6px 0 10px 0 !important;
 }
 
 .strat-opt-overview-desc {
-  font-family: var(--font-body);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: #A39B90;
-  margin: 0 0 16px 0;
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #3E3832 !important;
+  margin: 0 0 18px 0 !important;
 }
 
-/* Key Facts 2x2 Architectural Grid */
+/* Key Facts 2x2 Architectural Grid on Crisp White Surface */
 .strat-opt-overview-facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 16px;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px 14px !important;
+  padding: 14px 16px !important;
+  background: #F8F6F2 !important;
+  border: 1px solid #E6E0D6 !important;
+  border-radius: 8px !important;
 }
 
 .strat-opt-fact-cell {
@@ -8489,34 +8576,54 @@ body.strategy-sheet-open .sticky-cta-bar,
 }
 
 .strat-opt-fact-value {
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  font-weight: 600;
-  color: #FAF6F0;
-  font-feature-settings: "tnum";
+  font-family: var(--font-body) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  color: #1A1714 !important;
+  font-feature-settings: "tnum" !important;
 }
 
 .strat-opt-fact-title {
-  font-family: var(--font-body);
-  font-size: 11px;
-  color: #8C847A;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  color: #6E675F !important;
+  font-weight: 450 !important;
 }
 
-/* 2. Tabs Navigation — Immovable, Opaque, Single Horizontal Row */
+/* 2. Tabs Navigation — Sticky Opaque Track Matching Home Page Navigation System */
 .strat-opt-nav-tabs {
   position: sticky !important;
   top: 0 !important;
   z-index: 100 !important;
-  display: grid !important;
-  grid-template-columns: 1.15fr 1fr 1fr 0.95fr !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  gap: 14px !important;
+  padding: 0 20px !important;
   width: calc(100% + 40px) !important;
   box-sizing: border-box !important;
   margin: 0 -20px !important;
-  padding: 0 12px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
-  min-height: 48px !important;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45) !important;
   isolation: isolate !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  touch-action: pan-x pan-y !important;
+}
+
+.strat-opt-nav-tabs::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (max-width: 375px) {
+  .strat-opt-nav-tabs {
+    gap: 12px !important;
+    padding: 0 16px !important;
+  }
 }
 
 .strategy-detail-sheet[data-strat-id="optimiser"] .strat-opt-nav-tabs {
@@ -8545,43 +8652,59 @@ body.strategy-sheet-open .sticky-cta-bar,
 }
 
 .strat-opt-tab-nav-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-  background: transparent;
-  border: none;
-  padding: 0 2px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  color: #8C847A;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: color 0.15s ease;
-  outline: none;
-  text-align: center;
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 4px !important;
+  font-family: var(--font-heading) !important;
+  font-size: 15.5px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  min-width: 44px !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+  color: #C8C0B5 !important;
+  cursor: pointer !important;
+  transition: color 0.18s ease !important;
+  outline: none !important;
+  text-align: center !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+@media (max-width: 375px) {
+  .strat-opt-tab-nav-btn {
+    font-size: 14.5px !important;
+    padding: 0 3px !important;
+  }
 }
 
 .strat-opt-tab-nav-btn:hover {
-  color: #FAF6F0;
+  color: #FFFFFF !important;
 }
 
 .strat-opt-tab-nav-btn.is-active {
-  color: #FAF6F0;
-  font-weight: 600;
+  color: var(--accent-orange) !important;
+  font-weight: 600 !important;
 }
 
 .strat-opt-tab-nav-btn.is-active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 6px;
-  right: 6px;
-  height: 2px;
-  background: var(--accent-orange);
-  border-radius: 2px 2px 0 0;
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0px !important;
+  left: 2px !important;
+  right: 2px !important;
+  height: 2.5px !important;
+  background-color: var(--accent-orange) !important;
+  border-radius: 2px 2px 0 0 !important;
+}
+
+.strat-opt-tab-nav-btn:focus-visible {
+  outline: 2px solid var(--accent-orange) !important;
+  outline-offset: -2px !important;
 }
 
 /* Tab Content Panels Container */
@@ -9023,11 +9146,147 @@ body.strategy-sheet-open .sticky-cta-bar,
   margin: 4px 0 0 0;
 }
 
-/* TAB 4: Suitability — Clean Editorial Criteria */
+/* TAB 4: "Is it right for you?" — 3 Clearly Distinguishable Sections */
 .strat-opt-built-header {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* Section 1: Prominently Displayed Risk Classification with Orange Accent */
+.strat-risk-classification-box {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  background: rgba(245, 128, 36, 0.05) !important;
+  border: 1px solid rgba(245, 128, 36, 0.22) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin: 6px 0 10px 0 !important;
+}
+
+.strat-risk-indicator-bar {
+  width: 5px !important;
+  background: var(--accent-orange) !important;
+  flex-shrink: 0 !important;
+}
+
+.strat-risk-details {
+  padding: 14px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  flex: 1 !important;
+}
+
+.strat-risk-label-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+.strat-risk-eyebrow {
+  font-family: var(--font-body) !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: #A39B90 !important;
+  text-transform: uppercase !important;
+}
+
+.strat-risk-badge-high {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 8px !important;
+  background: rgba(245, 128, 36, 0.18) !important;
+  border: 1px solid rgba(245, 128, 36, 0.35) !important;
+  border-radius: 4px !important;
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #FAF6F0 !important;
+}
+
+.strat-risk-summary-text {
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  color: #D8D0C6 !important;
+  margin: 0 !important;
+}
+
+/* Section 2: Who this strategy is suitable for */
+.strat-suitability-section {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 6px !important;
+}
+
+.strat-opt-suitability-label {
+  font-family: var(--font-body) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #E2DDD5 !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.strat-opt-suitability-criteria {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.strat-opt-suitability-criteria li {
+  position: relative !important;
+  padding-left: 20px !important;
+  font-family: var(--font-body) !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #D8D0C6 !important;
+}
+
+.strat-opt-suitability-criteria li::before {
+  content: "•" !important;
+  position: absolute !important;
+  left: 4px !important;
+  color: var(--accent-orange) !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  top: 2px !important;
+}
+
+/* Section 3: Who this strategy may not be suitable for (visually separated) */
+.strat-unsuitability-section {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 10px !important;
+  padding-top: 18px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.strat-opt-suitability-label.is-caution {
+  color: #A39B90 !important;
+}
+
+.strat-opt-suitability-criteria.is-unsuitable li {
+  color: #A39B90 !important;
+}
+
+.strat-opt-suitability-criteria.is-unsuitable li::before {
+  content: "–" !important;
+  position: absolute !important;
+  left: 4px !important;
+  color: #8C847A !important;
+  font-size: 14px !important;
+  top: 0 !important;
 }
 
 .strat-opt-risk-pill {
@@ -9048,77 +9307,6 @@ body.strategy-sheet-open .sticky-cta-bar,
   height: 6px;
   border-radius: 50%;
   background: var(--accent-orange);
-}
-
-.strat-opt-suitability-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.strat-opt-suitability-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 16px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
-}
-
-.strat-opt-suitability-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #E2DDD5;
-  margin: 0;
-}
-
-.strat-opt-suitability-card.is-designed .strat-opt-suitability-title {
-  color: #E2DDD5;
-}
-
-.strat-opt-suitability-card.is-not-designed .strat-opt-suitability-title {
-  color: #8C847A;
-}
-
-.strat-opt-check-icon,
-.strat-opt-cross-icon {
-  display: none !important;
-}
-
-.strat-opt-suitability-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.strat-opt-suitability-list li {
-  position: relative;
-  padding-left: 14px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #A39B90;
-}
-
-.strat-opt-suitability-list li::before {
-  content: "–";
-  position: absolute;
-  left: 0;
-  color: var(--accent-orange);
-  font-weight: 600;
-}
-
-.strat-opt-suitability-card.is-not-designed .strat-opt-suitability-list li::before {
-  color: #6B635A;
 }
 
 /* Mandate Snapshot Architectural Grid */

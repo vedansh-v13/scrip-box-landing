@@ -857,59 +857,69 @@
   // Exact Landing-Page Strategy Card Artworks (Shared Single Source of Truth)
   // Preserves exact vector paths, datum lines, highlight fills, and 56x52 viewBox
   // --------------------------------------------------------------------------
-  function getStrategyCardSvg(id) {
+  function getStrategyCardSvg(id, isLight = false) {
+    const datumStroke = isLight ? "rgba(26, 23, 20, 0.3)" : "rgba(255, 255, 255, 0.22)";
+    const axisStroke = isLight ? "rgba(26, 23, 20, 0.3)" : "rgba(255, 255, 255, 0.22)";
+    const fill1 = isLight ? "rgba(26, 23, 20, 0.08)" : "rgba(239, 230, 218, 0.2)";
+    const stroke1 = isLight ? "rgba(26, 23, 20, 0.28)" : "rgba(255, 255, 255, 0.25)";
+    const fill2 = isLight ? "rgba(26, 23, 20, 0.14)" : "rgba(239, 230, 218, 0.35)";
+    const stroke2 = isLight ? "rgba(26, 23, 20, 0.35)" : "rgba(255, 255, 255, 0.3)";
+    const dotFill = isLight ? "#1A1714" : "#FFFFFF";
+    const orangeStroke = isLight ? "#D96918" : "#F58024";
+    const orangeFill = isLight ? "rgba(217, 105, 24, 0.18)" : "rgba(245, 128, 36, 0.18)";
+
     if (id === 'optimiser') {
       return `<svg viewBox="0 0 56 52" width="70" height="65" fill="none" class="strat-geo-svg" aria-hidden="true">
         <!-- Precision Baseline Datum -->
-        <line x1="4" y1="44" x2="52" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="4" y1="44" x2="52" y2="44" stroke="${datumStroke}" stroke-width="1.2" stroke-linecap="round"/>
         <!-- Fine Calibration Axis -->
-        <line x1="16" y1="8" x2="16" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2"/>
+        <line x1="16" y1="8" x2="16" y2="44" stroke="${axisStroke}" stroke-width="1.2"/>
         <!-- Stepped Disciplined Factor Blocks -->
-        <rect x="19" y="32" width="7" height="12" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
-        <rect x="29" y="22" width="7" height="22" fill="rgba(239, 230, 218, 0.35)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+        <rect x="19" y="32" width="7" height="12" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
+        <rect x="29" y="22" width="7" height="22" fill="${fill2}" stroke="${stroke2}" stroke-width="1"/>
         <!-- Optimal Highlighted Selection (Restrained Orange) -->
-        <rect x="39" y="12" width="7" height="32" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
+        <rect x="39" y="12" width="7" height="32" fill="${orangeFill}" stroke="${orangeStroke}" stroke-width="1.4"/>
         <!-- Mathematical Quantitative Threshold Line -->
-        <line x1="8" y1="12" x2="50" y2="12" stroke="#F58024" stroke-width="1" stroke-dasharray="2 2" stroke-opacity="0.8"/>
+        <line x1="8" y1="12" x2="50" y2="12" stroke="${orangeStroke}" stroke-width="1" stroke-dasharray="2 2" stroke-opacity="0.8"/>
         <!-- Coordinate Intercept Diamond Marker -->
-        <polygon points="42.5,8.5 46,12 42.5,15.5 39,12" fill="#F58024"/>
+        <polygon points="42.5,8.5 46,12 42.5,15.5 39,12" fill="${orangeStroke}"/>
       </svg>`;
     } else if (id === 'focused') {
       return `<svg viewBox="0 0 56 52" width="70" height="65" fill="none" class="strat-geo-svg" aria-hidden="true">
         <!-- Stepped Foundation Datum -->
-        <line x1="6" y1="44" x2="50" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="6" y1="44" x2="50" y2="44" stroke="${datumStroke}" stroke-width="1.2" stroke-linecap="round"/>
         <!-- Symmetrical Architectural Pedestal -->
-        <rect x="12" y="40" width="32" height="4" fill="rgba(239, 230, 218, 0.15)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+        <rect x="12" y="40" width="32" height="4" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
         <!-- Flanking Conviction Buttresses -->
-        <polygon points="15,40 15,26 21,22 21,40" fill="rgba(239, 230, 218, 0.1)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
-        <polygon points="41,40 41,26 35,22 35,40" fill="rgba(239, 230, 218, 0.1)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+        <polygon points="15,40 15,26 21,22 21,40" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
+        <polygon points="41,40 41,26 35,22 35,40" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
         <!-- Central Monolithic Keystone / Column -->
-        <rect x="23" y="16" width="10" height="24" fill="rgba(239, 230, 218, 0.22)" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.2"/>
-        <line x1="28" y1="18" x2="28" y2="38" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1"/>
+        <rect x="23" y="16" width="10" height="24" fill="${fill2}" stroke="${stroke2}" stroke-width="1.2"/>
+        <line x1="28" y1="18" x2="28" y2="38" stroke="${stroke1}" stroke-width="1"/>
         <!-- Restrained Orange Apex Triangle -->
-        <polygon points="28,6 36,15 20,15" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
-        <circle cx="28" cy="15" r="2" fill="#FFFFFF"/>
+        <polygon points="28,6 36,15 20,15" fill="${orangeFill}" stroke="${orangeStroke}" stroke-width="1.4"/>
+        <circle cx="28" cy="15" r="2" fill="${dotFill}"/>
       </svg>`;
     } else {
       return `<svg viewBox="0 0 56 52" width="70" height="65" fill="none" class="strat-geo-svg" aria-hidden="true">
         <!-- Precision Baseline Datum (Unified across all 3 strategy illustrations) -->
-        <line x1="6" y1="44" x2="50" y2="44" stroke="rgba(255, 255, 255, 0.22)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="6" y1="44" x2="50" y2="44" stroke="${datumStroke}" stroke-width="1.2" stroke-linecap="round"/>
         <!-- Vertical Calibration Axis -->
-        <line x1="28" y1="8" x2="28" y2="44" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
-        <line x1="12" y1="24" x2="44" y2="24" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1"/>
+        <line x1="28" y1="8" x2="28" y2="44" stroke="${axisStroke}" stroke-width="1"/>
+        <line x1="12" y1="24" x2="44" y2="24" stroke="${axisStroke}" stroke-width="1"/>
         <!-- Tactical Satellite Orbit Arc -->
-        <path d="M 44 24 A 16 16 0 0 0 28 8" fill="none" stroke="#F58024" stroke-width="1.1" stroke-dasharray="2.2 2.2" stroke-opacity="0.85"/>
+        <path d="M 44 24 A 16 16 0 0 0 28 8" fill="none" stroke="${orangeStroke}" stroke-width="1.1" stroke-dasharray="2.2 2.2" stroke-opacity="0.85"/>
         <!-- Core Foundation Pedestal -->
-        <rect x="18" y="38" width="20" height="6" fill="rgba(239, 230, 218, 0.16)" stroke="rgba(255, 255, 255, 0.24)" stroke-width="1"/>
+        <rect x="18" y="38" width="20" height="6" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
         <!-- Diversified Core Anchor (Rotated Square Nucleus) -->
-        <rect x="21" y="17" width="14" height="14" rx="1.5" fill="rgba(239, 230, 218, 0.24)" stroke="rgba(255, 255, 255, 0.38)" stroke-width="1.2" transform="rotate(45 28 24)"/>
-        <circle cx="28" cy="24" r="2" fill="#FFFFFF"/>
+        <rect x="21" y="17" width="14" height="14" rx="1.5" fill="${fill2}" stroke="${stroke2}" stroke-width="1.2" transform="rotate(45 28 24)"/>
+        <circle cx="28" cy="24" r="2" fill="${dotFill}"/>
         <!-- Flanking Core Nodes -->
-        <rect x="25" y="5.5" width="6" height="5" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
-        <rect x="9" y="21.5" width="6" height="5" fill="rgba(239, 230, 218, 0.2)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+        <rect x="25" y="5.5" width="6" height="5" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
+        <rect x="9" y="21.5" width="6" height="5" fill="${fill1}" stroke="${stroke1}" stroke-width="1"/>
         <!-- Selective Satellite Allocation (Restrained Orange) -->
-        <line x1="35" y1="24" x2="41" y2="24" stroke="#F58024" stroke-width="1.3"/>
-        <rect x="41" y="20" width="8" height="8" fill="rgba(245, 128, 36, 0.18)" stroke="#F58024" stroke-width="1.4"/>
+        <line x1="35" y1="24" x2="41" y2="24" stroke="${orangeStroke}" stroke-width="1.3"/>
+        <rect x="41" y="20" width="8" height="8" fill="${orangeFill}" stroke="${orangeStroke}" stroke-width="1.4"/>
       </svg>`;
     }
   }
@@ -1407,7 +1417,7 @@
             <div class="strat-opt-badge-row">
               <span class="strat-opt-eyebrow-badge">QUANTITATIVE EQUITY STRATEGY</span>
               <div class="strat-card-art strat-sheet-art strat-opt-hero-art" aria-hidden="true">
-                ${getStrategyCardSvg('optimiser')}
+                ${getStrategyCardSvg('optimiser', true)}
               </div>
             </div>
             <h3 class="strat-opt-overview-title">Optimiser Portfolio</h3>
@@ -1441,16 +1451,16 @@
         <!-- 2. Tabs Navigation -->
         <nav class="strat-opt-nav-tabs" role="tablist" aria-label="Optimiser Portfolio Sections">
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="optTabWhy" aria-selected="false" aria-controls="optPanelWhy" data-tab="why" tabindex="-1">
-            <span>Investment case</span>
+            <span>Why this strategy</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn is-active" role="tab" id="optTabHow" aria-selected="true" aria-controls="optPanelHow" data-tab="how" tabindex="0">
-            <span>Our approach</span>
+            <span>How it works</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="optTabPerf" aria-selected="false" aria-controls="optPanelPerf" data-tab="perf" tabindex="-1">
             <span>Performance</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="optTabBuilt" aria-selected="false" aria-controls="optPanelBuilt" data-tab="built" tabindex="-1">
-            <span>Suitability</span>
+            <span>Is it right for you?</span>
           </button>
         </nav>
 
@@ -1598,31 +1608,46 @@
             </p>
           </div>
 
-          <!-- Tab 4 — Suitability -->
+          <!-- Tab 4 — Is it right for you? -->
           <div class="strat-opt-panel-view" id="optPanelBuilt" role="tabpanel" aria-labelledby="optTabBuilt" hidden>
             <div class="strat-opt-built-header">
               <h4 class="strat-opt-panel-title">Is this strategy right for you?</h4>
-              <div class="strat-opt-risk-pill" aria-label="Risk classification">
-                <span class="strat-opt-risk-dot" aria-hidden="true"></span>
-                <span>Risk classification: <strong>High risk</strong></span>
+              <p class="strat-opt-panel-supporting">Evaluate how the strategy aligns with your investment horizon, risk appetite and wealth goals.</p>
+            </div>
+
+            <!-- Section 1: Risk classification (prominently displayed with orange accent indicator) -->
+            <div class="strat-risk-classification-box" role="region" aria-label="Risk Classification">
+              <div class="strat-risk-indicator-bar" aria-hidden="true">
+                <span class="strat-risk-bar-active"></span>
+              </div>
+              <div class="strat-risk-details">
+                <div class="strat-risk-label-row">
+                  <span class="strat-risk-eyebrow">RISK CLASSIFICATION</span>
+                  <span class="strat-risk-badge-high">High Risk</span>
+                </div>
+                <p class="strat-risk-summary-text">
+                  Quantitative equity strategy investing in listed equities with disciplined factor rebalancing. Subject to market volatility and cyclical equity drawdowns.
+                </p>
               </div>
             </div>
 
-            <div class="strat-opt-suitability-grid">
-              <!-- Designed for -->
+            <!-- Section 2: Who this strategy is suitable for -->
+            <div class="strat-suitability-section">
               <div class="strat-opt-suitability-group">
-                <span class="strat-opt-suitability-label">Suitable for investors who:</span>
+                <span class="strat-opt-suitability-label">Who this strategy is suitable for</span>
                 <ul class="strat-opt-suitability-criteria">
                   <li>Seek long-term capital deployment with a 5+ year horizon.</li>
                   <li>Are comfortable with equity market volatility and cyclical drawdowns.</li>
                   <li>Prefer a systematic, rules-driven quantitative approach over discretionary stock picking.</li>
                 </ul>
               </div>
+            </div>
 
-              <!-- Not designed for -->
+            <!-- Section 3: Who this strategy may not be suitable for (visually separated) -->
+            <div class="strat-unsuitability-section">
               <div class="strat-opt-suitability-group is-not-intended">
-                <span class="strat-opt-suitability-label">Not intended for:</span>
-                <ul class="strat-opt-suitability-criteria">
+                <span class="strat-opt-suitability-label is-caution">Who this strategy may not be suitable for</span>
+                <ul class="strat-opt-suitability-criteria is-unsuitable">
                   <li>Short-term investment horizons (under 3–5 years).</li>
                   <li>Capital protection or low-volatility objectives.</li>
                   <li>Tactical market timing and frequent portfolio trading.</li>
@@ -1630,7 +1655,7 @@
               </div>
             </div>
 
-            <p class="strat-opt-disclosure-note" style="margin-top: 4px;">
+            <p class="strat-opt-disclosure-note" style="margin-top: 14px;">
               Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Figures represent aggregate discretionary portfolios; individual results may differ.
             </p>
           </div>
@@ -1681,6 +1706,12 @@
           btn.classList.toggle('is-active', isSelected);
           btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
           btn.setAttribute('tabindex', isSelected ? '0' : '-1');
+          if (isSelected && nav && typeof nav.scrollTo === 'function') {
+            const navRect = nav.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+            const targetScrollLeft = nav.scrollLeft + (btnRect.left - navRect.left) - (navRect.width - btnRect.width) / 2;
+            nav.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+          }
         });
 
         tabPanels.forEach(panel => {
@@ -1730,7 +1761,7 @@
             <div class="strat-opt-badge-row">
               <span class="strat-opt-eyebrow-badge">PROVEN LEADERSHIP · EQUITY</span>
               <div class="strat-card-art strat-sheet-art strat-opt-hero-art strat-foc-hero-art" aria-hidden="true">
-                ${getStrategyCardSvg('focused')}
+                ${getStrategyCardSvg('focused', true)}
               </div>
             </div>
             <h3 class="strat-opt-overview-title">Focused Leadership</h3>
@@ -1764,16 +1795,16 @@
         <!-- 2. Tabs Navigation -->
         <nav class="strat-opt-nav-tabs" role="tablist" aria-label="Focused Leadership Sections">
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="focTabWhy" aria-selected="false" aria-controls="focPanelWhy" data-tab="why" tabindex="-1">
-            <span>Investment case</span>
+            <span>Why this strategy</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn is-active" role="tab" id="focTabHow" aria-selected="true" aria-controls="focPanelHow" data-tab="how" tabindex="0">
-            <span>Our approach</span>
+            <span>How it works</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="focTabPerf" aria-selected="false" aria-controls="focPanelPerf" data-tab="perf" tabindex="-1">
             <span>Performance</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="focTabBuilt" aria-selected="false" aria-controls="focPanelBuilt" data-tab="built" tabindex="-1">
-            <span>Suitability</span>
+            <span>Is it right for you?</span>
           </button>
         </nav>
 
@@ -1937,21 +1968,53 @@
             </p>
           </div>
 
-          <!-- Tab 4 — Suitability -->
+          <!-- Tab 4 — Is it right for you? -->
           <div class="strat-opt-panel-view" id="focPanelBuilt" role="tabpanel" aria-labelledby="focTabBuilt" hidden>
             <div class="strat-opt-built-header">
               <h4 class="strat-opt-panel-title">For investors who think beyond market cycles.</h4>
-              <p class="strat-opt-panel-supporting">Focused Leadership may be suitable for investors who:</p>
+              <p class="strat-opt-panel-supporting">Focused Leadership prioritises long-term business strength and fundamental conviction over short-term market movements.</p>
             </div>
 
-            <div class="strat-opt-suitability-group">
-              <span class="strat-opt-suitability-label">Suitability criteria</span>
-              <ul class="strat-opt-suitability-criteria">
-                <li>Have a long-term investment horizon of more than five years.</li>
-                <li>Are comfortable with the volatility and concentration risks of an equity portfolio.</li>
-                <li>Value detailed business research over short-term market predictions.</li>
-                <li>Prefer a focused portfolio of established and emerging businesses.</li>
-              </ul>
+            <!-- Section 1: Risk classification (prominently displayed with orange accent indicator) -->
+            <div class="strat-risk-classification-box" role="region" aria-label="Risk Classification">
+              <div class="strat-risk-indicator-bar" aria-hidden="true">
+                <span class="strat-risk-bar-active"></span>
+              </div>
+              <div class="strat-risk-details">
+                <div class="strat-risk-label-row">
+                  <span class="strat-risk-eyebrow">RISK CLASSIFICATION</span>
+                  <span class="strat-risk-badge-high">High Risk</span>
+                </div>
+                <p class="strat-risk-summary-text">
+                  Focused equity strategy investing in 10–20 high-conviction companies. Portfolio concentration and equity volatility mean returns may diverge from broad benchmarks over shorter periods.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 2: Who this strategy is suitable for -->
+            <div class="strat-suitability-section">
+              <div class="strat-opt-suitability-group">
+                <span class="strat-opt-suitability-label">Who this strategy is suitable for</span>
+                <ul class="strat-opt-suitability-criteria">
+                  <li>Have a long-term investment horizon of more than five years.</li>
+                  <li>Are comfortable with the volatility and concentration risks of an equity portfolio.</li>
+                  <li>Value detailed business research over short-term market predictions.</li>
+                  <li>Prefer a focused portfolio of established and emerging businesses.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Section 3: Who this strategy may not be suitable for (visually separated) -->
+            <div class="strat-unsuitability-section">
+              <div class="strat-opt-suitability-group is-not-intended">
+                <span class="strat-opt-suitability-label is-caution">Who this strategy may not be suitable for</span>
+                <ul class="strat-opt-suitability-criteria is-unsuitable">
+                  <li>Investment horizons under 5 years where portfolio quality cannot compound.</li>
+                  <li>Capital preservation mandates or low-volatility fixed-income expectations.</li>
+                  <li>Investors uncomfortable with high-conviction portfolio concentration.</li>
+                  <li>Tactical trading approaches seeking quick market re-entry.</li>
+                </ul>
+              </div>
             </div>
 
             <!-- Mandate snapshot -->
@@ -1981,7 +2044,7 @@
               </div>
             </div>
 
-            <p class="strat-opt-disclosure-note" style="margin-top: 4px;">
+            <p class="strat-opt-disclosure-note" style="margin-top: 14px;">
               Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Figures represent aggregate discretionary portfolios; individual results may differ.
             </p>
           </div>
@@ -2032,6 +2095,12 @@
           btn.classList.toggle('is-active', isSelected);
           btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
           btn.setAttribute('tabindex', isSelected ? '0' : '-1');
+          if (isSelected && nav && typeof nav.scrollTo === 'function') {
+            const navRect = nav.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+            const targetScrollLeft = nav.scrollLeft + (btnRect.left - navRect.left) - (navRect.width - btnRect.width) / 2;
+            nav.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+          }
         });
 
         tabPanels.forEach(panel => {
@@ -2081,7 +2150,7 @@
             <div class="strat-opt-badge-row">
               <span class="strat-opt-eyebrow-badge">CORE &amp; SATELLITE · MUTUAL FUNDS</span>
               <div class="strat-card-art strat-sheet-art strat-opt-hero-art strat-dg-hero-art" aria-hidden="true">
-                ${getStrategyCardSvg('direct-growth')}
+                ${getStrategyCardSvg('direct-growth', true)}
               </div>
             </div>
             <h3 class="strat-opt-overview-title">${data.name}</h3>
@@ -2115,16 +2184,16 @@
         <!-- 2. Tabs Navigation -->
         <nav class="strat-opt-nav-tabs" role="tablist" aria-label="Select Direct Growth Sections">
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="dgTabWhy" aria-selected="false" aria-controls="dgPanelWhy" data-tab="why" tabindex="-1">
-            <span>Investment case</span>
+            <span>Why this strategy</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn is-active" role="tab" id="dgTabHow" aria-selected="true" aria-controls="dgPanelHow" data-tab="how" tabindex="0">
-            <span>Our approach</span>
+            <span>How it works</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="dgTabPerf" aria-selected="false" aria-controls="dgPanelPerf" data-tab="perf" tabindex="-1">
             <span>Performance</span>
           </button>
           <button type="button" class="strat-opt-tab-nav-btn" role="tab" id="dgTabBuilt" aria-selected="false" aria-controls="dgPanelBuilt" data-tab="built" tabindex="-1">
-            <span>Suitability</span>
+            <span>Is it right for you?</span>
           </button>
         </nav>
 
@@ -2310,21 +2379,53 @@
             </p>
           </div>
 
-          <!-- Tab 4 — Suitability -->
+          <!-- Tab 4 — Is it right for you? -->
           <div class="strat-opt-panel-view" id="dgPanelBuilt" role="tabpanel" aria-labelledby="dgTabBuilt" hidden>
             <div class="strat-opt-built-header">
               <h4 class="strat-opt-panel-title">For investors who value structure and flexibility.</h4>
-              <p class="strat-opt-panel-supporting">Select Direct Growth may be suitable for investors who:</p>
+              <p class="strat-opt-panel-supporting">Select Direct Growth balances disciplined broad-market core participation with selective satellite opportunities.</p>
             </div>
 
-            <div class="strat-opt-suitability-group">
-              <span class="strat-opt-suitability-label">Suitability criteria</span>
-              <ul class="strat-opt-suitability-criteria">
-                <li>Have an investment horizon of more than five years.</li>
-                <li>Want exposure to diversified equity mutual funds through direct plans.</li>
-                <li>Prefer a structured core allocation alongside selective tactical opportunities.</li>
-                <li>Are comfortable with the volatility associated with equity mutual fund portfolios.</li>
-              </ul>
+            <!-- Section 1: Risk classification (prominently displayed with orange accent indicator) -->
+            <div class="strat-risk-classification-box" role="region" aria-label="Risk Classification">
+              <div class="strat-risk-indicator-bar" aria-hidden="true">
+                <span class="strat-risk-bar-active"></span>
+              </div>
+              <div class="strat-risk-details">
+                <div class="strat-risk-label-row">
+                  <span class="strat-risk-eyebrow">RISK CLASSIFICATION</span>
+                  <span class="strat-risk-badge-high">High Risk</span>
+                </div>
+                <p class="strat-risk-summary-text">
+                  Direct mutual fund portfolio across core large-cap and tactical satellite schemes. Volatility is expected to be similar to diversified equity mutual funds. Mid- and small-cap exposure is sensitive to market cycles.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 2: Who this strategy is suitable for -->
+            <div class="strat-suitability-section">
+              <div class="strat-opt-suitability-group">
+                <span class="strat-opt-suitability-label">Who this strategy is suitable for</span>
+                <ul class="strat-opt-suitability-criteria">
+                  <li>Have an investment horizon of more than five years.</li>
+                  <li>Want exposure to diversified equity mutual funds through direct plans.</li>
+                  <li>Prefer a structured core allocation alongside selective tactical opportunities.</li>
+                  <li>Are comfortable with the volatility associated with equity mutual fund portfolios.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Section 3: Who this strategy may not be suitable for (visually separated) -->
+            <div class="strat-unsuitability-section">
+              <div class="strat-opt-suitability-group is-not-intended">
+                <span class="strat-opt-suitability-label is-caution">Who this strategy may not be suitable for</span>
+                <ul class="strat-opt-suitability-criteria is-unsuitable">
+                  <li>Investment horizons under 5 years where market cycles cannot complete.</li>
+                  <li>Investors seeking debt-like capital protection or fixed payouts.</li>
+                  <li>Investors seeking concentrated single-stock equity picking.</li>
+                  <li>Frequent trading or tactical market timing mandates.</li>
+                </ul>
+              </div>
             </div>
 
             <!-- Mandate snapshot -->
@@ -2378,7 +2479,7 @@
               </p>
             </div>
 
-            <p class="strat-opt-disclosure-note" style="margin-top: 8px;">
+            <p class="strat-opt-disclosure-note" style="margin-top: 14px;">
               Investments in securities are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns. Figures represent aggregate discretionary portfolios; individual results may differ.
             </p>
           </div>
@@ -2429,6 +2530,12 @@
           btn.classList.toggle('is-active', isSelected);
           btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
           btn.setAttribute('tabindex', isSelected ? '0' : '-1');
+          if (isSelected && nav && typeof nav.scrollTo === 'function') {
+            const navRect = nav.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+            const targetScrollLeft = nav.scrollLeft + (btnRect.left - navRect.left) - (navRect.width - btnRect.width) / 2;
+            nav.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
+          }
         });
 
         tabPanels.forEach(panel => {
@@ -4339,11 +4446,11 @@
       const h1 = s1.offsetHeight;
       const h2 = s2.offsetHeight;
       const h3 = s3.offsetHeight;
-      cardHeight = Math.max(h1, h2, h3, 520);
+      cardHeight = Math.max(h1, h2, 520);
 
       s1.style.height = cardHeight + 'px';
       s2.style.height = cardHeight + 'px';
-      s3.style.height = cardHeight + 'px';
+      s3.style.height = 'auto';
 
       const trackHeight = cardHeight + 48; // room for card + 28px bottom peeking + padding
       track.style.height = trackHeight + 'px';

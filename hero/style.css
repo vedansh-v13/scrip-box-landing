@@ -1845,7 +1845,7 @@ html, body {
 .faq-question {
   font-family: var(--font-heading);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.4;
   color: var(--text-primary);
   margin: 0;
