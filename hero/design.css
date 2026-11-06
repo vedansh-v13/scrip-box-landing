@@ -7938,20 +7938,40 @@ body.strategy-sheet-open .sticky-cta-bar,
   padding: 48px 20px !important;
 }
 
-.btf-badge {
+.btf-badge,
+.leadership-section .btf-badge,
+#perfSection .btf-badge {
   font-size: 11.5px !important;
   letter-spacing: 0.12em !important;
   margin-bottom: 12px !important;
   color: #B5ADA3;
-  text-align: left !important;
-  margin-left: 0 !important;
-  align-self: flex-start !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  align-self: center !important;
+  width: 100% !important;
 }
 
 .faq-pre-eyebrow {
-  text-align: left !important;
-  margin-left: 0 !important;
-  align-self: flex-start !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  align-self: center !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.btf-cta-card .cta-eyebrow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
 }
 
 .btf-title,
