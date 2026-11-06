@@ -7943,26 +7943,47 @@ body.strategy-sheet-open .sticky-cta-bar,
   letter-spacing: 0.12em !important;
   margin-bottom: 12px !important;
   color: #B5ADA3;
+  text-align: left !important;
+  margin-left: 0 !important;
+  align-self: flex-start !important;
+}
+
+.faq-pre-eyebrow {
+  text-align: left !important;
+  margin-left: 0 !important;
+  align-self: flex-start !important;
 }
 
 .btf-title,
 .btf-title--serif,
+.diff-main-heading,
 .process-main-title,
-.leadership-section .btf-title {
+.leadership-section .btf-title,
+.faq-section-subtitle,
+.secondary-cta-title,
+.btf-cta-card .secondary-cta-title {
   font-size: clamp(30px, 8.2vw, 36px) !important;
   line-height: 1.12 !important;
   letter-spacing: -0.02em !important;
-  margin: 0 0 12px 0 !important;
+  margin: 0 auto 12px auto !important;
+  text-align: center !important;
+  text-wrap: balance !important;
 }
 
 .btf-body,
+.problem-editorial-lede,
 .process-main-subhead,
 .leadership-section .btf-body,
-.strategies-section .btf-body {
+.strategies-section .btf-body,
+.secondary-cta-body,
+.btf-cta-card .secondary-cta-body {
   font-size: 15.5px !important;
   line-height: 1.6 !important;
   color: #D8D0C6 !important;
-  margin: 0 0 28px 0 !important;
+  margin: 0 auto 28px auto !important;
+  text-align: center !important;
+  text-wrap: pretty !important;
+  max-width: 32em !important;
 }
 
 /* 4. Paddle-Stack Cards (01 Challenge, 02 Approach, 03 Performance) */
@@ -7978,7 +7999,10 @@ body.strategy-sheet-open .sticky-cta-bar,
   font-size: 16px !important;
   line-height: 1.58 !important;
   color: #FAF6F0 !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  text-wrap: pretty !important;
+  max-width: 32em !important;
 }
 
 /* ==========================================================================

@@ -4460,8 +4460,9 @@
       container.style.setProperty('--paddle-track-height', trackHeight + 'px');
       container.style.setProperty('--paddle-card-height', cardHeight + 'px');
 
-      // Responsive scroll travel per card transition: ~28% of viewport height (tight, responsive swipe)
-      scrollDistancePerCard = Math.round(Math.min(Math.max(window.innerHeight * 0.28, 180), 240));
+      // Deliberate, readable scroll progression: ~62% of viewport height (minimum 460px, maximum 580px)
+      // Provides ample reading dwell time per card without rushed transitions
+      scrollDistancePerCard = Math.round(Math.min(Math.max(window.innerHeight * 0.62, 460), 580));
       const totalContainerHeight = trackHeight + (scrollDistancePerCard * 2);
       container.style.height = totalContainerHeight + 'px';
 
@@ -4475,6 +4476,14 @@
       if (typeof window.__sbRefreshNavMetrics === 'function') {
         window.__sbRefreshNavMetrics();
       }
+    }
+
+    // Gentle ease curve with an initial stationary dwell phase for reading comfort
+    function getEasedCardProgress(rawProgress, dwellRatio = 0.20) {
+      if (rawProgress <= dwellRatio) return 0;
+      const t = (rawProgress - dwellRatio) / (1 - dwellRatio);
+      // Hermite smoothstep (3t^2 - 2t^3) for seamless ease-in-out motion
+      return t * t * (3 - 2 * t);
     }
 
     function renderStack() {
@@ -4508,21 +4517,23 @@
       } else if (relativeScroll <= scrollDistancePerCard) {
         lastStackPhase = 't1';
         // Transition 1: Card 1 moves UP and leaves the viewport, revealing Card 2
-        const p1 = Math.min(Math.max(relativeScroll / scrollDistancePerCard, 0), 1);
+        // Includes initial dwell window so Card 1 remains stationary and readable before sliding
+        const rawP1 = Math.min(Math.max(relativeScroll / scrollDistancePerCard, 0), 1);
+        const p1 = getEasedCardProgress(rawP1, 0.20);
         
         // Card 1 exits upwards
         const exitOffset1 = -p1 * (cardHeight + 80);
         s1.style.transform = `translate3d(0, ${exitOffset1}px, 0)`;
         s1.style.opacity = '1';
         s1.style.visibility = p1 >= 1 ? 'hidden' : 'visible';
-        s1.style.pointerEvents = p1 > 0.5 ? 'none' : 'auto';
+        s1.style.pointerEvents = rawP1 > 0.55 ? 'none' : 'auto';
 
         // Card 2 moves from peeking (14px) to primary position (0px)
         const currentPeek2 = (1 - p1) * peek2;
         s2.style.transform = `translate3d(0, ${currentPeek2}px, 0)`;
         s2.style.opacity = '1';
         s2.style.visibility = 'visible';
-        s2.style.pointerEvents = p1 > 0.5 ? 'auto' : 'none';
+        s2.style.pointerEvents = rawP1 > 0.55 ? 'auto' : 'none';
 
         // Card 3 moves from peeking (28px) to second peeking (14px)
         const currentPeek3 = peek2 + (1 - p1) * (peek3 - peek2);
@@ -4533,7 +4544,9 @@
       } else if (relativeScroll <= scrollDistancePerCard * 2) {
         lastStackPhase = 't2';
         // Transition 2: Card 2 moves UP and leaves the viewport, revealing Card 3
-        const p2 = Math.min(Math.max((relativeScroll - scrollDistancePerCard) / scrollDistancePerCard, 0), 1);
+        // Includes initial dwell window so Card 2 remains stationary and readable before sliding
+        const rawP2 = Math.min(Math.max((relativeScroll - scrollDistancePerCard) / scrollDistancePerCard, 0), 1);
+        const p2 = getEasedCardProgress(rawP2, 0.20);
 
         // Card 1 stays offscreen
         s1.style.transform = `translate3d(0, -${cardHeight + 80}px, 0)`;
@@ -4546,14 +4559,14 @@
         s2.style.transform = `translate3d(0, ${exitOffset2}px, 0)`;
         s2.style.opacity = '1';
         s2.style.visibility = p2 >= 1 ? 'hidden' : 'visible';
-        s2.style.pointerEvents = p2 > 0.5 ? 'none' : 'auto';
+        s2.style.pointerEvents = rawP2 > 0.55 ? 'none' : 'auto';
 
         // Card 3 moves from peeking (14px) to primary position (0px)
         const currentPeek3 = (1 - p2) * peek2;
         s3.style.transform = `translate3d(0, ${currentPeek3}px, 0)`;
         s3.style.opacity = '1';
         s3.style.visibility = 'visible';
-        s3.style.pointerEvents = p2 > 0.5 ? 'auto' : 'none';
+        s3.style.pointerEvents = rawP2 > 0.55 ? 'auto' : 'none';
       } else {
         if (lastStackPhase === 'after') return;
         lastStackPhase = 'after';
@@ -4576,7 +4589,19 @@
       }
     }
 
-    window.addEventListener('scroll', renderStack, { passive: true });
+    let stackTicking = false;
+    function handleStackScroll() {
+      if (isReducedMotion) return;
+      if (!stackTicking) {
+        stackTicking = true;
+        requestAnimationFrame(() => {
+          renderStack();
+          stackTicking = false;
+        });
+      }
+    }
+
+    window.addEventListener('scroll', handleStackScroll, { passive: true });
 
     updateStackMetrics();
 

@@ -557,7 +557,9 @@ html, body {
   line-height: 1.3;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 12px 0;
+  margin: 0 auto 12px auto;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .btf-title--serif {
@@ -567,14 +569,19 @@ html, body {
   line-height: 1.25;
   letter-spacing: -0.015em;
   color: var(--text-primary);
-  margin: 0 0 8px 0;
+  margin: 0 auto 8px auto;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .btf-body {
   font-size: 15px;
   line-height: 1.55;
   color: #B5AEA5;
-  margin: 0 0 14px 0;
+  margin: 0 auto 14px auto;
+  text-align: center;
+  text-wrap: pretty;
+  max-width: 32em;
 }
 
 /* Scripbox Key Facts List (Block 2) */
