@@ -127,6 +127,7 @@ html, body {
   letter-spacing: -0.025em;
   color: var(--text-primary);
   margin: 14px 0 6px 0;
+  text-align: center;
 }
 
 .headline-milestone {
